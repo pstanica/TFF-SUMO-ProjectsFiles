@@ -1,0 +1,241 @@
+% Guarded finite named-proposition naval instance.
+% Six named proposition objects, three authorities, three worlds, and one agent.
+% All normative relations are serial. Issued obligations are activity-guarded.
+% Effective outcomes use maximal agreement on the intervention topic.
+% Protection remains an issued requirement on a separate topic.
+% No effective output is asserted as a scenario fact.
+% No Vampire run or timing is asserted for this file.
+tff(world_t,type,world:$tType).
+
+tff(agent_t,type,agent:$tType).
+
+tff(authority_t,type,authority:$tType).
+
+tff(k_t,type,k_accessible:(agent*world*world)>$o).
+
+tff(b_t,type,b_accessible:(agent*world*world)>$o).
+
+tff(d_t,type,o_accessible:(authority*world*world)>$o).
+
+tff(pos_t,type,pos:(authority*world)>$o).
+
+tff(neg_t,type,neg:(authority*world)>$o).
+
+tff(less_t,type,auth_priority:(authority*authority*world)>$o).
+
+tff(relevant_t,type,relevant:(authority*world)>$o).
+
+tff(maximal_t,type,maximal:(authority*world)>$o).
+
+tff(defeated_t,type,defeated:(authority*world)>$o).
+
+tff(ep_t,type,effective_pos:world>$o).
+
+tff(en_t,type,effective_neg:world>$o).
+
+tff(unresolved_t,type,unresolved:world>$o).
+
+tff(roe_t,type,roe:authority).
+
+tff(unclos_t,type,unclos:authority).
+
+tff(nsd_t,type,nsd:authority).
+
+tff(w0_t,type,w0:world).
+
+tff(w1_t,type,w1:world).
+
+tff(w2_t,type,w2:world).
+
+tff(commander_t,type,commander:agent).
+
+tff(threat_t,type,threat_present:world>$o).
+
+tff(asset_t,type,asset_nearby:world>$o).
+
+tff(territorial_t,type,territorial:world>$o).
+
+tff(active_t,type,active:(authority*world)>$o).
+
+tff(conflict_t,type,issued_conflict:world>$o).
+
+tff(mediation_t,type,requires_mediation:world>$o).
+
+tff(wp_t,type,weak_pos:(authority*world)>$o).
+
+tff(wn_t,type,weak_neg:(authority*world)>$o).
+
+tff(prop_t,type,prop:$tType).
+
+tff(holds_t,type,holds:(prop*world)>$o).
+
+tff(issue_warning_t,type,issue_warning:prop).
+
+tff(immediate_action_t,type,immediate_action:prop).
+
+tff(protect_asset_t,type,protect_asset:prop).
+
+tff(threat_detected_t,type,threat_detected:prop).
+
+tff(in_territorial_waters_t,type,in_territorial_waters:prop).
+
+tff(strategic_asset_nearby_t,type,strategic_asset_nearby:prop).
+
+tff(obligatory_t,type,obligatory:(authority*prop*world)>$o).
+
+tff(weak_permitted_t,type,weak_permitted:(authority*prop*world)>$o).
+
+tff(knows_t,type,knows:(agent*prop*world)>$o).
+
+tff(believes_t,type,believes:(agent*prop*world)>$o).
+
+tff(effective_obligation_t,type,effective_obligation:(prop*world)>$o).
+
+tff(unresolvable_conflict_t,type,unresolvable_conflict:world>$o).
+
+tff(k_reflexive,axiom, ![A:agent,W:world]: k_accessible(A,W,W)).
+
+tff(k_symmetric,axiom, ![A:agent,W:world,U:world]:
+  (k_accessible(A,W,U) => k_accessible(A,U,W))).
+
+tff(k_transitive,axiom, ![A:agent,W:world,U:world,V:world]:
+  ((k_accessible(A,W,U) & k_accessible(A,U,V)) => k_accessible(A,W,V))).
+
+tff(b_serial,axiom, ![A:agent,W:world]:
+  ?[U:world]: b_accessible(A,W,U)).
+
+tff(b_transitive,axiom, ![A:agent,W:world,U:world,V:world]:
+  ((b_accessible(A,W,U) & b_accessible(A,U,V)) => b_accessible(A,W,V))).
+
+tff(b_euclidean,axiom, ![A:agent,W:world,U:world,V:world]:
+  ((b_accessible(A,W,U) & b_accessible(A,W,V)) => b_accessible(A,U,V))).
+
+tff(kb_inclusion,axiom, ![A:agent,W:world,U:world]:
+  (b_accessible(A,W,U) => k_accessible(A,W,U))).
+
+tff(d_serial,axiom, ![H:authority,W:world]:
+  ?[U:world]: o_accessible(H,W,U)).
+
+tff(less_irreflexive,axiom, ![H:authority,W:world]:
+  ~auth_priority(H,H,W)).
+
+tff(less_transitive,axiom,
+  ![H:authority,J:authority,K:authority,W:world]:
+  ((auth_priority(H,J,W) & auth_priority(J,K,W)) => auth_priority(H,K,W))).
+
+tff(relevant_def,axiom, ![H:authority,W:world]:
+  (relevant(H,W) <=> (pos(H,W) | neg(H,W)))).
+
+tff(maximal_def,axiom, ![H:authority,W:world]:
+  (maximal(H,W) <=> (relevant(H,W) &
+    ~(?[J:authority]: (relevant(J,W) & auth_priority(H,J,W)))))).
+
+tff(defeated_def,axiom, ![H:authority,W:world]:
+  (defeated(H,W) <=> (relevant(H,W) & ~maximal(H,W)))).
+
+tff(effective_pos_def,axiom, ![W:world]:
+  (effective_pos(W) <=>
+    ((?[H:authority]: maximal(H,W)) &
+     (![J:authority]: (maximal(J,W) => pos(J,W)))))).
+
+tff(effective_neg_def,axiom, ![W:world]:
+  (effective_neg(W) <=>
+    ((?[H:authority]: maximal(H,W)) &
+     (![J:authority]: (maximal(J,W) => neg(J,W)))))).
+
+tff(unresolved_def,axiom, ![W:world]:
+  (unresolved(W) <=>
+    ((?[H:authority]: (maximal(H,W) & pos(H,W))) &
+     (?[J:authority]: (maximal(J,W) & neg(J,W)))))).
+
+tff(threat_fact,axiom, ![W:world]: threat_present(W)).
+
+tff(asset_fact,axiom, ![W:world]: asset_nearby(W)).
+
+tff(territorial_def,axiom, ![W:world]: (territorial(W) <=> W!=w1)).
+
+tff(authority_closure,axiom, ![H:authority]: (H=roe | H=unclos | H=nsd)).
+
+tff(authority_distinct,axiom, (roe!=unclos & roe!=nsd & unclos!=nsd)).
+
+tff(world_closure,axiom, ![W:world]: (W=w0 | W=w1 | W=w2)).
+
+tff(world_distinct,axiom, (w0!=w1 & w0!=w2 & w1!=w2)).
+
+tff(agent_closure,axiom, ![A:agent]: A=commander).
+
+tff(active_def,axiom, ![H:authority,W:world]:
+ (active(H,W) <=> (H!=unclos | territorial(W)))).
+
+tff(k_def,axiom, ![A:agent,W:world,U:world]: k_accessible(A,W,U)).
+
+tff(b_def,axiom, ![A:agent,W:world,U:world]: b_accessible(A,W,U)).
+
+tff(d_def,axiom, ![H:authority,W:world,U:world]:
+ (o_accessible(H,W,U) <=> ((H=roe & U=w2) | (H=unclos & U=w1) | H=nsd))).
+
+tff(priority_def,axiom, ![H:authority,J:authority,W:world]:
+ (auth_priority(H,J,W) <=> (H=unclos & (J=roe | J=nsd)))).
+
+tff(pos_def,axiom, ![H:authority,W:world]:
+ (pos(H,W) <=> (active(H,W) & (![U:world]: (o_accessible(H,W,U) => holds(immediate_action,U)))))).
+
+tff(neg_def,axiom, ![H:authority,W:world]:
+ (neg(H,W) <=> (active(H,W) & (![U:world]: (o_accessible(H,W,U) => ~holds(immediate_action,U)))))).
+
+tff(conflict_def,axiom, ![W:world]:
+ (issued_conflict(W) <=>
+  (?[H:authority,J:authority]: (H!=J & pos(H,W) & neg(J,W))))).
+
+tff(mediation_def,axiom, ![W:world]:
+ (requires_mediation(W) <=> unresolved(W))).
+
+tff(weak_pos_def,axiom, ![H:authority,W:world]:
+ (weak_pos(H,W) <=> (active(H,W) &
+  ~(![U:world]: (o_accessible(H,W,U) => ~holds(immediate_action,U)))))).
+
+tff(weak_neg_def,axiom, ![H:authority,W:world]:
+ (weak_neg(H,W) <=> (active(H,W) &
+  ~(![U:world]: (o_accessible(H,W,U) => holds(immediate_action,U)))))).
+
+tff(prop_closure,axiom, ![P:prop]: (P=issue_warning | P=immediate_action | P=protect_asset | P=threat_detected | P=in_territorial_waters | P=strategic_asset_nearby)).
+
+tff(prop_distinct,axiom, (issue_warning!=immediate_action & issue_warning!=protect_asset & issue_warning!=threat_detected & issue_warning!=in_territorial_waters & issue_warning!=strategic_asset_nearby & immediate_action!=protect_asset & immediate_action!=threat_detected & immediate_action!=in_territorial_waters & immediate_action!=strategic_asset_nearby & protect_asset!=threat_detected & protect_asset!=in_territorial_waters & protect_asset!=strategic_asset_nearby & threat_detected!=in_territorial_waters & threat_detected!=strategic_asset_nearby & in_territorial_waters!=strategic_asset_nearby)).
+
+tff(holds_def,axiom, ![P:prop,W:world]:
+ (holds(P,W) <=>
+  ((P=issue_warning & W!=w2) | (P=immediate_action & W=w2) |
+   (P=in_territorial_waters & W!=w1) | P=protect_asset |
+   P=threat_detected | P=strategic_asset_nearby))).
+
+tff(obligatory_def,axiom, ![H:authority,P:prop,W:world]:
+ (obligatory(H,P,W) <=> (active(H,W) &
+  (![U:world]: (o_accessible(H,W,U) => holds(P,U)))))).
+
+tff(weak_permission_def,axiom, ![H:authority,P:prop,W:world]:
+ (weak_permitted(H,P,W) <=> (active(H,W) &
+  ~(![U:world]: (o_accessible(H,W,U) => ~holds(P,U)))))).
+
+tff(knows_def,axiom, ![A:agent,P:prop,W:world]:
+ (knows(A,P,W) <=> (![U:world]: (k_accessible(A,W,U) => holds(P,U))))).
+
+tff(believes_def,axiom, ![A:agent,P:prop,W:world]:
+ (believes(A,P,W) <=> (![U:world]: (b_accessible(A,W,U) => holds(P,U))))).
+
+tff(effective_obligation_def,axiom, ![P:prop,W:world]:
+ (effective_obligation(P,W) <=>
+  ((P=immediate_action & effective_pos(W)) |
+   (P=issue_warning & effective_neg(W))))).
+
+tff(unresolvable_conflict_def,axiom, ![W:world]:
+ (unresolvable_conflict(W) <=> unresolved(W))).
+
+tff(naval_policy_checks,conjecture,
+ (obligatory(roe,immediate_action,w0) & obligatory(unclos,issue_warning,w0) &
+  obligatory(nsd,protect_asset,w0) & issued_conflict(w0) &
+  effective_obligation(immediate_action,w0) &
+  ~effective_obligation(issue_warning,w0) & ~unresolvable_conflict(w0) &
+  ~knows(commander,issue_warning,w0) &
+  ~(![U:world]: (k_accessible(commander,w0,U) => obligatory(unclos,issue_warning,U))) &
+  (![U:world]: (k_accessible(commander,w0,U) => effective_pos(U))) &
+  weak_permitted(nsd,immediate_action,w0) & weak_permitted(nsd,issue_warning,w0))).

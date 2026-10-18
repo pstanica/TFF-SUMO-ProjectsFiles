@@ -1,0 +1,112 @@
+tff(world_t,type,world:$tType).
+tff(agent_t,type,agent:$tType).
+tff(authority_t,type,authority:$tType).
+tff(k_t,type,k:(agent*world*world)>$o).
+tff(b_t,type,b:(agent*world*world)>$o).
+tff(d_t,type,d:(authority*world*world)>$o).
+tff(k_reflexive,axiom, ![A:agent,W:world]: k(A,W,W)).
+tff(k_symmetric,axiom, ![A:agent,W:world,U:world]:
+  (k(A,W,U) => k(A,U,W))).
+tff(k_transitive,axiom, ![A:agent,W:world,U:world,V:world]:
+  ((k(A,W,U) & k(A,U,V)) => k(A,W,V))).
+tff(b_serial,axiom, ![A:agent,W:world]:
+  ?[U:world]: b(A,W,U)).
+tff(b_transitive,axiom, ![A:agent,W:world,U:world,V:world]:
+  ((b(A,W,U) & b(A,U,V)) => b(A,W,V))).
+tff(b_euclidean,axiom, ![A:agent,W:world,U:world,V:world]:
+  ((b(A,W,U) & b(A,W,V)) => b(A,U,V))).
+tff(kb_inclusion,axiom, ![A:agent,W:world,U:world]:
+  (b(A,W,U) => k(A,W,U))).
+tff(d_serial,axiom, ![H:authority,W:world]:
+  ?[U:world]: d(H,W,U)).
+
+tff(pos_t,type,pos:(authority*world)>$o).
+tff(neg_t,type,neg:(authority*world)>$o).
+tff(less_t,type,less:(authority*authority*world)>$o).
+tff(relevant_t,type,relevant:(authority*world)>$o).
+tff(maximal_t,type,maximal:(authority*world)>$o).
+tff(defeated_t,type,defeated:(authority*world)>$o).
+tff(ep_t,type,effective_pos:world>$o).
+tff(en_t,type,effective_neg:world>$o).
+tff(unresolved_t,type,unresolved:world>$o).
+tff(less_irreflexive,axiom, ![H:authority,W:world]:
+  ~less(H,H,W)).
+tff(less_transitive,axiom,
+  ![H:authority,J:authority,K:authority,W:world]:
+  ((less(H,J,W) & less(J,K,W)) => less(H,K,W))).
+tff(relevant_def,axiom, ![H:authority,W:world]:
+  (relevant(H,W) <=> (pos(H,W) | neg(H,W)))).
+tff(maximal_def,axiom, ![H:authority,W:world]:
+  (maximal(H,W) <=> (relevant(H,W) &
+    ~(?[J:authority]: (relevant(J,W) & less(H,J,W)))))).
+tff(defeated_def,axiom, ![H:authority,W:world]:
+  (defeated(H,W) <=> (relevant(H,W) & ~maximal(H,W)))).
+tff(effective_pos_def,axiom, ![W:world]:
+  (effective_pos(W) <=>
+    ((?[H:authority]: maximal(H,W)) &
+     (![J:authority]: (maximal(J,W) => pos(J,W)))))).
+tff(effective_neg_def,axiom, ![W:world]:
+  (effective_neg(W) <=>
+    ((?[H:authority]: maximal(H,W)) &
+     (![J:authority]: (maximal(J,W) => neg(J,W)))))).
+tff(unresolved_def,axiom, ![W:world]:
+  (unresolved(W) <=>
+    ((?[H:authority]: (maximal(H,W) & pos(H,W))) &
+     (?[J:authority]: (maximal(J,W) & neg(J,W)))))).
+
+% A complete finite binary-topic instance of the stated model.
+% Run with a TFF-capable prover. No prover timing is asserted for this file.
+tff(roe_t,type,roe:authority).
+tff(unclos_t,type,unclos:authority).
+tff(nsd_t,type,nsd:authority).
+tff(w0_t,type,w0:world).
+tff(w1_t,type,w1:world).
+tff(w2_t,type,w2:world).
+tff(commander_t,type,commander:agent).
+tff(threat_t,type,threat_detected:world>$o).
+tff(asset_t,type,asset_nearby:world>$o).
+tff(territorial_t,type,territorial:world>$o).
+tff(threat_fact,axiom, ![W:world]: threat_detected(W)).
+tff(asset_fact,axiom, ![W:world]: asset_nearby(W)).
+tff(territorial_def,axiom, ![W:world]: (territorial(W) <=> W!=w1)).
+tff(active_t,type,active:(authority*world)>$o).
+tff(p_t,type,p:world>$o).
+tff(authority_closure,axiom, ![H:authority]: (H=roe | H=unclos | H=nsd)).
+tff(authority_distinct,axiom, (roe!=unclos & roe!=nsd & unclos!=nsd)).
+tff(world_closure,axiom, ![W:world]: (W=w0 | W=w1 | W=w2)).
+tff(world_distinct,axiom, (w0!=w1 & w0!=w2 & w1!=w2)).
+tff(agent_closure,axiom, ![A:agent]: A=commander).
+tff(p_def,axiom, ![W:world]: (p(W) <=> W=w2)).
+tff(active_def,axiom, ![H:authority,W:world]:
+ (active(H,W) <=> (H!=unclos | territorial(W)))).
+tff(k_def,axiom, ![A:agent,W:world,U:world]: k(A,W,U)).
+tff(b_def,axiom, ![A:agent,W:world,U:world]: b(A,W,U)).
+tff(d_def,axiom, ![H:authority,W:world,U:world]:
+ (d(H,W,U) <=> ((H=roe & U=w2) | (H=unclos & U=w1) | H=nsd))).
+tff(priority_def,axiom, ![H:authority,J:authority,W:world]:
+ (less(H,J,W) <=> (H=unclos & (J=roe | J=nsd)))).
+tff(pos_def,axiom, ![H:authority,W:world]:
+ (pos(H,W) <=> (active(H,W) & (![U:world]: (d(H,W,U) => p(U)))))).
+tff(neg_def,axiom, ![H:authority,W:world]:
+ (neg(H,W) <=> (active(H,W) & (![U:world]: (d(H,W,U) => ~p(U)))))).
+tff(conflict_t,type,issued_conflict:world>$o).
+tff(mediation_t,type,requires_mediation:world>$o).
+tff(wp_t,type,weak_pos:(authority*world)>$o).
+tff(wn_t,type,weak_neg:(authority*world)>$o).
+tff(conflict_def,axiom, ![W:world]:
+ (issued_conflict(W) <=>
+  (?[H:authority,J:authority]: (H!=J & pos(H,W) & neg(J,W))))).
+tff(mediation_def,axiom, ![W:world]:
+ (requires_mediation(W) <=> unresolved(W))).
+tff(weak_pos_def,axiom, ![H:authority,W:world]:
+ (weak_pos(H,W) <=> (active(H,W) &
+  ~(![U:world]: (d(H,W,U) => ~p(U)))))).
+tff(weak_neg_def,axiom, ![H:authority,W:world]:
+ (weak_neg(H,W) <=> (active(H,W) &
+  ~(![U:world]: (d(H,W,U) => p(U)))))).
+tff(binary_naval_queries,conjecture,
+ (pos(roe,w0) & neg(unclos,w0) & issued_conflict(w0) & effective_pos(w0) &
+  ~effective_neg(w0) & ~unresolved(w0) & ~requires_mediation(w0) &
+  weak_pos(nsd,w0) & weak_neg(nsd,w0) &
+  ~(![U:world]: (k(commander,w0,U) => neg(unclos,U))) &
+  ~(![U:world]: (k(commander,w0,U) => ~p(U))))).
