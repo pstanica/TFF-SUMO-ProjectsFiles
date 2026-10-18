@@ -1,0 +1,3181 @@
+% Refutation found. Thanks to Tanya!
+% SZS status Theorem for naval_operations_corrected
+% SZS output start Proof for naval_operations_corrected
+tff(type_def_5, type, world: $tType).
+tff(type_def_6, type, agent: $tType).
+tff(type_def_7, type, authority: $tType).
+tff(type_def_8, type, prop: $tType).
+tff(func_def_0, type, roe: authority).
+tff(func_def_1, type, unclos: authority).
+tff(func_def_2, type, nsd: authority).
+tff(func_def_3, type, w0: world).
+tff(func_def_4, type, w1: world).
+tff(func_def_5, type, w2: world).
+tff(func_def_6, type, commander: agent).
+tff(func_def_7, type, issue_warning: prop).
+tff(func_def_8, type, immediate_action: prop).
+tff(func_def_9, type, protect_asset: prop).
+tff(func_def_10, type, threat_detected: prop).
+tff(func_def_11, type, in_territorial_waters: prop).
+tff(func_def_12, type, strategic_asset_nearby: prop).
+tff(func_def_13, type, sK1: (agent * world) > world).
+tff(func_def_14, type, sK2: (authority * world) > world).
+tff(func_def_15, type, sK3: (authority * world) > authority).
+tff(func_def_16, type, sK4: world > authority).
+tff(func_def_17, type, sK5: world > authority).
+tff(func_def_18, type, sK6: world > authority).
+tff(func_def_19, type, sK7: world > authority).
+tff(func_def_20, type, sK8: world > authority).
+tff(func_def_21, type, sK9: world > authority).
+tff(func_def_22, type, sK10: (authority * world) > world).
+tff(func_def_23, type, sK11: (authority * world) > world).
+tff(func_def_24, type, sK12: (authority * prop * world) > world).
+tff(func_def_25, type, sK13: world).
+tff(pred_def_1, type, k_accessible: (agent * world * world) > $o).
+tff(pred_def_2, type, b_accessible: (agent * world * world) > $o).
+tff(pred_def_3, type, o_accessible: (authority * world * world) > $o).
+tff(pred_def_4, type, pos: (authority * world) > $o).
+tff(pred_def_5, type, neg: (authority * world) > $o).
+tff(pred_def_6, type, auth_priority: (authority * authority * world) > $o).
+tff(pred_def_7, type, relevant: (authority * world) > $o).
+tff(pred_def_8, type, maximal: (authority * world) > $o).
+tff(pred_def_9, type, defeated: (authority * world) > $o).
+tff(pred_def_10, type, effective_pos: world > $o).
+tff(pred_def_11, type, effective_neg: world > $o).
+tff(pred_def_12, type, unresolved: world > $o).
+tff(pred_def_13, type, threat_present: world > $o).
+tff(pred_def_14, type, asset_nearby: world > $o).
+tff(pred_def_15, type, territorial: world > $o).
+tff(pred_def_16, type, active: (authority * world) > $o).
+tff(pred_def_17, type, issued_conflict: world > $o).
+tff(pred_def_18, type, requires_mediation: world > $o).
+tff(pred_def_19, type, weak_pos: (authority * world) > $o).
+tff(pred_def_20, type, weak_neg: (authority * world) > $o).
+tff(pred_def_21, type, holds: (prop * world) > $o).
+tff(pred_def_22, type, obligatory: (authority * prop * world) > $o).
+tff(pred_def_23, type, weak_permitted: (authority * prop * world) > $o).
+tff(pred_def_24, type, knows: (agent * prop * world) > $o).
+tff(pred_def_25, type, believes: (agent * prop * world) > $o).
+tff(pred_def_26, type, effective_obligation: (prop * world) > $o).
+tff(pred_def_27, type, unresolvable_conflict: world > $o).
+tff(pred_def_28, type, sP0: (prop * world) > $o).
+tff(f8,axiom,(
+  ! [X4 : authority,X1 : world] : ? [X2 : world] : o_accessible(X4,X1,X2)),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f9,axiom,(
+  ! [X4 : authority,X1 : world] : ~auth_priority(X4,X4,X1)),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f11,axiom,(
+  ! [X4 : authority,X1 : world] : (relevant(X4,X1) <=> (pos(X4,X1) | neg(X4,X1)))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f12,axiom,(
+  ! [X4 : authority,X1 : world] : (maximal(X4,X1) <=> (relevant(X4,X1) & ~? [X5 : authority] : (relevant(X5,X1) & auth_priority(X4,X5,X1))))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f14,axiom,(
+  ! [X1 : world] : (effective_pos(X1) <=> (? [X4 : authority] : maximal(X4,X1) & ! [X5 : authority] : (maximal(X5,X1) => pos(X5,X1))))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f15,axiom,(
+  ! [X1 : world] : (effective_neg(X1) <=> (? [X4 : authority] : maximal(X4,X1) & ! [X5 : authority] : (maximal(X5,X1) => neg(X5,X1))))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f16,axiom,(
+  ! [X1 : world] : (unresolved(X1) <=> (? [X4 : authority] : (maximal(X4,X1) & pos(X4,X1)) & ? [X5 : authority] : (maximal(X5,X1) & neg(X5,X1))))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f19,axiom,(
+  ! [X1 : world] : (territorial(X1) <=> X1 != w1)),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f20,axiom,(
+  ! [X4 : authority] : (X4 = roe | X4 = unclos | X4 = nsd)),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f21,axiom,(
+  roe != unclos & roe != nsd & unclos != nsd),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f22,axiom,(
+  ! [X1 : world] : (X1 = w0 | X1 = w1 | X1 = w2)),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f23,axiom,(
+  w0 != w1 & w0 != w2 & w1 != w2),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f25,axiom,(
+  ! [X4 : authority,X1 : world] : (active(X4,X1) <=> (X4 != unclos | territorial(X1)))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f26,axiom,(
+  ! [X0 : agent,X1 : world,X2 : world] : k_accessible(X0,X1,X2)),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f28,axiom,(
+  ! [X4 : authority,X1 : world,X2 : world] : (o_accessible(X4,X1,X2) <=> ((X4 = roe & X2 = w2) | (X4 = unclos & X2 = w1) | X4 = nsd))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f29,axiom,(
+  ! [X4 : authority,X5 : authority,X1 : world] : (auth_priority(X4,X5,X1) <=> (X4 = unclos & (X5 = roe | X5 = nsd)))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f30,axiom,(
+  ! [X4 : authority,X1 : world] : (pos(X4,X1) <=> (active(X4,X1) & ! [X2 : world] : (o_accessible(X4,X1,X2) => holds(immediate_action,X2))))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f31,axiom,(
+  ! [X4 : authority,X1 : world] : (neg(X4,X1) <=> (active(X4,X1) & ! [X2 : world] : (o_accessible(X4,X1,X2) => ~holds(immediate_action,X2))))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f32,axiom,(
+  ! [X1 : world] : (issued_conflict(X1) <=> ? [X4 : authority,X5 : authority] : (X4 != X5 & pos(X4,X1) & neg(X5,X1)))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f37,axiom,(
+  issue_warning != immediate_action & issue_warning != protect_asset & issue_warning != threat_detected & issue_warning != in_territorial_waters & issue_warning != strategic_asset_nearby & immediate_action != protect_asset & immediate_action != threat_detected & immediate_action != in_territorial_waters & immediate_action != strategic_asset_nearby & protect_asset != threat_detected & protect_asset != in_territorial_waters & protect_asset != strategic_asset_nearby & threat_detected != in_territorial_waters & threat_detected != strategic_asset_nearby & in_territorial_waters != strategic_asset_nearby),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f38,axiom,(
+  ! [X7 : prop,X1 : world] : (holds(X7,X1) <=> ((X7 = issue_warning & X1 != w2) | (X7 = immediate_action & X1 = w2) | (X7 = in_territorial_waters & X1 != w1) | X7 = protect_asset | X7 = threat_detected | X7 = strategic_asset_nearby))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f39,axiom,(
+  ! [X4 : authority,X7 : prop,X1 : world] : (obligatory(X4,X7,X1) <=> (active(X4,X1) & ! [X2 : world] : (o_accessible(X4,X1,X2) => holds(X7,X2))))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f40,axiom,(
+  ! [X4 : authority,X7 : prop,X1 : world] : (weak_permitted(X4,X7,X1) <=> (active(X4,X1) & ~! [X2 : world] : (o_accessible(X4,X1,X2) => ~holds(X7,X2))))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f41,axiom,(
+  ! [X0 : agent,X7 : prop,X1 : world] : (knows(X0,X7,X1) <=> ! [X2 : world] : (k_accessible(X0,X1,X2) => holds(X7,X2)))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f43,axiom,(
+  ! [X7 : prop,X1 : world] : (effective_obligation(X7,X1) <=> ((X7 = immediate_action & effective_pos(X1)) | (X7 = issue_warning & effective_neg(X1))))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f44,axiom,(
+  ! [X1 : world] : (unresolvable_conflict(X1) <=> unresolved(X1))),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f45,conjecture,(
+  obligatory(roe,immediate_action,w0) & obligatory(unclos,issue_warning,w0) & obligatory(nsd,protect_asset,w0) & issued_conflict(w0) & effective_obligation(immediate_action,w0) & ~effective_obligation(issue_warning,w0) & ~unresolvable_conflict(w0) & ~knows(commander,issue_warning,w0) & ~! [X2 : world] : (k_accessible(commander,w0,X2) => obligatory(unclos,issue_warning,X2)) & ! [X2 : world] : (k_accessible(commander,w0,X2) => effective_pos(X2)) & weak_permitted(nsd,immediate_action,w0) & weak_permitted(nsd,issue_warning,w0)),
+  file('naval_operations_corrected.tff',unknown)).
+tff(f46,negated_conjecture,(
+  ~(obligatory(roe,immediate_action,w0) & obligatory(unclos,issue_warning,w0) & obligatory(nsd,protect_asset,w0) & issued_conflict(w0) & effective_obligation(immediate_action,w0) & ~effective_obligation(issue_warning,w0) & ~unresolvable_conflict(w0) & ~knows(commander,issue_warning,w0) & ~! [X2 : world] : (k_accessible(commander,w0,X2) => obligatory(unclos,issue_warning,X2)) & ! [X2 : world] : (k_accessible(commander,w0,X2) => effective_pos(X2)) & weak_permitted(nsd,immediate_action,w0) & weak_permitted(nsd,issue_warning,w0))),
+  inference(negated_conjecture,[status(cth)],[f45])).
+tff(f47,plain,(
+  ! [X0 : authority,X1 : world] : ? [X2 : world] : o_accessible(X0,X1,X2)),
+  inference(rectify,[],[f8])).
+tff(f48,plain,(
+  ! [X0 : authority,X1 : world] : ~auth_priority(X0,X0,X1)),
+  inference(rectify,[],[f9])).
+tff(f50,plain,(
+  ! [X0 : authority,X1 : world] : (relevant(X0,X1) <=> (pos(X0,X1) | neg(X0,X1)))),
+  inference(rectify,[],[f11])).
+tff(f51,plain,(
+  ! [X0 : authority,X1 : world] : (maximal(X0,X1) <=> (relevant(X0,X1) & ~? [X2 : authority] : (relevant(X2,X1) & auth_priority(X0,X2,X1))))),
+  inference(rectify,[],[f12])).
+tff(f53,plain,(
+  ! [X0 : world] : (effective_pos(X0) <=> (? [X1 : authority] : maximal(X1,X0) & ! [X2 : authority] : (maximal(X2,X0) => pos(X2,X0))))),
+  inference(rectify,[],[f14])).
+tff(f54,plain,(
+  ! [X0 : world] : (effective_neg(X0) <=> (? [X1 : authority] : maximal(X1,X0) & ! [X2 : authority] : (maximal(X2,X0) => neg(X2,X0))))),
+  inference(rectify,[],[f15])).
+tff(f55,plain,(
+  ! [X0 : world] : (unresolved(X0) <=> (? [X1 : authority] : (maximal(X1,X0) & pos(X1,X0)) & ? [X2 : authority] : (maximal(X2,X0) & neg(X2,X0))))),
+  inference(rectify,[],[f16])).
+tff(f58,plain,(
+  ! [X0 : world] : (territorial(X0) <=> w1 != X0)),
+  inference(rectify,[],[f19])).
+tff(f59,plain,(
+  ! [X0 : authority] : (roe = X0 | unclos = X0 | nsd = X0)),
+  inference(rectify,[],[f20])).
+tff(f60,plain,(
+  ! [X0 : world] : (w0 = X0 | w1 = X0 | w2 = X0)),
+  inference(rectify,[],[f22])).
+tff(f61,plain,(
+  ! [X0 : authority,X1 : world] : (active(X0,X1) <=> (unclos != X0 | territorial(X1)))),
+  inference(rectify,[],[f25])).
+tff(f62,plain,(
+  ! [X0 : authority,X1 : world,X2 : world] : (o_accessible(X0,X1,X2) <=> ((roe = X0 & X2 = w2) | (unclos = X0 & X2 = w1) | nsd = X0))),
+  inference(rectify,[],[f28])).
+tff(f63,plain,(
+  ! [X0 : authority,X1 : authority,X2 : world] : (auth_priority(X0,X1,X2) <=> (unclos = X0 & (roe = X1 | nsd = X1)))),
+  inference(rectify,[],[f29])).
+tff(f64,plain,(
+  ! [X0 : authority,X1 : world] : (pos(X0,X1) <=> (active(X0,X1) & ! [X2 : world] : (o_accessible(X0,X1,X2) => holds(immediate_action,X2))))),
+  inference(rectify,[],[f30])).
+tff(f65,plain,(
+  ! [X0 : authority,X1 : world] : (neg(X0,X1) <=> (active(X0,X1) & ! [X2 : world] : (o_accessible(X0,X1,X2) => ~holds(immediate_action,X2))))),
+  inference(rectify,[],[f31])).
+tff(f66,plain,(
+  ! [X0 : world] : (issued_conflict(X0) <=> ? [X1 : authority,X2 : authority] : (X1 != X2 & pos(X1,X0) & neg(X2,X0)))),
+  inference(rectify,[],[f32])).
+tff(f71,plain,(
+  ! [X0 : prop,X1 : world] : (holds(X0,X1) <=> ((issue_warning = X0 & X1 != w2) | (immediate_action = X0 & X1 = w2) | (in_territorial_waters = X0 & X1 != w1) | protect_asset = X0 | threat_detected = X0 | strategic_asset_nearby = X0))),
+  inference(rectify,[],[f38])).
+tff(f72,plain,(
+  ! [X0 : authority,X1 : prop,X2 : world] : (obligatory(X0,X1,X2) <=> (active(X0,X2) & ! [X3 : world] : (o_accessible(X0,X2,X3) => holds(X1,X3))))),
+  inference(rectify,[],[f39])).
+tff(f73,plain,(
+  ! [X0 : authority,X1 : prop,X2 : world] : (weak_permitted(X0,X1,X2) <=> (active(X0,X2) & ~! [X3 : world] : (o_accessible(X0,X2,X3) => ~holds(X1,X3))))),
+  inference(rectify,[],[f40])).
+tff(f74,plain,(
+  ! [X0 : agent,X1 : prop,X2 : world] : (knows(X0,X1,X2) <=> ! [X3 : world] : (k_accessible(X0,X2,X3) => holds(X1,X3)))),
+  inference(rectify,[],[f41])).
+tff(f76,plain,(
+  ! [X0 : prop,X1 : world] : (effective_obligation(X0,X1) <=> ((immediate_action = X0 & effective_pos(X1)) | (issue_warning = X0 & effective_neg(X1))))),
+  inference(rectify,[],[f43])).
+tff(f77,plain,(
+  ! [X0 : world] : (unresolvable_conflict(X0) <=> unresolved(X0))),
+  inference(rectify,[],[f44])).
+tff(f78,plain,(
+  ~(obligatory(roe,immediate_action,w0) & obligatory(unclos,issue_warning,w0) & obligatory(nsd,protect_asset,w0) & issued_conflict(w0) & effective_obligation(immediate_action,w0) & ~effective_obligation(issue_warning,w0) & ~unresolvable_conflict(w0) & ~knows(commander,issue_warning,w0) & ~! [X0 : world] : (k_accessible(commander,w0,X0) => obligatory(unclos,issue_warning,X0)) & ! [X1 : world] : (k_accessible(commander,w0,X1) => effective_pos(X1)) & weak_permitted(nsd,immediate_action,w0) & weak_permitted(nsd,issue_warning,w0))),
+  inference(rectify,[],[f46])).
+tff(f79,plain,(
+  ! [X0 : world] : (unresolvable_conflict(X0) => unresolved(X0))),
+  inference(unused_predicate_definition_removal,[],[f77])).
+tff(f80,plain,(
+  ! [X0 : agent,X1 : prop,X2 : world] : (knows(X0,X1,X2) => ! [X3 : world] : (k_accessible(X0,X2,X3) => holds(X1,X3)))),
+  inference(unused_predicate_definition_removal,[],[f74])).
+tff(f81,plain,(
+  ! [X0 : authority,X1 : prop,X2 : world] : ((active(X0,X2) & ~! [X3 : world] : (o_accessible(X0,X2,X3) => ~holds(X1,X3))) => weak_permitted(X0,X1,X2))),
+  inference(unused_predicate_definition_removal,[],[f73])).
+tff(f82,plain,(
+  ! [X0 : world] : (unresolved(X0) => (? [X1 : authority] : (maximal(X1,X0) & pos(X1,X0)) & ? [X2 : authority] : (maximal(X2,X0) & neg(X2,X0))))),
+  inference(unused_predicate_definition_removal,[],[f55])).
+tff(f83,plain,(
+  ! [X0 : world] : (? [X1 : authority,X2 : authority] : (X1 != X2 & pos(X1,X0) & neg(X2,X0)) => issued_conflict(X0))),
+  inference(unused_predicate_definition_removal,[],[f66])).
+tff(f96,plain,(
+  ! [X0 : authority,X1 : world] : (maximal(X0,X1) <=> (relevant(X0,X1) & ! [X2 : authority] : (~relevant(X2,X1) | ~auth_priority(X0,X2,X1))))),
+  inference(ennf_transformation,[],[f51])).
+tff(f97,plain,(
+  ! [X0 : world] : (effective_pos(X0) <=> (? [X1 : authority] : maximal(X1,X0) & ! [X2 : authority] : (pos(X2,X0) | ~maximal(X2,X0))))),
+  inference(ennf_transformation,[],[f53])).
+tff(f98,plain,(
+  ! [X0 : world] : (effective_neg(X0) <=> (? [X1 : authority] : maximal(X1,X0) & ! [X2 : authority] : (neg(X2,X0) | ~maximal(X2,X0))))),
+  inference(ennf_transformation,[],[f54])).
+tff(f99,plain,(
+  ! [X0 : world] : ((? [X1 : authority] : (maximal(X1,X0) & pos(X1,X0)) & ? [X2 : authority] : (maximal(X2,X0) & neg(X2,X0))) | ~unresolved(X0))),
+  inference(ennf_transformation,[],[f82])).
+tff(f100,plain,(
+  ! [X0 : authority,X1 : world] : (pos(X0,X1) <=> (active(X0,X1) & ! [X2 : world] : (holds(immediate_action,X2) | ~o_accessible(X0,X1,X2))))),
+  inference(ennf_transformation,[],[f64])).
+tff(f101,plain,(
+  ! [X0 : authority,X1 : world] : (neg(X0,X1) <=> (active(X0,X1) & ! [X2 : world] : (~holds(immediate_action,X2) | ~o_accessible(X0,X1,X2))))),
+  inference(ennf_transformation,[],[f65])).
+tff(f102,plain,(
+  ! [X0 : world] : (issued_conflict(X0) | ! [X1 : authority,X2 : authority] : (X1 = X2 | ~pos(X1,X0) | ~neg(X2,X0)))),
+  inference(ennf_transformation,[],[f83])).
+tff(f103,plain,(
+  ! [X0 : authority,X1 : prop,X2 : world] : (obligatory(X0,X1,X2) <=> (active(X0,X2) & ! [X3 : world] : (holds(X1,X3) | ~o_accessible(X0,X2,X3))))),
+  inference(ennf_transformation,[],[f72])).
+tff(f104,plain,(
+  ! [X0 : authority,X1 : prop,X2 : world] : (weak_permitted(X0,X1,X2) | (~active(X0,X2) | ! [X3 : world] : (~holds(X1,X3) | ~o_accessible(X0,X2,X3))))),
+  inference(ennf_transformation,[],[f81])).
+tff(f105,plain,(
+  ! [X0 : authority,X1 : prop,X2 : world] : (weak_permitted(X0,X1,X2) | ~active(X0,X2) | ! [X3 : world] : (~holds(X1,X3) | ~o_accessible(X0,X2,X3)))),
+  inference(flattening,[],[f104])).
+tff(f106,plain,(
+  ! [X0 : agent,X1 : prop,X2 : world] : (! [X3 : world] : (holds(X1,X3) | ~k_accessible(X0,X2,X3)) | ~knows(X0,X1,X2))),
+  inference(ennf_transformation,[],[f80])).
+tff(f107,plain,(
+  ! [X0 : world] : (unresolved(X0) | ~unresolvable_conflict(X0))),
+  inference(ennf_transformation,[],[f79])).
+tff(f108,plain,(
+  ~obligatory(roe,immediate_action,w0) | ~obligatory(unclos,issue_warning,w0) | ~obligatory(nsd,protect_asset,w0) | ~issued_conflict(w0) | ~effective_obligation(immediate_action,w0) | effective_obligation(issue_warning,w0) | unresolvable_conflict(w0) | knows(commander,issue_warning,w0) | ! [X0 : world] : (obligatory(unclos,issue_warning,X0) | ~k_accessible(commander,w0,X0)) | ? [X1 : world] : (~effective_pos(X1) & k_accessible(commander,w0,X1)) | ~weak_permitted(nsd,immediate_action,w0) | ~weak_permitted(nsd,issue_warning,w0)),
+  inference(ennf_transformation,[],[f78])).
+tff(f109,plain,(
+  ! [X0 : prop,X1 : world] : (sP0(X0,X1) <=> ((issue_warning = X0 & X1 != w2) | (immediate_action = X0 & X1 = w2) | (in_territorial_waters = X0 & X1 != w1) | protect_asset = X0 | threat_detected = X0 | strategic_asset_nearby = X0))),
+  introduced(definition,[new_symbols(naming,[sP0])],[predicate_definition_introduction])).
+tff(f110,plain,(
+  ! [X0 : prop,X1 : world] : (holds(X0,X1) <=> sP0(X0,X1))),
+  inference(definition_folding,[],[f71,f109])).
+tff(f113,plain,(
+  ! [X0 : authority,X1 : world] : (? [X2 : world] : o_accessible(X0,X1,X2) => o_accessible(X0,X1,sK2(X0,X1)))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f114,plain,(
+  ! [X0 : authority,X1 : world] : o_accessible(X0,X1,sK2(X0,X1))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK2])],[f47,f113])).
+tff(f115,plain,(
+  ! [X0 : authority,X1 : world] : ((relevant(X0,X1) | (~pos(X0,X1) & ~neg(X0,X1))) & ((pos(X0,X1) | neg(X0,X1)) | ~relevant(X0,X1)))),
+  inference(nnf_transformation,[],[f50])).
+tff(f116,plain,(
+  ! [X0 : authority,X1 : world] : ((relevant(X0,X1) | (~pos(X0,X1) & ~neg(X0,X1))) & (pos(X0,X1) | neg(X0,X1) | ~relevant(X0,X1)))),
+  inference(flattening,[],[f115])).
+tff(f117,plain,(
+  ! [X0 : authority,X1 : world] : ((maximal(X0,X1) | (~relevant(X0,X1) | ? [X2 : authority] : (relevant(X2,X1) & auth_priority(X0,X2,X1)))) & ((relevant(X0,X1) & ! [X2 : authority] : (~relevant(X2,X1) | ~auth_priority(X0,X2,X1))) | ~maximal(X0,X1)))),
+  inference(nnf_transformation,[],[f96])).
+tff(f118,plain,(
+  ! [X0 : authority,X1 : world] : ((maximal(X0,X1) | ~relevant(X0,X1) | ? [X2 : authority] : (relevant(X2,X1) & auth_priority(X0,X2,X1))) & ((relevant(X0,X1) & ! [X2 : authority] : (~relevant(X2,X1) | ~auth_priority(X0,X2,X1))) | ~maximal(X0,X1)))),
+  inference(flattening,[],[f117])).
+tff(f119,plain,(
+  ! [X0 : authority,X1 : world] : ((maximal(X0,X1) | ~relevant(X0,X1) | ? [X2 : authority] : (relevant(X2,X1) & auth_priority(X0,X2,X1))) & ((relevant(X0,X1) & ! [X3 : authority] : (~relevant(X3,X1) | ~auth_priority(X0,X3,X1))) | ~maximal(X0,X1)))),
+  inference(rectify,[],[f118])).
+tff(f120,plain,(
+  ! [X0 : authority,X1 : world] : (? [X2 : authority] : (relevant(X2,X1) & auth_priority(X0,X2,X1)) => (relevant(sK3(X0,X1),X1) & auth_priority(X0,sK3(X0,X1),X1)))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f121,plain,(
+  ! [X0 : authority,X1 : world] : ((maximal(X0,X1) | ~relevant(X0,X1) | (relevant(sK3(X0,X1),X1) & auth_priority(X0,sK3(X0,X1),X1))) & ((relevant(X0,X1) & ! [X3 : authority] : (~relevant(X3,X1) | ~auth_priority(X0,X3,X1))) | ~maximal(X0,X1)))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK3])],[f119,f120])).
+tff(f122,plain,(
+  ! [X0 : world] : ((effective_pos(X0) | (! [X1 : authority] : ~maximal(X1,X0) | ? [X2 : authority] : (~pos(X2,X0) & maximal(X2,X0)))) & ((? [X1 : authority] : maximal(X1,X0) & ! [X2 : authority] : (pos(X2,X0) | ~maximal(X2,X0))) | ~effective_pos(X0)))),
+  inference(nnf_transformation,[],[f97])).
+tff(f123,plain,(
+  ! [X0 : world] : ((effective_pos(X0) | ! [X1 : authority] : ~maximal(X1,X0) | ? [X2 : authority] : (~pos(X2,X0) & maximal(X2,X0))) & ((? [X1 : authority] : maximal(X1,X0) & ! [X2 : authority] : (pos(X2,X0) | ~maximal(X2,X0))) | ~effective_pos(X0)))),
+  inference(flattening,[],[f122])).
+tff(f124,plain,(
+  ! [X0 : world] : ((effective_pos(X0) | ! [X1 : authority] : ~maximal(X1,X0) | ? [X2 : authority] : (~pos(X2,X0) & maximal(X2,X0))) & ((? [X3 : authority] : maximal(X3,X0) & ! [X4 : authority] : (pos(X4,X0) | ~maximal(X4,X0))) | ~effective_pos(X0)))),
+  inference(rectify,[],[f123])).
+tff(f125,plain,(
+  ! [X0 : world] : (? [X2 : authority] : (~pos(X2,X0) & maximal(X2,X0)) => (~pos(sK4(X0),X0) & maximal(sK4(X0),X0)))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f126,plain,(
+  ! [X0 : world] : (? [X3 : authority] : maximal(X3,X0) => maximal(sK5(X0),X0))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f127,plain,(
+  ! [X0 : world] : ((effective_pos(X0) | ! [X1 : authority] : ~maximal(X1,X0) | (~pos(sK4(X0),X0) & maximal(sK4(X0),X0))) & ((maximal(sK5(X0),X0) & ! [X4 : authority] : (pos(X4,X0) | ~maximal(X4,X0))) | ~effective_pos(X0)))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK4,sK5])],[f124,f126,f125])).
+tff(f128,plain,(
+  ! [X0 : world] : ((effective_neg(X0) | (! [X1 : authority] : ~maximal(X1,X0) | ? [X2 : authority] : (~neg(X2,X0) & maximal(X2,X0)))) & ((? [X1 : authority] : maximal(X1,X0) & ! [X2 : authority] : (neg(X2,X0) | ~maximal(X2,X0))) | ~effective_neg(X0)))),
+  inference(nnf_transformation,[],[f98])).
+tff(f129,plain,(
+  ! [X0 : world] : ((effective_neg(X0) | ! [X1 : authority] : ~maximal(X1,X0) | ? [X2 : authority] : (~neg(X2,X0) & maximal(X2,X0))) & ((? [X1 : authority] : maximal(X1,X0) & ! [X2 : authority] : (neg(X2,X0) | ~maximal(X2,X0))) | ~effective_neg(X0)))),
+  inference(flattening,[],[f128])).
+tff(f130,plain,(
+  ! [X0 : world] : ((effective_neg(X0) | ! [X1 : authority] : ~maximal(X1,X0) | ? [X2 : authority] : (~neg(X2,X0) & maximal(X2,X0))) & ((? [X3 : authority] : maximal(X3,X0) & ! [X4 : authority] : (neg(X4,X0) | ~maximal(X4,X0))) | ~effective_neg(X0)))),
+  inference(rectify,[],[f129])).
+tff(f131,plain,(
+  ! [X0 : world] : (? [X2 : authority] : (~neg(X2,X0) & maximal(X2,X0)) => (~neg(sK6(X0),X0) & maximal(sK6(X0),X0)))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f132,plain,(
+  ! [X0 : world] : (? [X3 : authority] : maximal(X3,X0) => maximal(sK7(X0),X0))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f133,plain,(
+  ! [X0 : world] : ((effective_neg(X0) | ! [X1 : authority] : ~maximal(X1,X0) | (~neg(sK6(X0),X0) & maximal(sK6(X0),X0))) & ((maximal(sK7(X0),X0) & ! [X4 : authority] : (neg(X4,X0) | ~maximal(X4,X0))) | ~effective_neg(X0)))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK6,sK7])],[f130,f132,f131])).
+tff(f134,plain,(
+  ! [X0 : world] : (? [X1 : authority] : (maximal(X1,X0) & pos(X1,X0)) => (maximal(sK8(X0),X0) & pos(sK8(X0),X0)))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f135,plain,(
+  ! [X0 : world] : (? [X2 : authority] : (maximal(X2,X0) & neg(X2,X0)) => (maximal(sK9(X0),X0) & neg(sK9(X0),X0)))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f136,plain,(
+  ! [X0 : world] : (((maximal(sK8(X0),X0) & pos(sK8(X0),X0)) & (maximal(sK9(X0),X0) & neg(sK9(X0),X0))) | ~unresolved(X0))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK8,sK9])],[f99,f135,f134])).
+tff(f137,plain,(
+  ! [X0 : world] : ((territorial(X0) | w1 = X0) & (w1 != X0 | ~territorial(X0)))),
+  inference(nnf_transformation,[],[f58])).
+tff(f138,plain,(
+  ! [X0 : authority,X1 : world] : ((active(X0,X1) | (unclos = X0 & ~territorial(X1))) & ((unclos != X0 | territorial(X1)) | ~active(X0,X1)))),
+  inference(nnf_transformation,[],[f61])).
+tff(f139,plain,(
+  ! [X0 : authority,X1 : world] : ((active(X0,X1) | (unclos = X0 & ~territorial(X1))) & (unclos != X0 | territorial(X1) | ~active(X0,X1)))),
+  inference(flattening,[],[f138])).
+tff(f140,plain,(
+  ! [X0 : authority,X1 : world,X2 : world] : ((o_accessible(X0,X1,X2) | ((roe != X0 | w2 != X2) & (unclos != X0 | w1 != X2) & nsd != X0)) & (((roe = X0 & X2 = w2) | (unclos = X0 & X2 = w1) | nsd = X0) | ~o_accessible(X0,X1,X2)))),
+  inference(nnf_transformation,[],[f62])).
+tff(f141,plain,(
+  ! [X0 : authority,X1 : world,X2 : world] : ((o_accessible(X0,X1,X2) | ((roe != X0 | w2 != X2) & (unclos != X0 | w1 != X2) & nsd != X0)) & ((roe = X0 & X2 = w2) | (unclos = X0 & X2 = w1) | nsd = X0 | ~o_accessible(X0,X1,X2)))),
+  inference(flattening,[],[f140])).
+tff(f142,plain,(
+  ! [X0 : authority,X1 : authority,X2 : world] : ((auth_priority(X0,X1,X2) | (unclos != X0 | (roe != X1 & nsd != X1))) & ((unclos = X0 & (roe = X1 | nsd = X1)) | ~auth_priority(X0,X1,X2)))),
+  inference(nnf_transformation,[],[f63])).
+tff(f143,plain,(
+  ! [X0 : authority,X1 : authority,X2 : world] : ((auth_priority(X0,X1,X2) | unclos != X0 | (roe != X1 & nsd != X1)) & ((unclos = X0 & (roe = X1 | nsd = X1)) | ~auth_priority(X0,X1,X2)))),
+  inference(flattening,[],[f142])).
+tff(f144,plain,(
+  ! [X0 : authority,X1 : world] : ((pos(X0,X1) | (~active(X0,X1) | ? [X2 : world] : (~holds(immediate_action,X2) & o_accessible(X0,X1,X2)))) & ((active(X0,X1) & ! [X2 : world] : (holds(immediate_action,X2) | ~o_accessible(X0,X1,X2))) | ~pos(X0,X1)))),
+  inference(nnf_transformation,[],[f100])).
+tff(f145,plain,(
+  ! [X0 : authority,X1 : world] : ((pos(X0,X1) | ~active(X0,X1) | ? [X2 : world] : (~holds(immediate_action,X2) & o_accessible(X0,X1,X2))) & ((active(X0,X1) & ! [X2 : world] : (holds(immediate_action,X2) | ~o_accessible(X0,X1,X2))) | ~pos(X0,X1)))),
+  inference(flattening,[],[f144])).
+tff(f146,plain,(
+  ! [X0 : authority,X1 : world] : ((pos(X0,X1) | ~active(X0,X1) | ? [X2 : world] : (~holds(immediate_action,X2) & o_accessible(X0,X1,X2))) & ((active(X0,X1) & ! [X3 : world] : (holds(immediate_action,X3) | ~o_accessible(X0,X1,X3))) | ~pos(X0,X1)))),
+  inference(rectify,[],[f145])).
+tff(f147,plain,(
+  ! [X0 : authority,X1 : world] : (? [X2 : world] : (~holds(immediate_action,X2) & o_accessible(X0,X1,X2)) => (~holds(immediate_action,sK10(X0,X1)) & o_accessible(X0,X1,sK10(X0,X1))))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f148,plain,(
+  ! [X0 : authority,X1 : world] : ((pos(X0,X1) | ~active(X0,X1) | (~holds(immediate_action,sK10(X0,X1)) & o_accessible(X0,X1,sK10(X0,X1)))) & ((active(X0,X1) & ! [X3 : world] : (holds(immediate_action,X3) | ~o_accessible(X0,X1,X3))) | ~pos(X0,X1)))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK10])],[f146,f147])).
+tff(f149,plain,(
+  ! [X0 : authority,X1 : world] : ((neg(X0,X1) | (~active(X0,X1) | ? [X2 : world] : (holds(immediate_action,X2) & o_accessible(X0,X1,X2)))) & ((active(X0,X1) & ! [X2 : world] : (~holds(immediate_action,X2) | ~o_accessible(X0,X1,X2))) | ~neg(X0,X1)))),
+  inference(nnf_transformation,[],[f101])).
+tff(f150,plain,(
+  ! [X0 : authority,X1 : world] : ((neg(X0,X1) | ~active(X0,X1) | ? [X2 : world] : (holds(immediate_action,X2) & o_accessible(X0,X1,X2))) & ((active(X0,X1) & ! [X2 : world] : (~holds(immediate_action,X2) | ~o_accessible(X0,X1,X2))) | ~neg(X0,X1)))),
+  inference(flattening,[],[f149])).
+tff(f151,plain,(
+  ! [X0 : authority,X1 : world] : ((neg(X0,X1) | ~active(X0,X1) | ? [X2 : world] : (holds(immediate_action,X2) & o_accessible(X0,X1,X2))) & ((active(X0,X1) & ! [X3 : world] : (~holds(immediate_action,X3) | ~o_accessible(X0,X1,X3))) | ~neg(X0,X1)))),
+  inference(rectify,[],[f150])).
+tff(f152,plain,(
+  ! [X0 : authority,X1 : world] : (? [X2 : world] : (holds(immediate_action,X2) & o_accessible(X0,X1,X2)) => (holds(immediate_action,sK11(X0,X1)) & o_accessible(X0,X1,sK11(X0,X1))))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f153,plain,(
+  ! [X0 : authority,X1 : world] : ((neg(X0,X1) | ~active(X0,X1) | (holds(immediate_action,sK11(X0,X1)) & o_accessible(X0,X1,sK11(X0,X1)))) & ((active(X0,X1) & ! [X3 : world] : (~holds(immediate_action,X3) | ~o_accessible(X0,X1,X3))) | ~neg(X0,X1)))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK11])],[f151,f152])).
+tff(f154,plain,(
+  ! [X0 : prop,X1 : world] : ((sP0(X0,X1) | ((issue_warning != X0 | w2 = X1) & (immediate_action != X0 | w2 != X1) & (in_territorial_waters != X0 | w1 = X1) & protect_asset != X0 & threat_detected != X0 & strategic_asset_nearby != X0)) & (((issue_warning = X0 & X1 != w2) | (immediate_action = X0 & X1 = w2) | (in_territorial_waters = X0 & X1 != w1) | protect_asset = X0 | threat_detected = X0 | strategic_asset_nearby = X0) | ~sP0(X0,X1)))),
+  inference(nnf_transformation,[],[f109])).
+tff(f155,plain,(
+  ! [X0 : prop,X1 : world] : ((sP0(X0,X1) | ((issue_warning != X0 | w2 = X1) & (immediate_action != X0 | w2 != X1) & (in_territorial_waters != X0 | w1 = X1) & protect_asset != X0 & threat_detected != X0 & strategic_asset_nearby != X0)) & ((issue_warning = X0 & X1 != w2) | (immediate_action = X0 & X1 = w2) | (in_territorial_waters = X0 & X1 != w1) | protect_asset = X0 | threat_detected = X0 | strategic_asset_nearby = X0 | ~sP0(X0,X1)))),
+  inference(flattening,[],[f154])).
+tff(f156,plain,(
+  ! [X0 : prop,X1 : world] : ((holds(X0,X1) | ~sP0(X0,X1)) & (sP0(X0,X1) | ~holds(X0,X1)))),
+  inference(nnf_transformation,[],[f110])).
+tff(f157,plain,(
+  ! [X0 : authority,X1 : prop,X2 : world] : ((obligatory(X0,X1,X2) | (~active(X0,X2) | ? [X3 : world] : (~holds(X1,X3) & o_accessible(X0,X2,X3)))) & ((active(X0,X2) & ! [X3 : world] : (holds(X1,X3) | ~o_accessible(X0,X2,X3))) | ~obligatory(X0,X1,X2)))),
+  inference(nnf_transformation,[],[f103])).
+tff(f158,plain,(
+  ! [X0 : authority,X1 : prop,X2 : world] : ((obligatory(X0,X1,X2) | ~active(X0,X2) | ? [X3 : world] : (~holds(X1,X3) & o_accessible(X0,X2,X3))) & ((active(X0,X2) & ! [X3 : world] : (holds(X1,X3) | ~o_accessible(X0,X2,X3))) | ~obligatory(X0,X1,X2)))),
+  inference(flattening,[],[f157])).
+tff(f159,plain,(
+  ! [X0 : authority,X1 : prop,X2 : world] : ((obligatory(X0,X1,X2) | ~active(X0,X2) | ? [X3 : world] : (~holds(X1,X3) & o_accessible(X0,X2,X3))) & ((active(X0,X2) & ! [X4 : world] : (holds(X1,X4) | ~o_accessible(X0,X2,X4))) | ~obligatory(X0,X1,X2)))),
+  inference(rectify,[],[f158])).
+tff(f160,plain,(
+  ! [X0 : authority,X1 : prop,X2 : world] : (? [X3 : world] : (~holds(X1,X3) & o_accessible(X0,X2,X3)) => (~holds(X1,sK12(X0,X1,X2)) & o_accessible(X0,X2,sK12(X0,X1,X2))))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f161,plain,(
+  ! [X0 : authority,X1 : prop,X2 : world] : ((obligatory(X0,X1,X2) | ~active(X0,X2) | (~holds(X1,sK12(X0,X1,X2)) & o_accessible(X0,X2,sK12(X0,X1,X2)))) & ((active(X0,X2) & ! [X4 : world] : (holds(X1,X4) | ~o_accessible(X0,X2,X4))) | ~obligatory(X0,X1,X2)))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK12])],[f159,f160])).
+tff(f162,plain,(
+  ! [X0 : prop,X1 : world] : ((effective_obligation(X0,X1) | ((immediate_action != X0 | ~effective_pos(X1)) & (issue_warning != X0 | ~effective_neg(X1)))) & (((immediate_action = X0 & effective_pos(X1)) | (issue_warning = X0 & effective_neg(X1))) | ~effective_obligation(X0,X1)))),
+  inference(nnf_transformation,[],[f76])).
+tff(f163,plain,(
+  ! [X0 : prop,X1 : world] : ((effective_obligation(X0,X1) | ((immediate_action != X0 | ~effective_pos(X1)) & (issue_warning != X0 | ~effective_neg(X1)))) & ((immediate_action = X0 & effective_pos(X1)) | (issue_warning = X0 & effective_neg(X1)) | ~effective_obligation(X0,X1)))),
+  inference(flattening,[],[f162])).
+tff(f164,plain,(
+  ? [X1 : world] : (~effective_pos(X1) & k_accessible(commander,w0,X1)) => (~effective_pos(sK13) & k_accessible(commander,w0,sK13))),
+  introduced(definition,[],[skolem_symbol_introduction])).
+tff(f165,plain,(
+  ~obligatory(roe,immediate_action,w0) | ~obligatory(unclos,issue_warning,w0) | ~obligatory(nsd,protect_asset,w0) | ~issued_conflict(w0) | ~effective_obligation(immediate_action,w0) | effective_obligation(issue_warning,w0) | unresolvable_conflict(w0) | knows(commander,issue_warning,w0) | ! [X0 : world] : (obligatory(unclos,issue_warning,X0) | ~k_accessible(commander,w0,X0)) | (~effective_pos(sK13) & k_accessible(commander,w0,sK13)) | ~weak_permitted(nsd,immediate_action,w0) | ~weak_permitted(nsd,issue_warning,w0)),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK13])],[f108,f164])).
+tff(f173,plain,(
+  ( ! [X0 : authority,X1 : world] : (o_accessible(X0,X1,sK2(X0,X1))) )),
+  inference(cnf_transformation,[],[f114])).
+tff(f174,plain,(
+  ( ! [X0 : authority,X1 : world] : (~auth_priority(X0,X0,X1)) )),
+  inference(cnf_transformation,[],[f48])).
+tff(f176,plain,(
+  ( ! [X0 : authority,X1 : world] : (~relevant(X0,X1) | neg(X0,X1) | pos(X0,X1)) )),
+  inference(cnf_transformation,[],[f116])).
+tff(f177,plain,(
+  ( ! [X0 : authority,X1 : world] : (~neg(X0,X1) | relevant(X0,X1)) )),
+  inference(cnf_transformation,[],[f116])).
+tff(f178,plain,(
+  ( ! [X0 : authority,X1 : world] : (~pos(X0,X1) | relevant(X0,X1)) )),
+  inference(cnf_transformation,[],[f116])).
+tff(f179,plain,(
+  ( ! [X3 : authority,X0 : authority,X1 : world] : (~auth_priority(X0,X3,X1) | ~relevant(X3,X1) | ~maximal(X0,X1)) )),
+  inference(cnf_transformation,[],[f121])).
+tff(f180,plain,(
+  ( ! [X0 : authority,X1 : world] : (~maximal(X0,X1) | relevant(X0,X1)) )),
+  inference(cnf_transformation,[],[f121])).
+tff(f181,plain,(
+  ( ! [X0 : authority,X1 : world] : (auth_priority(X0,sK3(X0,X1),X1) | ~relevant(X0,X1) | maximal(X0,X1)) )),
+  inference(cnf_transformation,[],[f121])).
+tff(f182,plain,(
+  ( ! [X0 : authority,X1 : world] : (relevant(sK3(X0,X1),X1) | ~relevant(X0,X1) | maximal(X0,X1)) )),
+  inference(cnf_transformation,[],[f121])).
+tff(f183,plain,(
+  ( ! [X0 : world,X4 : authority] : (~maximal(X4,X0) | pos(X4,X0) | ~effective_pos(X0)) )),
+  inference(cnf_transformation,[],[f127])).
+tff(f184,plain,(
+  ( ! [X0 : world] : (maximal(sK5(X0),X0) | ~effective_pos(X0)) )),
+  inference(cnf_transformation,[],[f127])).
+tff(f185,plain,(
+  ( ! [X0 : world,X1 : authority] : (~maximal(X1,X0) | effective_pos(X0) | maximal(sK4(X0),X0)) )),
+  inference(cnf_transformation,[],[f127])).
+tff(f186,plain,(
+  ( ! [X0 : world,X1 : authority] : (~pos(sK4(X0),X0) | ~maximal(X1,X0) | effective_pos(X0)) )),
+  inference(cnf_transformation,[],[f127])).
+tff(f187,plain,(
+  ( ! [X0 : world,X4 : authority] : (~maximal(X4,X0) | neg(X4,X0) | ~effective_neg(X0)) )),
+  inference(cnf_transformation,[],[f133])).
+tff(f189,plain,(
+  ( ! [X0 : world,X1 : authority] : (~maximal(X1,X0) | effective_neg(X0) | maximal(sK6(X0),X0)) )),
+  inference(cnf_transformation,[],[f133])).
+tff(f190,plain,(
+  ( ! [X0 : world,X1 : authority] : (~neg(sK6(X0),X0) | ~maximal(X1,X0) | effective_neg(X0)) )),
+  inference(cnf_transformation,[],[f133])).
+tff(f191,plain,(
+  ( ! [X0 : world] : (neg(sK9(X0),X0) | ~unresolved(X0)) )),
+  inference(cnf_transformation,[],[f136])).
+tff(f192,plain,(
+  ( ! [X0 : world] : (maximal(sK9(X0),X0) | ~unresolved(X0)) )),
+  inference(cnf_transformation,[],[f136])).
+tff(f195,plain,(
+  ( ! [X0 : world] : (w1 != X0 | ~territorial(X0)) )),
+  inference(cnf_transformation,[],[f137])).
+tff(f196,plain,(
+  ( ! [X0 : world] : (territorial(X0) | w1 = X0) )),
+  inference(cnf_transformation,[],[f137])).
+tff(f197,plain,(
+  ( ! [X0 : authority] : (roe = X0 | unclos = X0 | nsd = X0) )),
+  inference(cnf_transformation,[],[f59])).
+tff(f198,plain,(
+  unclos != nsd),
+  inference(cnf_transformation,[],[f21])).
+tff(f199,plain,(
+  roe != nsd),
+  inference(cnf_transformation,[],[f21])).
+tff(f200,plain,(
+  roe != unclos),
+  inference(cnf_transformation,[],[f21])).
+tff(f201,plain,(
+  ( ! [X0 : world] : (w1 = X0 | w0 = X0 | w2 = X0) )),
+  inference(cnf_transformation,[],[f60])).
+tff(f202,plain,(
+  w1 != w2),
+  inference(cnf_transformation,[],[f23])).
+tff(f203,plain,(
+  w0 != w2),
+  inference(cnf_transformation,[],[f23])).
+tff(f204,plain,(
+  w1 != w0),
+  inference(cnf_transformation,[],[f23])).
+tff(f206,plain,(
+  ( ! [X0 : authority,X1 : world] : (unclos != X0 | territorial(X1) | ~active(X0,X1)) )),
+  inference(cnf_transformation,[],[f139])).
+tff(f207,plain,(
+  ( ! [X0 : authority,X1 : world] : (active(X0,X1) | ~territorial(X1)) )),
+  inference(cnf_transformation,[],[f139])).
+tff(f208,plain,(
+  ( ! [X0 : authority,X1 : world] : (active(X0,X1) | unclos = X0) )),
+  inference(cnf_transformation,[],[f139])).
+tff(f209,plain,(
+  ( ! [X2 : world,X0 : agent,X1 : world] : (k_accessible(X0,X1,X2)) )),
+  inference(cnf_transformation,[],[f26])).
+tff(f211,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : world] : (~o_accessible(X0,X1,X2) | w1 = X2 | nsd = X0 | w2 = X2) )),
+  inference(cnf_transformation,[],[f141])).
+tff(f212,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : world] : (~o_accessible(X0,X1,X2) | unclos = X0 | nsd = X0 | w2 = X2) )),
+  inference(cnf_transformation,[],[f141])).
+tff(f213,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : world] : (~o_accessible(X0,X1,X2) | w1 = X2 | nsd = X0 | roe = X0) )),
+  inference(cnf_transformation,[],[f141])).
+tff(f215,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : world] : (o_accessible(X0,X1,X2) | nsd != X0) )),
+  inference(cnf_transformation,[],[f141])).
+tff(f216,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : world] : (o_accessible(X0,X1,X2) | unclos != X0 | w1 != X2) )),
+  inference(cnf_transformation,[],[f141])).
+tff(f217,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : world] : (o_accessible(X0,X1,X2) | roe != X0 | w2 != X2) )),
+  inference(cnf_transformation,[],[f141])).
+tff(f218,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : authority] : (~auth_priority(X0,X1,X2) | nsd = X1 | roe = X1) )),
+  inference(cnf_transformation,[],[f143])).
+tff(f219,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : authority] : (~auth_priority(X0,X1,X2) | unclos = X0) )),
+  inference(cnf_transformation,[],[f143])).
+tff(f221,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : authority] : (auth_priority(X0,X1,X2) | unclos != X0 | roe != X1) )),
+  inference(cnf_transformation,[],[f143])).
+tff(f222,plain,(
+  ( ! [X3 : world,X0 : authority,X1 : world] : (~o_accessible(X0,X1,X3) | holds(immediate_action,X3) | ~pos(X0,X1)) )),
+  inference(cnf_transformation,[],[f148])).
+tff(f223,plain,(
+  ( ! [X0 : authority,X1 : world] : (~pos(X0,X1) | active(X0,X1)) )),
+  inference(cnf_transformation,[],[f148])).
+tff(f224,plain,(
+  ( ! [X0 : authority,X1 : world] : (o_accessible(X0,X1,sK10(X0,X1)) | ~active(X0,X1) | pos(X0,X1)) )),
+  inference(cnf_transformation,[],[f148])).
+tff(f225,plain,(
+  ( ! [X0 : authority,X1 : world] : (~holds(immediate_action,sK10(X0,X1)) | ~active(X0,X1) | pos(X0,X1)) )),
+  inference(cnf_transformation,[],[f148])).
+tff(f226,plain,(
+  ( ! [X3 : world,X0 : authority,X1 : world] : (~o_accessible(X0,X1,X3) | ~holds(immediate_action,X3) | ~neg(X0,X1)) )),
+  inference(cnf_transformation,[],[f153])).
+tff(f227,plain,(
+  ( ! [X0 : authority,X1 : world] : (~neg(X0,X1) | active(X0,X1)) )),
+  inference(cnf_transformation,[],[f153])).
+tff(f228,plain,(
+  ( ! [X0 : authority,X1 : world] : (o_accessible(X0,X1,sK11(X0,X1)) | ~active(X0,X1) | neg(X0,X1)) )),
+  inference(cnf_transformation,[],[f153])).
+tff(f229,plain,(
+  ( ! [X0 : authority,X1 : world] : (holds(immediate_action,sK11(X0,X1)) | ~active(X0,X1) | neg(X0,X1)) )),
+  inference(cnf_transformation,[],[f153])).
+tff(f230,plain,(
+  ( ! [X2 : authority,X0 : world,X1 : authority] : (~neg(X2,X0) | X1 = X2 | ~pos(X1,X0) | issued_conflict(X0)) )),
+  inference(cnf_transformation,[],[f102])).
+tff(f238,plain,(
+  immediate_action != strategic_asset_nearby),
+  inference(cnf_transformation,[],[f37])).
+tff(f239,plain,(
+  immediate_action != in_territorial_waters),
+  inference(cnf_transformation,[],[f37])).
+tff(f240,plain,(
+  immediate_action != threat_detected),
+  inference(cnf_transformation,[],[f37])).
+tff(f241,plain,(
+  immediate_action != protect_asset),
+  inference(cnf_transformation,[],[f37])).
+tff(f242,plain,(
+  issue_warning != strategic_asset_nearby),
+  inference(cnf_transformation,[],[f37])).
+tff(f243,plain,(
+  issue_warning != in_territorial_waters),
+  inference(cnf_transformation,[],[f37])).
+tff(f244,plain,(
+  issue_warning != threat_detected),
+  inference(cnf_transformation,[],[f37])).
+tff(f245,plain,(
+  issue_warning != protect_asset),
+  inference(cnf_transformation,[],[f37])).
+tff(f246,plain,(
+  immediate_action != issue_warning),
+  inference(cnf_transformation,[],[f37])).
+tff(f250,plain,(
+  ( ! [X0 : prop,X1 : world] : (w2 != X1 | immediate_action = X0 | in_territorial_waters = X0 | protect_asset = X0 | threat_detected = X0 | strategic_asset_nearby = X0 | ~sP0(X0,X1)) )),
+  inference(cnf_transformation,[],[f155])).
+tff(f252,plain,(
+  ( ! [X0 : prop,X1 : world] : (~sP0(X0,X1) | w2 = X1 | in_territorial_waters = X0 | protect_asset = X0 | threat_detected = X0 | strategic_asset_nearby = X0 | issue_warning = X0) )),
+  inference(cnf_transformation,[],[f155])).
+tff(f257,plain,(
+  ( ! [X0 : prop,X1 : world] : (sP0(X0,X1) | protect_asset != X0) )),
+  inference(cnf_transformation,[],[f155])).
+tff(f259,plain,(
+  ( ! [X0 : prop,X1 : world] : (sP0(X0,X1) | immediate_action != X0 | w2 != X1) )),
+  inference(cnf_transformation,[],[f155])).
+tff(f260,plain,(
+  ( ! [X0 : prop,X1 : world] : (sP0(X0,X1) | issue_warning != X0 | w2 = X1) )),
+  inference(cnf_transformation,[],[f155])).
+tff(f261,plain,(
+  ( ! [X0 : prop,X1 : world] : (~holds(X0,X1) | sP0(X0,X1)) )),
+  inference(cnf_transformation,[],[f156])).
+tff(f262,plain,(
+  ( ! [X0 : prop,X1 : world] : (~sP0(X0,X1) | holds(X0,X1)) )),
+  inference(cnf_transformation,[],[f156])).
+tff(f264,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : prop] : (~obligatory(X0,X1,X2) | active(X0,X2)) )),
+  inference(cnf_transformation,[],[f161])).
+tff(f265,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : prop] : (o_accessible(X0,X2,sK12(X0,X1,X2)) | ~active(X0,X2) | obligatory(X0,X1,X2)) )),
+  inference(cnf_transformation,[],[f161])).
+tff(f266,plain,(
+  ( ! [X2 : world,X0 : authority,X1 : prop] : (~holds(X1,sK12(X0,X1,X2)) | ~active(X0,X2) | obligatory(X0,X1,X2)) )),
+  inference(cnf_transformation,[],[f161])).
+tff(f267,plain,(
+  ( ! [X2 : world,X3 : world,X0 : authority,X1 : prop] : (~o_accessible(X0,X2,X3) | ~active(X0,X2) | ~holds(X1,X3) | weak_permitted(X0,X1,X2)) )),
+  inference(cnf_transformation,[],[f105])).
+tff(f268,plain,(
+  ( ! [X2 : world,X3 : world,X0 : agent,X1 : prop] : (~knows(X0,X1,X2) | ~k_accessible(X0,X2,X3) | holds(X1,X3)) )),
+  inference(cnf_transformation,[],[f106])).
+tff(f270,plain,(
+  ( ! [X0 : prop,X1 : world] : (~effective_obligation(X0,X1) | issue_warning = X0 | effective_pos(X1)) )),
+  inference(cnf_transformation,[],[f163])).
+tff(f271,plain,(
+  ( ! [X0 : prop,X1 : world] : (~effective_obligation(X0,X1) | effective_neg(X1) | immediate_action = X0) )),
+  inference(cnf_transformation,[],[f163])).
+tff(f274,plain,(
+  ( ! [X0 : prop,X1 : world] : (effective_obligation(X0,X1) | immediate_action != X0 | ~effective_pos(X1)) )),
+  inference(cnf_transformation,[],[f163])).
+tff(f275,plain,(
+  ( ! [X0 : world] : (~unresolvable_conflict(X0) | unresolved(X0)) )),
+  inference(cnf_transformation,[],[f107])).
+tff(f277,plain,(
+  ( ! [X0 : world] : (~obligatory(roe,immediate_action,w0) | ~obligatory(unclos,issue_warning,w0) | ~obligatory(nsd,protect_asset,w0) | ~issued_conflict(w0) | ~effective_obligation(immediate_action,w0) | effective_obligation(issue_warning,w0) | unresolvable_conflict(w0) | knows(commander,issue_warning,w0) | obligatory(unclos,issue_warning,X0) | ~k_accessible(commander,w0,X0) | ~effective_pos(sK13) | ~weak_permitted(nsd,immediate_action,w0) | ~weak_permitted(nsd,issue_warning,w0)) )),
+  inference(cnf_transformation,[],[f165])).
+tff(f278,plain,(
+  ~territorial(w1)),
+  inference(equality_resolution,[],[f195])).
+tff(f279,plain,(
+  ( ! [X1 : world] : (~active(unclos,X1) | territorial(X1)) )),
+  inference(equality_resolution,[],[f206])).
+tff(f280,plain,(
+  ( ! [X2 : world,X1 : world] : (o_accessible(roe,X1,X2) | w2 != X2) )),
+  inference(equality_resolution,[],[f217])).
+tff(f281,plain,(
+  ( ! [X1 : world] : (o_accessible(roe,X1,w2)) )),
+  inference(equality_resolution,[],[f280])).
+tff(f282,plain,(
+  ( ! [X2 : world,X1 : world] : (o_accessible(unclos,X1,X2) | w1 != X2) )),
+  inference(equality_resolution,[],[f216])).
+tff(f283,plain,(
+  ( ! [X1 : world] : (o_accessible(unclos,X1,w1)) )),
+  inference(equality_resolution,[],[f282])).
+tff(f284,plain,(
+  ( ! [X2 : world,X1 : world] : (o_accessible(nsd,X1,X2)) )),
+  inference(equality_resolution,[],[f215])).
+tff(f285,plain,(
+  ( ! [X2 : world,X1 : authority] : (auth_priority(unclos,X1,X2) | roe != X1) )),
+  inference(equality_resolution,[],[f221])).
+tff(f286,plain,(
+  ( ! [X2 : world] : (auth_priority(unclos,roe,X2)) )),
+  inference(equality_resolution,[],[f285])).
+tff(f289,plain,(
+  ( ! [X1 : world] : (sP0(issue_warning,X1) | w2 = X1) )),
+  inference(equality_resolution,[],[f260])).
+tff(f290,plain,(
+  ( ! [X1 : world] : (sP0(immediate_action,X1) | w2 != X1) )),
+  inference(equality_resolution,[],[f259])).
+tff(f291,plain,(
+  sP0(immediate_action,w2)),
+  inference(equality_resolution,[],[f290])).
+tff(f293,plain,(
+  ( ! [X1 : world] : (sP0(protect_asset,X1)) )),
+  inference(equality_resolution,[],[f257])).
+tff(f298,plain,(
+  ( ! [X0 : prop] : (~sP0(X0,w2) | in_territorial_waters = X0 | protect_asset = X0 | threat_detected = X0 | strategic_asset_nearby = X0 | immediate_action = X0) )),
+  inference(equality_resolution,[],[f250])).
+tff(f302,plain,(
+  ( ! [X1 : world] : (effective_obligation(immediate_action,X1) | ~effective_pos(X1)) )),
+  inference(equality_resolution,[],[f274])).
+tff(f305,definition,(
+  spl14_1 <=> weak_permitted(nsd,issue_warning,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1])],[avatar_definition])).
+tff(f307,plain,(
+  ~weak_permitted(nsd,issue_warning,w0) | spl14_1),
+  inference(avatar_component_clause,[],[f305])).
+tff(f309,definition,(
+  spl14_2 <=> weak_permitted(nsd,immediate_action,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_2])],[avatar_definition])).
+tff(f311,plain,(
+  ~weak_permitted(nsd,immediate_action,w0) | spl14_2),
+  inference(avatar_component_clause,[],[f309])).
+tff(f317,definition,(
+  spl14_4 <=> ! [X0 : world] : (obligatory(unclos,issue_warning,X0) | ~k_accessible(commander,w0,X0))),
+  introduced(definition,[new_symbols(naming,[spl14_4])],[avatar_definition])).
+tff(f318,plain,(
+  ( ! [X0 : world] : (obligatory(unclos,issue_warning,X0) | ~k_accessible(commander,w0,X0)) ) | ~spl14_4),
+  inference(avatar_component_clause,[],[f317])).
+tff(f320,definition,(
+  spl14_5 <=> knows(commander,issue_warning,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_5])],[avatar_definition])).
+tff(f322,plain,(
+  knows(commander,issue_warning,w0) | ~spl14_5),
+  inference(avatar_component_clause,[],[f320])).
+tff(f324,definition,(
+  spl14_6 <=> unresolvable_conflict(w0)),
+  introduced(definition,[new_symbols(naming,[spl14_6])],[avatar_definition])).
+tff(f326,plain,(
+  unresolvable_conflict(w0) | ~spl14_6),
+  inference(avatar_component_clause,[],[f324])).
+tff(f328,definition,(
+  spl14_7 <=> effective_obligation(issue_warning,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_7])],[avatar_definition])).
+tff(f330,plain,(
+  effective_obligation(issue_warning,w0) | ~spl14_7),
+  inference(avatar_component_clause,[],[f328])).
+tff(f332,definition,(
+  spl14_8 <=> effective_obligation(immediate_action,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_8])],[avatar_definition])).
+tff(f333,plain,(
+  effective_obligation(immediate_action,w0) | ~spl14_8),
+  inference(avatar_component_clause,[],[f332])).
+tff(f334,plain,(
+  ~effective_obligation(immediate_action,w0) | spl14_8),
+  inference(avatar_component_clause,[],[f332])).
+tff(f336,definition,(
+  spl14_9 <=> issued_conflict(w0)),
+  introduced(definition,[new_symbols(naming,[spl14_9])],[avatar_definition])).
+tff(f338,plain,(
+  ~issued_conflict(w0) | spl14_9),
+  inference(avatar_component_clause,[],[f336])).
+tff(f340,definition,(
+  spl14_10 <=> obligatory(nsd,protect_asset,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_10])],[avatar_definition])).
+tff(f342,plain,(
+  ~obligatory(nsd,protect_asset,w0) | spl14_10),
+  inference(avatar_component_clause,[],[f340])).
+tff(f344,definition,(
+  spl14_11 <=> obligatory(unclos,issue_warning,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_11])],[avatar_definition])).
+tff(f346,plain,(
+  ~obligatory(unclos,issue_warning,w0) | spl14_11),
+  inference(avatar_component_clause,[],[f344])).
+tff(f348,definition,(
+  spl14_12 <=> obligatory(roe,immediate_action,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_12])],[avatar_definition])).
+tff(f350,plain,(
+  ~obligatory(roe,immediate_action,w0) | spl14_12),
+  inference(avatar_component_clause,[],[f348])).
+tff(f353,definition,(
+  spl14_13 <=> effective_pos(sK13)),
+  introduced(definition,[new_symbols(naming,[spl14_13])],[avatar_definition])).
+tff(f355,plain,(
+  ~effective_pos(sK13) | spl14_13),
+  inference(avatar_component_clause,[],[f353])).
+tff(f356,plain,(
+  ~spl14_1 | ~spl14_2 | ~spl14_13 | spl14_4 | spl14_5 | spl14_6 | spl14_7 | ~spl14_8 | ~spl14_9 | ~spl14_10 | ~spl14_11 | ~spl14_12),
+  inference(avatar_split_clause,[],[f277,f348,f344,f340,f336,f332,f328,f324,f320,f317,f353,f309,f305])).
+tff(f358,definition,(
+  spl14_14 <=> w1 = w2),
+  introduced(definition,[new_symbols(naming,[spl14_14])],[avatar_definition])).
+tff(f360,plain,(
+  w1 != w2 | spl14_14),
+  inference(avatar_component_clause,[],[f358])).
+tff(f369,plain,(
+  ~spl14_14),
+  inference(avatar_split_clause,[],[f202,f358])).
+tff(f384,plain,(
+  holds(immediate_action,w2)),
+  inference(resolution,[],[f262,f291])).
+tff(f385,plain,(
+  ( ! [X0 : world] : (holds(protect_asset,X0)) )),
+  inference(resolution,[],[f262,f293])).
+tff(f389,plain,(
+  ( ! [X0 : world] : (holds(issue_warning,X0) | w2 = X0) )),
+  inference(resolution,[],[f289,f262])).
+tff(f398,plain,(
+  ( ! [X0 : world] : (pos(sK5(X0),X0) | ~effective_pos(X0) | ~effective_pos(X0)) )),
+  inference(resolution,[],[f183,f184])).
+tff(f401,plain,(
+  ( ! [X0 : world] : (pos(sK9(X0),X0) | ~effective_pos(X0) | ~unresolved(X0)) )),
+  inference(resolution,[],[f183,f192])).
+tff(f402,plain,(
+  ( ! [X0 : world] : (pos(sK5(X0),X0) | ~effective_pos(X0)) )),
+  inference(duplicate_literal_removal,[],[f398])).
+tff(f403,plain,(
+  ( ! [X0 : world] : (neg(sK5(X0),X0) | ~effective_neg(X0) | ~effective_pos(X0)) )),
+  inference(resolution,[],[f187,f184])).
+tff(f424,plain,(
+  ( ! [X0 : world] : (maximal(sK6(X0),X0) | effective_neg(X0) | ~effective_pos(X0)) )),
+  inference(resolution,[],[f189,f184])).
+tff(f430,plain,(
+  ( ! [X0 : authority,X1 : authority] : (unclos = X1 | unclos = X0 | X0 = X1 | nsd = X1 | nsd = X0) )),
+  inference(superposition,[],[f197,f197])).
+tff(f431,plain,(
+  ( ! [X0 : authority,X1 : world] : (auth_priority(unclos,X0,X1) | unclos = X0 | nsd = X0) )),
+  inference(superposition,[],[f286,f197])).
+tff(f435,plain,(
+  ( ! [X0 : world,X1 : authority] : (~maximal(X1,X0) | ~pos(roe,X0) | effective_pos(X0) | unclos = sK4(X0) | nsd = sK4(X0)) )),
+  inference(superposition,[],[f186,f197])).
+tff(f455,plain,(
+  ( ! [X0 : world,X1 : world] : (w2 = X1 | w2 = X0 | X0 = X1 | w0 = X0 | w0 = X1) )),
+  inference(superposition,[],[f201,f201])).
+tff(f471,plain,(
+  ( ! [X0 : world] : (~maximal(unclos,X0) | ~relevant(roe,X0)) )),
+  inference(resolution,[],[f179,f286])).
+tff(f476,plain,(
+  ( ! [X0 : world] : (holds(immediate_action,w1) | ~pos(unclos,X0)) )),
+  inference(resolution,[],[f222,f283])).
+tff(f477,plain,(
+  ( ! [X0 : world,X1 : world] : (holds(immediate_action,X0) | ~pos(nsd,X1)) )),
+  inference(resolution,[],[f222,f284])).
+tff(f478,plain,(
+  ( ! [X0 : authority,X1 : world] : (holds(immediate_action,sK2(X0,X1)) | ~pos(X0,X1)) )),
+  inference(resolution,[],[f222,f173])).
+tff(f480,definition,(
+  spl14_17 <=> ! [X1 : world] : ~pos(nsd,X1)),
+  introduced(definition,[new_symbols(naming,[spl14_17])],[avatar_definition])).
+tff(f481,plain,(
+  ( ! [X1 : world] : (~pos(nsd,X1)) ) | ~spl14_17),
+  inference(avatar_component_clause,[],[f480])).
+tff(f483,definition,(
+  spl14_18 <=> ! [X0 : world] : holds(immediate_action,X0)),
+  introduced(definition,[new_symbols(naming,[spl14_18])],[avatar_definition])).
+tff(f484,plain,(
+  ( ! [X0 : world] : (holds(immediate_action,X0)) ) | ~spl14_18),
+  inference(avatar_component_clause,[],[f483])).
+tff(f485,plain,(
+  spl14_17 | spl14_18),
+  inference(avatar_split_clause,[],[f477,f483,f480])).
+tff(f487,definition,(
+  spl14_19 <=> ! [X0 : world] : ~pos(unclos,X0)),
+  introduced(definition,[new_symbols(naming,[spl14_19])],[avatar_definition])).
+tff(f488,plain,(
+  ( ! [X0 : world] : (~pos(unclos,X0)) ) | ~spl14_19),
+  inference(avatar_component_clause,[],[f487])).
+tff(f490,definition,(
+  spl14_20 <=> holds(immediate_action,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_20])],[avatar_definition])).
+tff(f492,plain,(
+  holds(immediate_action,w1) | ~spl14_20),
+  inference(avatar_component_clause,[],[f490])).
+tff(f493,plain,(
+  spl14_19 | spl14_20),
+  inference(avatar_split_clause,[],[f476,f490,f487])).
+tff(f494,plain,(
+  ( ! [X0 : world] : (~holds(immediate_action,w2) | ~neg(roe,X0)) )),
+  inference(resolution,[],[f226,f281])).
+tff(f496,plain,(
+  ( ! [X0 : world,X1 : world] : (~holds(immediate_action,X0) | ~neg(nsd,X1)) )),
+  inference(resolution,[],[f226,f284])).
+tff(f497,plain,(
+  ( ! [X0 : authority,X1 : world] : (~holds(immediate_action,sK2(X0,X1)) | ~neg(X0,X1)) )),
+  inference(resolution,[],[f226,f173])).
+tff(f499,definition,(
+  spl14_21 <=> ! [X1 : world] : ~neg(nsd,X1)),
+  introduced(definition,[new_symbols(naming,[spl14_21])],[avatar_definition])).
+tff(f500,plain,(
+  ( ! [X1 : world] : (~neg(nsd,X1)) ) | ~spl14_21),
+  inference(avatar_component_clause,[],[f499])).
+tff(f502,definition,(
+  spl14_22 <=> ! [X0 : world] : ~holds(immediate_action,X0)),
+  introduced(definition,[new_symbols(naming,[spl14_22])],[avatar_definition])).
+tff(f503,plain,(
+  ( ! [X0 : world] : (~holds(immediate_action,X0)) ) | ~spl14_22),
+  inference(avatar_component_clause,[],[f502])).
+tff(f504,plain,(
+  spl14_21 | spl14_22),
+  inference(avatar_split_clause,[],[f496,f502,f499])).
+tff(f509,plain,(
+  ( ! [X0 : world] : (~neg(roe,X0)) )),
+  inference(forward_subsumption_resolution,[],[f494,f384])).
+tff(f510,plain,(
+  ( ! [X0 : authority,X1 : world] : (neg(sK3(X0,X1),X1) | maximal(X0,X1) | ~relevant(X0,X1) | pos(sK3(X0,X1),X1)) )),
+  inference(resolution,[],[f182,f176])).
+tff(f514,plain,(
+  ( ! [X0 : authority,X1 : world] : (sP0(immediate_action,sK11(X0,X1)) | neg(X0,X1) | ~active(X0,X1)) )),
+  inference(resolution,[],[f229,f261])).
+tff(f517,plain,(
+  ( ! [X0 : authority,X1 : world] : (~neg(X0,X1) | unclos = X0 | nsd = X0) )),
+  inference(superposition,[],[f509,f197])).
+tff(f548,plain,(
+  ( ! [X0 : authority,X1 : world] : (~relevant(X0,X1) | maximal(X0,X1) | nsd = sK3(X0,X1) | roe = sK3(X0,X1)) )),
+  inference(resolution,[],[f181,f218])).
+tff(f550,plain,(
+  ( ! [X0 : authority,X1 : world] : (~relevant(X0,X1) | maximal(X0,X1) | unclos = X0) )),
+  inference(resolution,[],[f181,f219])).
+tff(f555,plain,(
+  ( ! [X0 : world] : (effective_neg(X0) | ~effective_pos(X0) | pos(sK6(X0),X0) | ~effective_pos(X0)) )),
+  inference(resolution,[],[f424,f183])).
+tff(f556,plain,(
+  ( ! [X0 : world] : (relevant(sK6(X0),X0) | ~effective_pos(X0) | effective_neg(X0)) )),
+  inference(resolution,[],[f424,f180])).
+tff(f558,plain,(
+  ( ! [X0 : world] : (pos(sK6(X0),X0) | ~effective_pos(X0) | effective_neg(X0)) )),
+  inference(duplicate_literal_removal,[],[f555])).
+tff(f578,plain,(
+  ( ! [X0 : authority,X1 : world] : (~active(X0,X1) | nsd = X0 | w2 = sK10(X0,X1) | w1 = sK10(X0,X1) | pos(X0,X1)) )),
+  inference(resolution,[],[f211,f224])).
+tff(f580,plain,(
+  ( ! [X0 : authority,X1 : world] : (sP0(immediate_action,sK2(X0,X1)) | ~pos(X0,X1)) )),
+  inference(resolution,[],[f478,f261])).
+tff(f587,plain,(
+  ( ! [X0 : authority,X1 : world] : (unclos = X0 | nsd = X0 | w2 = sK10(X0,X1) | ~active(X0,X1) | pos(X0,X1)) )),
+  inference(resolution,[],[f212,f224])).
+tff(f590,plain,(
+  ( ! [X0 : authority,X1 : world] : (pos(X0,X1) | nsd = X0 | w2 = sK10(X0,X1) | unclos = X0) )),
+  inference(forward_subsumption_resolution,[],[f587,f208])).
+tff(f592,plain,(
+  ( ! [X0 : authority,X1 : world] : (~neg(X0,X1) | ~pos(X0,X1)) )),
+  inference(resolution,[],[f497,f478])).
+tff(f597,plain,(
+  ( ! [X0 : authority,X1 : world] : (w1 = sK2(X0,X1) | nsd = X0 | roe = X0) )),
+  inference(resolution,[],[f213,f173])).
+tff(f599,plain,(
+  ( ! [X0 : authority,X1 : world] : (~active(X0,X1) | nsd = X0 | roe = X0 | w1 = sK11(X0,X1) | neg(X0,X1)) )),
+  inference(resolution,[],[f213,f228])).
+tff(f600,plain,(
+  ( ! [X0 : world] : (~pos(sK5(X0),X0) | ~effective_neg(X0) | ~effective_pos(X0)) )),
+  inference(resolution,[],[f592,f403])).
+tff(f603,plain,(
+  ( ! [X0 : world] : (~pos(sK9(X0),X0) | ~unresolved(X0)) )),
+  inference(resolution,[],[f592,f191])).
+tff(f605,plain,(
+  ( ! [X0 : world] : (~effective_neg(X0) | ~effective_pos(X0)) )),
+  inference(forward_subsumption_resolution,[],[f600,f402])).
+tff(f615,plain,(
+  ( ! [X0 : authority,X1 : world] : (obligatory(X0,issue_warning,X1) | ~active(X0,X1) | w2 = sK12(X0,issue_warning,X1)) )),
+  inference(resolution,[],[f266,f389])).
+tff(f616,plain,(
+  ( ! [X0 : authority,X1 : world] : (obligatory(X0,protect_asset,X1) | ~active(X0,X1)) )),
+  inference(resolution,[],[f266,f385])).
+tff(f625,plain,(
+  ( ! [X2 : prop,X0 : authority,X1 : world] : (~active(X0,X1) | obligatory(X0,X2,X1) | ~holds(immediate_action,sK12(X0,X2,X1)) | ~neg(X0,X1)) )),
+  inference(resolution,[],[f265,f226])).
+tff(f626,plain,(
+  ( ! [X2 : prop,X0 : authority,X1 : world] : (~active(X0,X1) | obligatory(X0,X2,X1) | holds(immediate_action,sK12(X0,X2,X1)) | ~pos(X0,X1)) )),
+  inference(resolution,[],[f265,f222])).
+tff(f628,plain,(
+  ( ! [X2 : prop,X0 : authority,X1 : world] : (holds(immediate_action,sK12(X0,X2,X1)) | obligatory(X0,X2,X1) | ~pos(X0,X1)) )),
+  inference(forward_subsumption_resolution,[],[f626,f223])).
+tff(f629,plain,(
+  ( ! [X2 : prop,X0 : authority,X1 : world] : (~holds(immediate_action,sK12(X0,X2,X1)) | obligatory(X0,X2,X1) | ~neg(X0,X1)) )),
+  inference(forward_subsumption_resolution,[],[f625,f227])).
+tff(f637,plain,(
+  ( ! [X2 : world,X0 : world,X1 : prop] : (~holds(X1,X2) | ~active(nsd,X0) | weak_permitted(nsd,X1,X0)) )),
+  inference(resolution,[],[f267,f284])).
+tff(f645,plain,(
+  ( ! [X0 : world] : (~unresolved(X0) | ~effective_pos(X0) | ~unresolved(X0)) )),
+  inference(resolution,[],[f603,f401])).
+tff(f647,plain,(
+  ( ! [X0 : world] : (~unresolved(X0) | ~effective_pos(X0)) )),
+  inference(duplicate_literal_removal,[],[f645])).
+tff(f702,plain,(
+  ( ! [X0 : authority,X1 : world] : (maximal(sK3(X0,X1),X1) | unclos = sK3(X0,X1) | ~relevant(X0,X1) | maximal(X0,X1)) )),
+  inference(resolution,[],[f550,f182])).
+tff(f757,plain,(
+  ( ! [X0 : world] : (~effective_pos(X0) | effective_neg(X0) | neg(sK6(X0),X0) | pos(sK6(X0),X0)) )),
+  inference(resolution,[],[f556,f176])).
+tff(f760,plain,(
+  ( ! [X0 : world] : (neg(sK6(X0),X0) | ~effective_pos(X0) | pos(sK6(X0),X0)) )),
+  inference(forward_subsumption_resolution,[],[f757,f605])).
+tff(f762,plain,(
+  ( ! [X0 : world,X1 : world] : (~active(nsd,X0) | weak_permitted(nsd,issue_warning,X0) | w2 = X1) )),
+  inference(resolution,[],[f637,f389])).
+tff(f763,plain,(
+  ( ! [X0 : world] : (~active(nsd,X0) | weak_permitted(nsd,immediate_action,X0)) )),
+  inference(resolution,[],[f637,f384])).
+tff(f771,definition,(
+  spl14_24 <=> ! [X1 : world] : w1 = X1),
+  introduced(definition,[new_symbols(naming,[spl14_24])],[avatar_definition])).
+tff(f772,plain,(
+  ( ! [X1 : world] : (w1 = X1) ) | ~spl14_24),
+  inference(avatar_component_clause,[],[f771])).
+tff(f781,definition,(
+  spl14_27 <=> ! [X0 : world] : (~active(nsd,X0) | weak_permitted(nsd,immediate_action,X0))),
+  introduced(definition,[new_symbols(naming,[spl14_27])],[avatar_definition])).
+tff(f782,plain,(
+  ( ! [X0 : world] : (weak_permitted(nsd,immediate_action,X0) | ~active(nsd,X0)) ) | ~spl14_27),
+  inference(avatar_component_clause,[],[f781])).
+tff(f788,plain,(
+  spl14_27),
+  inference(avatar_split_clause,[],[f763,f781])).
+tff(f790,definition,(
+  spl14_29 <=> ! [X1 : world] : w2 = X1),
+  introduced(definition,[new_symbols(naming,[spl14_29])],[avatar_definition])).
+tff(f791,plain,(
+  ( ! [X1 : world] : (w2 = X1) ) | ~spl14_29),
+  inference(avatar_component_clause,[],[f790])).
+tff(f793,definition,(
+  spl14_30 <=> ! [X0 : world] : (~active(nsd,X0) | weak_permitted(nsd,issue_warning,X0))),
+  introduced(definition,[new_symbols(naming,[spl14_30])],[avatar_definition])).
+tff(f794,plain,(
+  ( ! [X0 : world] : (weak_permitted(nsd,issue_warning,X0) | ~active(nsd,X0)) ) | ~spl14_30),
+  inference(avatar_component_clause,[],[f793])).
+tff(f795,plain,(
+  spl14_29 | spl14_30),
+  inference(avatar_split_clause,[],[f762,f793,f790])).
+tff(f796,plain,(
+  ( ! [X0 : world,X1 : world] : (X0 = X1) ) | ~spl14_24),
+  inference(superposition,[],[f772,f772])).
+tff(f799,plain,(
+  ( ! [X0 : world] : (w0 != X0) ) | ~spl14_24),
+  inference(superposition,[],[f204,f772])).
+tff(f828,plain,(
+  ( ! [X0 : authority,X1 : world] : (neg(X0,X1) | ~active(X0,X1) | w2 = sK11(X0,X1) | immediate_action = in_territorial_waters | immediate_action = protect_asset | immediate_action = threat_detected | immediate_action = strategic_asset_nearby | immediate_action = issue_warning) )),
+  inference(resolution,[],[f514,f252])).
+tff(f836,plain,(
+  ( ! [X0 : world] : (holds(immediate_action,X0)) ) | ~spl14_29),
+  inference(superposition,[],[f384,f791])).
+tff(f863,plain,(
+  spl14_18 | ~spl14_29),
+  inference(avatar_split_clause,[],[f836,f790,f483])).
+tff(f864,plain,(
+  ( ! [X0 : authority,X1 : world] : (neg(X0,X1) | ~active(X0,X1) | w2 = sK11(X0,X1) | immediate_action = protect_asset | immediate_action = threat_detected | immediate_action = strategic_asset_nearby | immediate_action = issue_warning) )),
+  inference(forward_subsumption_resolution,[],[f828,f239])).
+tff(f865,plain,(
+  ( ! [X0 : authority,X1 : world] : (neg(X0,X1) | ~active(X0,X1) | w2 = sK11(X0,X1) | immediate_action = threat_detected | immediate_action = strategic_asset_nearby | immediate_action = issue_warning) )),
+  inference(forward_subsumption_resolution,[],[f864,f241])).
+tff(f866,plain,(
+  ( ! [X0 : authority,X1 : world] : (neg(X0,X1) | ~active(X0,X1) | w2 = sK11(X0,X1) | immediate_action = strategic_asset_nearby | immediate_action = issue_warning) )),
+  inference(forward_subsumption_resolution,[],[f865,f240])).
+tff(f867,plain,(
+  ( ! [X0 : authority,X1 : world] : (neg(X0,X1) | ~active(X0,X1) | w2 = sK11(X0,X1) | immediate_action = issue_warning) )),
+  inference(forward_subsumption_resolution,[],[f866,f238])).
+tff(f868,plain,(
+  ( ! [X0 : authority,X1 : world] : (~active(X0,X1) | neg(X0,X1) | w2 = sK11(X0,X1)) )),
+  inference(forward_subsumption_resolution,[],[f867,f246])).
+tff(f910,plain,(
+  ~active(nsd,w0) | (spl14_1 | ~spl14_30)),
+  inference(resolution,[],[f794,f307])).
+tff(f918,plain,(
+  unclos = nsd | (spl14_1 | ~spl14_30)),
+  inference(resolution,[],[f910,f208])).
+tff(f920,plain,(
+  $false | (spl14_1 | ~spl14_30)),
+  inference(forward_subsumption_resolution,[],[f918,f198])).
+tff(f921,plain,(
+  spl14_1 | ~spl14_30),
+  inference(avatar_contradiction_clause,[],[f920])).
+tff(f922,plain,(
+  ~active(nsd,w0) | (spl14_2 | ~spl14_27)),
+  inference(resolution,[],[f311,f782])).
+tff(f931,plain,(
+  unclos = nsd | (spl14_2 | ~spl14_27)),
+  inference(resolution,[],[f922,f208])).
+tff(f933,plain,(
+  $false | (spl14_2 | ~spl14_27)),
+  inference(forward_subsumption_resolution,[],[f931,f198])).
+tff(f934,plain,(
+  spl14_2 | ~spl14_27),
+  inference(avatar_contradiction_clause,[],[f933])).
+tff(f935,plain,(
+  ~effective_pos(w0) | spl14_8),
+  inference(resolution,[],[f334,f302])).
+tff(f965,plain,(
+  ( ! [X0 : world] : (~effective_pos(X0) | effective_neg(X0) | active(sK6(X0),X0)) )),
+  inference(resolution,[],[f558,f223])).
+tff(f967,plain,(
+  ( ! [X0 : world] : (pos(roe,X0) | ~effective_pos(X0) | effective_neg(X0) | unclos = sK6(X0) | nsd = sK6(X0)) )),
+  inference(superposition,[],[f558,f197])).
+tff(f968,plain,(
+  ( ! [X0 : world] : (pos(roe,X0) | ~effective_pos(X0) | unclos = sK6(X0) | nsd = sK6(X0)) )),
+  inference(forward_subsumption_resolution,[],[f967,f605])).
+tff(f970,plain,(
+  ( ! [X0 : world] : (active(sK6(X0),X0) | ~effective_pos(X0)) )),
+  inference(forward_subsumption_resolution,[],[f965,f605])).
+tff(f972,plain,(
+  ( ! [X0 : authority,X1 : world] : (obligatory(X0,immediate_action,X1) | ~pos(X0,X1) | ~active(X0,X1) | obligatory(X0,immediate_action,X1)) )),
+  inference(resolution,[],[f628,f266])).
+tff(f976,plain,(
+  ( ! [X0 : authority,X1 : world] : (obligatory(X0,immediate_action,X1) | ~pos(X0,X1) | ~active(X0,X1)) )),
+  inference(duplicate_literal_removal,[],[f972])).
+tff(f978,plain,(
+  ( ! [X0 : authority,X1 : world] : (obligatory(X0,immediate_action,X1) | ~pos(X0,X1)) )),
+  inference(forward_subsumption_resolution,[],[f976,f223])).
+tff(f998,plain,(
+  ( ! [X0 : authority,X1 : world] : (relevant(X0,X1) | w2 = sK10(X0,X1) | unclos = X0 | nsd = X0) )),
+  inference(resolution,[],[f590,f178])).
+tff(f1002,plain,(
+  ( ! [X0 : world,X1 : authority] : (~maximal(X1,X0) | w2 = sK10(sK4(X0),X0) | unclos = sK4(X0) | nsd = sK4(X0) | effective_pos(X0)) )),
+  inference(resolution,[],[f590,f186])).
+tff(f1014,plain,(
+  ( ! [X2 : authority,X3 : authority,X0 : authority,X1 : authority] : (nsd = X2 | nsd = X1 | nsd = X0 | unclos = X3 | X1 = X2 | X0 = X3 | X0 = X2 | X0 = X1 | nsd = X3) )),
+  inference(superposition,[],[f430,f430])).
+tff(f1086,plain,(
+  ( ! [X2 : world,X3 : authority,X0 : authority,X1 : authority] : (auth_priority(X0,X1,X2) | X0 = X1 | nsd = X1 | unclos = X3 | X0 = X3 | nsd = X3 | nsd = X0) )),
+  inference(superposition,[],[f431,f430])).
+tff(f1107,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : world] : (auth_priority(X0,unclos,X1) | ~relevant(X0,X1) | maximal(X0,X1) | unclos = X2 | sK3(X0,X1) = X2 | nsd = X2 | nsd = sK3(X0,X1)) )),
+  inference(superposition,[],[f181,f430])).
+tff(f1126,plain,(
+  ( ! [X0 : world,X1 : authority] : (pos(unclos,X0) | ~effective_pos(X0) | effective_neg(X0) | unclos = X1 | sK6(X0) = X1 | nsd = X1 | nsd = sK6(X0)) )),
+  inference(superposition,[],[f558,f430])).
+tff(f1215,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : world] : (~maximal(X2,X1) | ~pos(X0,X1) | effective_pos(X1) | unclos = sK4(X1) | unclos = X0 | nsd = sK4(X1) | nsd = X0) )),
+  inference(superposition,[],[f186,f430])).
+tff(f1307,plain,(
+  ( ! [X0 : world,X1 : authority] : (pos(unclos,X0) | ~effective_pos(X0) | unclos = X1 | sK6(X0) = X1 | nsd = X1 | nsd = sK6(X0)) )),
+  inference(forward_subsumption_resolution,[],[f1126,f605])).
+tff(f1330,definition,(
+  spl14_31 <=> ! [X0 : authority] : (unclos = X0 | nsd = X0)),
+  introduced(definition,[new_symbols(naming,[spl14_31])],[avatar_definition])).
+tff(f1331,plain,(
+  ( ! [X0 : authority] : (unclos = X0 | nsd = X0) ) | ~spl14_31),
+  inference(avatar_component_clause,[],[f1330])).
+tff(f1337,plain,(
+  ( ! [X0 : world,X1 : authority] : (~effective_pos(X0) | unclos = X1 | sK6(X0) = X1 | nsd = X1 | nsd = sK6(X0)) ) | ~spl14_19),
+  inference(forward_subsumption_resolution,[],[f1307,f488])).
+tff(f1361,plain,(
+  ( ! [X0 : world] : (auth_priority(unclos,unclos,X0) | roe = nsd) ) | ~spl14_31),
+  inference(superposition,[],[f286,f1331])).
+tff(f1426,plain,(
+  ( ! [X0 : world] : (auth_priority(unclos,unclos,X0)) ) | ~spl14_31),
+  inference(forward_subsumption_resolution,[],[f1361,f199])).
+tff(f1432,plain,(
+  $false | ~spl14_31),
+  inference(forward_subsumption_resolution,[],[f1426,f174])).
+tff(f1433,plain,(
+  ~spl14_31),
+  inference(avatar_contradiction_clause,[],[f1432])).
+tff(f1437,plain,(
+  ( ! [X2 : world,X3 : world,X0 : world,X1 : world] : (w2 = X3 | w0 = X2 | w0 = X1 | w0 = X0 | X1 = X2 | X0 = X3 | X0 = X2 | X0 = X1 | w0 = X3) )),
+  inference(superposition,[],[f455,f455])).
+tff(f1598,plain,(
+  ( ! [X0 : authority,X1 : world] : (sP0(immediate_action,w1) | ~pos(X0,X1) | nsd = X0 | roe = X0) )),
+  inference(superposition,[],[f580,f597])).
+tff(f1776,plain,(
+  ( ! [X0 : authority,X1 : world] : (neg(X0,X1) | roe = X0 | w1 = sK11(X0,X1) | nsd = X0 | ~territorial(X1)) )),
+  inference(resolution,[],[f599,f207])).
+tff(f1904,plain,(
+  ( ! [X0 : world,X1 : authority] : (~effective_pos(X0) | pos(sK6(X0),X0) | ~maximal(X1,X0) | effective_neg(X0)) )),
+  inference(resolution,[],[f760,f190])).
+tff(f1918,plain,(
+  ( ! [X0 : world,X1 : authority] : (~maximal(X1,X0) | pos(sK6(X0),X0) | ~effective_pos(X0)) )),
+  inference(forward_subsumption_resolution,[],[f1904,f605])).
+tff(f1935,plain,(
+  ( ! [X0 : world] : (pos(sK6(X0),X0) | ~effective_pos(X0) | ~effective_pos(X0)) )),
+  inference(resolution,[],[f1918,f184])).
+tff(f1942,plain,(
+  ( ! [X0 : world] : (pos(sK6(X0),X0) | ~effective_pos(X0)) )),
+  inference(duplicate_literal_removal,[],[f1935])).
+tff(f2178,plain,(
+  ( ! [X0 : authority,X1 : world] : (neg(X0,X1) | w2 = sK11(X0,X1) | unclos = X0) )),
+  inference(resolution,[],[f868,f208])).
+tff(f2179,plain,(
+  ( ! [X0 : authority,X1 : world] : (neg(X0,X1) | w2 = sK11(X0,X1) | ~territorial(X1)) )),
+  inference(resolution,[],[f868,f207])).
+tff(f2184,plain,(
+  ( ! [X0 : world] : (neg(sK6(X0),X0) | w2 = sK11(sK6(X0),X0) | ~effective_pos(X0)) )),
+  inference(resolution,[],[f868,f970])).
+tff(f2259,plain,(
+  ( ! [X0 : world] : (~territorial(X0) | w2 = sK11(roe,X0)) )),
+  inference(resolution,[],[f2179,f509])).
+tff(f2261,plain,(
+  ( ! [X0 : world,X1 : authority] : (~maximal(X1,X0) | ~territorial(X0) | w2 = sK11(sK6(X0),X0) | effective_neg(X0)) )),
+  inference(resolution,[],[f2179,f190])).
+tff(f2280,plain,(
+  ( ! [X0 : world] : (w2 = sK11(roe,X0) | w1 = X0) )),
+  inference(resolution,[],[f2259,f196])).
+tff(f2528,plain,(
+  ( ! [X0 : world] : (w2 = sK11(roe,X0) | roe = unclos) )),
+  inference(resolution,[],[f2178,f509])).
+tff(f2533,plain,(
+  ( ! [X0 : world] : (w2 = sK11(roe,X0)) )),
+  inference(forward_subsumption_resolution,[],[f2528,f200])).
+tff(f2705,plain,(
+  ( ! [X0 : authority,X1 : world] : (w2 = sK10(X0,X1) | unclos = X0 | nsd = X0 | maximal(X0,X1) | unclos = X0) )),
+  inference(resolution,[],[f998,f550])).
+tff(f2707,plain,(
+  ( ! [X0 : authority,X1 : world] : (maximal(X0,X1) | unclos = X0 | nsd = X0 | w2 = sK10(X0,X1)) )),
+  inference(duplicate_literal_removal,[],[f2705])).
+tff(f2890,plain,(
+  ( ! [X0 : world] : (w2 = sK11(sK6(X0),X0) | ~effective_pos(X0) | ~pos(sK6(X0),X0)) )),
+  inference(resolution,[],[f2184,f592])).
+tff(f2899,plain,(
+  ( ! [X0 : world] : (~effective_pos(X0) | w2 = sK11(sK6(X0),X0)) )),
+  inference(forward_subsumption_resolution,[],[f2890,f1942])).
+tff(f2992,plain,(
+  ( ! [X0 : authority,X1 : world] : (unclos = sK3(X0,X1) | ~relevant(X0,X1) | maximal(X0,X1) | effective_pos(X1) | maximal(sK4(X1),X1)) )),
+  inference(resolution,[],[f702,f185])).
+tff(f2995,plain,(
+  ( ! [X0 : authority,X1 : world] : (unclos = sK3(X0,X1) | ~relevant(X0,X1) | maximal(X0,X1) | ~pos(roe,X1) | effective_pos(X1) | unclos = sK4(X1) | nsd = sK4(X1)) )),
+  inference(resolution,[],[f702,f435])).
+tff(f3005,plain,(
+  ( ! [X0 : authority,X1 : world] : (~relevant(X0,X1) | unclos = sK3(X0,X1) | ~pos(roe,X1) | effective_pos(X1) | unclos = sK4(X1) | nsd = sK4(X1)) )),
+  inference(forward_subsumption_resolution,[],[f2995,f435])).
+tff(f3007,plain,(
+  ( ! [X0 : authority,X1 : world] : (~relevant(X0,X1) | unclos = sK3(X0,X1) | effective_pos(X1) | maximal(sK4(X1),X1)) )),
+  inference(forward_subsumption_resolution,[],[f2992,f185])).
+tff(f3181,plain,(
+  ( ! [X0 : world,X1 : authority] : (~maximal(X1,X0) | w1 = sK11(sK6(X0),X0) | nsd = sK6(X0) | ~territorial(X0) | roe = sK6(X0) | effective_neg(X0)) )),
+  inference(resolution,[],[f1776,f190])).
+tff(f3549,plain,(
+  ( ! [X0 : authority,X1 : world] : (maximal(sK4(X1),X1) | nsd = X0 | w2 = sK10(X0,X1) | effective_pos(X1) | unclos = X0) )),
+  inference(resolution,[],[f2707,f185])).
+tff(f3550,plain,(
+  ( ! [X0 : authority,X1 : world] : (unclos = X0 | nsd = X0 | w2 = sK10(X0,X1) | neg(X0,X1) | ~effective_neg(X1)) )),
+  inference(resolution,[],[f2707,f187])).
+tff(f3551,plain,(
+  ( ! [X0 : authority,X1 : world] : (maximal(sK6(X1),X1) | nsd = X0 | w2 = sK10(X0,X1) | effective_neg(X1) | unclos = X0) )),
+  inference(resolution,[],[f2707,f189])).
+tff(f3564,plain,(
+  ( ! [X0 : authority,X1 : world] : (~effective_neg(X1) | nsd = X0 | w2 = sK10(X0,X1) | unclos = X0) )),
+  inference(forward_subsumption_resolution,[],[f3550,f517])).
+tff(f3901,plain,(
+  ( ! [X0 : world,X1 : authority] : (effective_pos(X0) | unclos = sK4(X0) | nsd = sK4(X0) | w2 = sK10(sK4(X0),X0) | unclos = X1 | nsd = X1 | w2 = sK10(X1,X0)) )),
+  inference(resolution,[],[f1002,f2707])).
+tff(f5073,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (X0 = X1 | nsd = X1 | unclos = X2 | X0 = X2 | nsd = X2 | nsd = X0 | nsd = X1 | roe = X1) )),
+  inference(resolution,[],[f1086,f218])).
+tff(f5084,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (nsd = X0 | unclos = X2 | roe = X1 | X0 = X2 | X0 = X1 | nsd = X2 | nsd = X1) )),
+  inference(duplicate_literal_removal,[],[f5073])).
+tff(f5137,definition,(
+  spl14_37 <=> holds(issue_warning,w2)),
+  introduced(definition,[new_symbols(naming,[spl14_37])],[avatar_definition])).
+tff(f5138,plain,(
+  ~holds(issue_warning,w2) | spl14_37),
+  inference(avatar_component_clause,[],[f5137])).
+tff(f5139,plain,(
+  holds(issue_warning,w2) | ~spl14_37),
+  inference(avatar_component_clause,[],[f5137])).
+tff(f5169,definition,(
+  spl14_45 <=> ! [X1 : world] : holds(issue_warning,X1)),
+  introduced(definition,[new_symbols(naming,[spl14_45])],[avatar_definition])).
+tff(f5170,plain,(
+  ( ! [X1 : world] : (holds(issue_warning,X1)) ) | ~spl14_45),
+  inference(avatar_component_clause,[],[f5169])).
+tff(f5250,plain,(
+  sP0(issue_warning,w2) | ~spl14_37),
+  inference(resolution,[],[f5139,f261])).
+tff(f5377,plain,(
+  issue_warning = in_territorial_waters | issue_warning = protect_asset | issue_warning = threat_detected | issue_warning = strategic_asset_nearby | immediate_action = issue_warning | ~spl14_37),
+  inference(resolution,[],[f5250,f298])).
+tff(f5384,plain,(
+  issue_warning = protect_asset | issue_warning = threat_detected | issue_warning = strategic_asset_nearby | immediate_action = issue_warning | ~spl14_37),
+  inference(forward_subsumption_resolution,[],[f5377,f243])).
+tff(f5385,plain,(
+  issue_warning = threat_detected | issue_warning = strategic_asset_nearby | immediate_action = issue_warning | ~spl14_37),
+  inference(forward_subsumption_resolution,[],[f5384,f245])).
+tff(f5386,plain,(
+  issue_warning = strategic_asset_nearby | immediate_action = issue_warning | ~spl14_37),
+  inference(forward_subsumption_resolution,[],[f5385,f244])).
+tff(f5387,plain,(
+  immediate_action = issue_warning | ~spl14_37),
+  inference(forward_subsumption_resolution,[],[f5386,f242])).
+tff(f5388,plain,(
+  $false | ~spl14_37),
+  inference(forward_subsumption_resolution,[],[f5387,f246])).
+tff(f5389,plain,(
+  ~spl14_37),
+  inference(avatar_contradiction_clause,[],[f5388])).
+tff(f5390,plain,(
+  $false | (spl14_37 | ~spl14_45)),
+  inference(forward_subsumption_resolution,[],[f5138,f5170])).
+tff(f5391,plain,(
+  spl14_37 | ~spl14_45),
+  inference(avatar_contradiction_clause,[],[f5390])).
+tff(f5494,definition,(
+  spl14_51 <=> holds(immediate_action,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_51])],[avatar_definition])).
+tff(f5495,plain,(
+  holds(immediate_action,w0) | ~spl14_51),
+  inference(avatar_component_clause,[],[f5494])).
+tff(f5496,plain,(
+  ~holds(immediate_action,w0) | spl14_51),
+  inference(avatar_component_clause,[],[f5494])).
+tff(f5980,plain,(
+  ( ! [X0 : world,X1 : authority] : (~relevant(unclos,X0) | maximal(unclos,X0) | unclos = X1 | sK3(unclos,X0) = X1 | nsd = X1 | nsd = sK3(unclos,X0)) )),
+  inference(resolution,[],[f1107,f174])).
+tff(f6675,plain,(
+  ( ! [X2 : authority,X3 : authority,X0 : authority,X1 : world,X4 : authority] : (neg(nsd,X1) | maximal(X0,X1) | ~relevant(X0,X1) | pos(nsd,X1) | nsd = X2 | nsd = X3 | unclos = X4 | sK3(X0,X1) = X2 | X3 = X4 | X2 = X3 | sK3(X0,X1) = X3 | nsd = X4) )),
+  inference(superposition,[],[f510,f1014])).
+tff(f8489,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (unclos != X1 | nsd = X2 | nsd = X0 | nsd = X1 | X0 = X2 | X0 = X1 | X1 = X2 | X0 = X1 | nsd = X0) )),
+  inference(equality_factoring,[],[f1014])).
+tff(f8574,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (X1 != X1 | nsd = X2 | nsd = X0 | nsd = X1 | unclos = X0 | X0 = X2 | X0 = X1 | X1 = X2 | nsd = X0) )),
+  inference(equality_factoring,[],[f1014])).
+tff(f8581,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (X1 != X1 | nsd = X2 | nsd = X0 | nsd = X1 | unclos = X0 | X0 = X2 | X0 = X1 | X1 = X2) )),
+  inference(duplicate_literal_removal,[],[f8574])).
+tff(f8582,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (nsd = X2 | nsd = X1 | unclos = X0 | X1 = X2 | X0 = X2 | X0 = X1 | nsd = X0) )),
+  inference(trivial_inequality_removal,[],[f8581])).
+tff(f8643,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (unclos != X1 | nsd = X2 | nsd = X0 | nsd = X1 | X0 = X2 | X0 = X1 | X1 = X2) )),
+  inference(duplicate_literal_removal,[],[f8489])).
+tff(f8895,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (nsd = X2 | nsd = X0 | nsd = X1 | X0 = X2 | X0 = X1 | X1 = X2) )),
+  inference(forward_subsumption_resolution,[],[f8643,f8582])).
+tff(f9260,plain,(
+  ( ! [X2 : authority,X3 : authority,X0 : authority,X1 : world,X4 : authority] : (~relevant(X0,X1) | maximal(X0,X1) | pos(nsd,X1) | nsd = X2 | nsd = X3 | unclos = X4 | sK3(X0,X1) = X2 | X3 = X4 | X2 = X3 | sK3(X0,X1) = X3 | nsd = X4) ) | ~spl14_21),
+  inference(forward_subsumption_resolution,[],[f6675,f500])).
+tff(f9300,definition,(
+  spl14_71 <=> ! [X2 : authority,X1 : authority,X3 : authority] : (nsd = X2 | X1 = X3 | X2 = X3 | nsd = X1 | X1 = X2 | nsd = X3)),
+  introduced(definition,[new_symbols(naming,[spl14_71])],[avatar_definition])).
+tff(f9301,plain,(
+  ( ! [X2 : authority,X3 : authority,X1 : authority] : (nsd = X2 | X1 = X3 | X2 = X3 | nsd = X1 | X1 = X2 | nsd = X3) ) | ~spl14_71),
+  inference(avatar_component_clause,[],[f9300])).
+tff(f9305,plain,(
+  spl14_71),
+  inference(avatar_split_clause,[],[f8895,f9300])).
+tff(f10270,plain,(
+  ( ! [X2 : world,X0 : world,X1 : world] : (w2 != X1 | w0 = X2 | w0 = X0 | w0 = X1 | X0 = X2 | X0 = X1 | X1 = X2 | X0 = X1 | w0 = X0) )),
+  inference(equality_factoring,[],[f1437])).
+tff(f10405,plain,(
+  ( ! [X2 : world,X0 : world,X1 : world] : (X1 != X1 | w2 = X0 | w0 = X2 | w0 = X0 | w0 = X1 | X0 = X2 | X0 = X1 | X1 = X2 | w0 = X0) )),
+  inference(equality_factoring,[],[f1437])).
+tff(f10412,plain,(
+  ( ! [X2 : world,X0 : world,X1 : world] : (X1 != X1 | w2 = X0 | w0 = X2 | w0 = X0 | w0 = X1 | X0 = X2 | X0 = X1 | X1 = X2) )),
+  inference(duplicate_literal_removal,[],[f10405])).
+tff(f10413,plain,(
+  ( ! [X2 : world,X0 : world,X1 : world] : (w2 = X0 | w0 = X2 | w0 = X1 | X1 = X2 | X0 = X2 | X0 = X1 | w0 = X0) )),
+  inference(trivial_inequality_removal,[],[f10412])).
+tff(f10505,plain,(
+  ( ! [X2 : world,X0 : world,X1 : world] : (w2 != X1 | w0 = X2 | w0 = X0 | w0 = X1 | X0 = X2 | X0 = X1 | X1 = X2) )),
+  inference(duplicate_literal_removal,[],[f10270])).
+tff(f10627,plain,(
+  ( ! [X2 : world,X0 : world,X1 : world] : (w0 = X2 | w0 = X0 | w0 = X1 | X0 = X2 | X0 = X1 | X1 = X2) )),
+  inference(forward_subsumption_resolution,[],[f10505,f10413])).
+tff(f10828,definition,(
+  spl14_113 <=> sP0(immediate_action,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_113])],[avatar_definition])).
+tff(f10829,plain,(
+  ~sP0(immediate_action,w0) | spl14_113),
+  inference(avatar_component_clause,[],[f10828])).
+tff(f10830,plain,(
+  sP0(immediate_action,w0) | ~spl14_113),
+  inference(avatar_component_clause,[],[f10828])).
+tff(f10940,definition,(
+  spl14_133 <=> territorial(w0)),
+  introduced(definition,[new_symbols(naming,[spl14_133])],[avatar_definition])).
+tff(f10941,plain,(
+  territorial(w0) | ~spl14_133),
+  inference(avatar_component_clause,[],[f10940])).
+tff(f10942,plain,(
+  ~territorial(w0) | spl14_133),
+  inference(avatar_component_clause,[],[f10940])).
+tff(f11016,definition,(
+  spl14_136 <=> ! [X2 : world,X1 : world,X3 : world] : (w0 = X2 | X1 = X3 | X2 = X3 | w0 = X1 | X1 = X2 | w0 = X3)),
+  introduced(definition,[new_symbols(naming,[spl14_136])],[avatar_definition])).
+tff(f11017,plain,(
+  ( ! [X2 : world,X3 : world,X1 : world] : (w0 = X2 | X1 = X3 | X2 = X3 | w0 = X1 | X1 = X2 | w0 = X3) ) | ~spl14_136),
+  inference(avatar_component_clause,[],[f11016])).
+tff(f11021,plain,(
+  spl14_136),
+  inference(avatar_split_clause,[],[f10627,f11016])).
+tff(f11145,definition,(
+  spl14_144 <=> territorial(w2)),
+  introduced(definition,[new_symbols(naming,[spl14_144])],[avatar_definition])).
+tff(f11146,plain,(
+  territorial(w2) | ~spl14_144),
+  inference(avatar_component_clause,[],[f11145])).
+tff(f11147,plain,(
+  ~territorial(w2) | spl14_144),
+  inference(avatar_component_clause,[],[f11145])).
+tff(f11273,definition,(
+  spl14_145 <=> ! [X0 : authority,X1 : world] : (~pos(X0,X1) | roe = X0 | nsd = X0)),
+  introduced(definition,[new_symbols(naming,[spl14_145])],[avatar_definition])).
+tff(f11274,plain,(
+  ( ! [X0 : authority,X1 : world] : (~pos(X0,X1) | roe = X0 | nsd = X0) ) | ~spl14_145),
+  inference(avatar_component_clause,[],[f11273])).
+tff(f11276,definition,(
+  spl14_146 <=> sP0(immediate_action,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_146])],[avatar_definition])).
+tff(f11278,plain,(
+  sP0(immediate_action,w1) | ~spl14_146),
+  inference(avatar_component_clause,[],[f11276])).
+tff(f11279,plain,(
+  spl14_145 | spl14_146),
+  inference(avatar_split_clause,[],[f1598,f11276,f11273])).
+tff(f11355,plain,(
+  sP0(immediate_action,w1) | ~spl14_20),
+  inference(resolution,[],[f492,f261])).
+tff(f11375,plain,(
+  spl14_146 | ~spl14_20),
+  inference(avatar_split_clause,[],[f11355,f490,f11276])).
+tff(f11602,plain,(
+  sP0(immediate_action,w0) | ~spl14_51),
+  inference(resolution,[],[f5495,f261])).
+tff(f11638,plain,(
+  w0 = w2 | immediate_action = in_territorial_waters | immediate_action = protect_asset | immediate_action = threat_detected | immediate_action = strategic_asset_nearby | immediate_action = issue_warning | ~spl14_113),
+  inference(resolution,[],[f10830,f252])).
+tff(f11643,plain,(
+  immediate_action = in_territorial_waters | immediate_action = protect_asset | immediate_action = threat_detected | immediate_action = strategic_asset_nearby | immediate_action = issue_warning | ~spl14_113),
+  inference(forward_subsumption_resolution,[],[f11638,f203])).
+tff(f11644,plain,(
+  immediate_action = protect_asset | immediate_action = threat_detected | immediate_action = strategic_asset_nearby | immediate_action = issue_warning | ~spl14_113),
+  inference(forward_subsumption_resolution,[],[f11643,f239])).
+tff(f11645,plain,(
+  immediate_action = threat_detected | immediate_action = strategic_asset_nearby | immediate_action = issue_warning | ~spl14_113),
+  inference(forward_subsumption_resolution,[],[f11644,f241])).
+tff(f11646,plain,(
+  immediate_action = strategic_asset_nearby | immediate_action = issue_warning | ~spl14_113),
+  inference(forward_subsumption_resolution,[],[f11645,f240])).
+tff(f11647,plain,(
+  immediate_action = issue_warning | ~spl14_113),
+  inference(forward_subsumption_resolution,[],[f11646,f238])).
+tff(f11648,plain,(
+  $false | ~spl14_113),
+  inference(forward_subsumption_resolution,[],[f11647,f246])).
+tff(f11649,plain,(
+  ~spl14_113),
+  inference(avatar_contradiction_clause,[],[f11648])).
+tff(f11650,plain,(
+  $false | (~spl14_51 | spl14_113)),
+  inference(forward_subsumption_resolution,[],[f11602,f10829])).
+tff(f11651,plain,(
+  ~spl14_51 | spl14_113),
+  inference(avatar_contradiction_clause,[],[f11650])).
+tff(f11707,plain,(
+  w1 = w2 | immediate_action = in_territorial_waters | immediate_action = protect_asset | immediate_action = threat_detected | immediate_action = strategic_asset_nearby | immediate_action = issue_warning | ~spl14_146),
+  inference(resolution,[],[f11278,f252])).
+tff(f11728,plain,(
+  immediate_action = in_territorial_waters | immediate_action = protect_asset | immediate_action = threat_detected | immediate_action = strategic_asset_nearby | immediate_action = issue_warning | (spl14_14 | ~spl14_146)),
+  inference(forward_subsumption_resolution,[],[f11707,f360])).
+tff(f11731,plain,(
+  immediate_action = protect_asset | immediate_action = threat_detected | immediate_action = strategic_asset_nearby | immediate_action = issue_warning | (spl14_14 | ~spl14_146)),
+  inference(forward_subsumption_resolution,[],[f11728,f239])).
+tff(f11734,plain,(
+  immediate_action = threat_detected | immediate_action = strategic_asset_nearby | immediate_action = issue_warning | (spl14_14 | ~spl14_146)),
+  inference(forward_subsumption_resolution,[],[f11731,f241])).
+tff(f11737,plain,(
+  immediate_action = strategic_asset_nearby | immediate_action = issue_warning | (spl14_14 | ~spl14_146)),
+  inference(forward_subsumption_resolution,[],[f11734,f240])).
+tff(f11741,plain,(
+  immediate_action = issue_warning | (spl14_14 | ~spl14_146)),
+  inference(forward_subsumption_resolution,[],[f11737,f238])).
+tff(f11743,plain,(
+  $false | (spl14_14 | ~spl14_146)),
+  inference(forward_subsumption_resolution,[],[f11741,f246])).
+tff(f11744,plain,(
+  spl14_14 | ~spl14_146),
+  inference(avatar_contradiction_clause,[],[f11743])).
+tff(f13119,plain,(
+  ( ! [X0 : world] : (~effective_pos(X0) | nsd = sK6(X0) | roe = sK6(X0)) ) | ~spl14_145),
+  inference(resolution,[],[f11274,f1942])).
+tff(f15701,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : world] : (pos(X0,X1) | ~effective_pos(X1) | unclos = sK6(X1) | nsd = sK6(X1) | roe = nsd | X0 = X2 | roe = X2 | nsd = X0 | nsd = X2) ) | ~spl14_71),
+  inference(superposition,[],[f968,f9301])).
+tff(f15858,plain,(
+  ( ! [X2 : authority,X3 : authority,X0 : authority,X1 : world] : (~pos(X0,X1) | nsd = X2 | X0 = X3 | X0 = X2 | nsd = X3 | X2 = X3) ) | (~spl14_17 | ~spl14_71)),
+  inference(superposition,[],[f481,f9301])).
+tff(f16420,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : world] : (pos(X0,X1) | ~effective_pos(X1) | unclos = sK6(X1) | nsd = sK6(X1) | X0 = X2 | roe = X2 | nsd = X0 | nsd = X2) ) | ~spl14_71),
+  inference(forward_subsumption_resolution,[],[f15701,f199])).
+tff(f16859,plain,(
+  ( ! [X0 : world,X1 : world] : (~territorial(w0) | X0 = X1 | w1 = X1 | w0 = X0 | w1 = X0 | w0 = X1) ) | ~spl14_136),
+  inference(superposition,[],[f278,f11017])).
+tff(f17777,definition,(
+  spl14_174 <=> ! [X0 : world,X1 : world] : (w0 = X0 | X0 = X1 | w1 = X0 | w1 = X1 | w0 = X1)),
+  introduced(definition,[new_symbols(naming,[spl14_174])],[avatar_definition])).
+tff(f17778,plain,(
+  ( ! [X0 : world,X1 : world] : (w1 = X1 | w1 = X0 | X0 = X1 | w0 = X0 | w0 = X1) ) | ~spl14_174),
+  inference(avatar_component_clause,[],[f17777])).
+tff(f18004,plain,(
+  spl14_174 | ~spl14_133 | ~spl14_136),
+  inference(avatar_split_clause,[],[f16859,f11016,f10940,f17777])).
+tff(f19568,definition,(
+  spl14_179 <=> ! [X0 : authority] : (nsd = X0 | roe = X0)),
+  introduced(definition,[new_symbols(naming,[spl14_179])],[avatar_definition])).
+tff(f19569,plain,(
+  ( ! [X0 : authority] : (roe = X0 | nsd = X0) ) | ~spl14_179),
+  inference(avatar_component_clause,[],[f19568])).
+tff(f19571,plain,(
+  $false | ~spl14_24),
+  inference(forward_subsumption_resolution,[],[f799,f796])).
+tff(f19572,plain,(
+  ~spl14_24),
+  inference(avatar_contradiction_clause,[],[f19571])).
+tff(f19578,plain,(
+  $false | ~spl14_22),
+  inference(resolution,[],[f503,f384])).
+tff(f19588,plain,(
+  ~spl14_22),
+  inference(avatar_contradiction_clause,[],[f19578])).
+tff(f21828,definition,(
+  spl14_190 <=> ! [X0 : world] : (w1 = X0 | w0 = X0)),
+  introduced(definition,[new_symbols(naming,[spl14_190])],[avatar_definition])).
+tff(f21829,plain,(
+  ( ! [X0 : world] : (w1 = X0 | w0 = X0) ) | ~spl14_190),
+  inference(avatar_component_clause,[],[f21828])).
+tff(f21907,definition,(
+  spl14_199 <=> ! [X0 : world,X1 : world] : (w0 = X0 | X0 = X1 | w0 = X1)),
+  introduced(definition,[new_symbols(naming,[spl14_199])],[avatar_definition])).
+tff(f21908,plain,(
+  ( ! [X0 : world,X1 : world] : (w0 = X0 | X0 = X1 | w0 = X1) ) | ~spl14_199),
+  inference(avatar_component_clause,[],[f21907])).
+tff(f22334,plain,(
+  ( ! [X2 : authority,X3 : authority,X0 : authority,X1 : world] : (~maximal(X0,X1) | ~relevant(roe,X1) | nsd = X2 | roe = X3 | X0 = X2 | X2 = X3 | nsd = X0 | nsd = X3) )),
+  inference(superposition,[],[f471,f5084])).
+tff(f23281,plain,(
+  ( ! [X0 : authority,X1 : authority] : (roe != X1 | nsd = X1 | unclos = X0 | X0 = X1 | X0 = X1 | nsd = X0 | nsd = X0) )),
+  inference(equality_factoring,[],[f5084])).
+tff(f23328,plain,(
+  ( ! [X0 : authority,X1 : authority] : (roe != X1 | nsd = X1 | unclos = X0 | X0 = X1 | nsd = X0) )),
+  inference(duplicate_literal_removal,[],[f23281])).
+tff(f23514,definition,(
+  spl14_207 <=> ! [X2 : authority,X1 : authority] : (roe != X1 | nsd = X2 | X1 = X2 | unclos = X2 | nsd = X1)),
+  introduced(definition,[new_symbols(naming,[spl14_207])],[avatar_definition])).
+tff(f23515,plain,(
+  ( ! [X2 : authority,X1 : authority] : (roe != X1 | nsd = X2 | X1 = X2 | unclos = X2 | nsd = X1) ) | ~spl14_207),
+  inference(avatar_component_clause,[],[f23514])).
+tff(f23520,plain,(
+  spl14_207),
+  inference(avatar_split_clause,[],[f23328,f23514])).
+tff(f23678,definition,(
+  spl14_208 <=> ! [X2 : authority,X0 : authority] : (nsd = X0 | nsd = X2 | X0 = X2 | unclos = X2)),
+  introduced(definition,[new_symbols(naming,[spl14_208])],[avatar_definition])).
+tff(f23679,plain,(
+  ( ! [X2 : authority,X0 : authority] : (nsd = X0 | unclos = X2 | X0 = X2 | nsd = X2) ) | ~spl14_208),
+  inference(avatar_component_clause,[],[f23678])).
+tff(f28209,plain,(
+  ( ! [X2 : world,X0 : world,X1 : authority] : (~holds(immediate_action,X0) | ~active(X1,X2) | pos(X1,X2) | w1 = X0 | w1 = sK10(X1,X2) | w0 = sK10(X1,X2) | w0 = X0) ) | ~spl14_174),
+  inference(superposition,[],[f225,f17778])).
+tff(f28356,definition,(
+  spl14_218 <=> ! [X0 : world] : (~holds(immediate_action,X0) | w0 = X0 | w1 = X0)),
+  introduced(definition,[new_symbols(naming,[spl14_218])],[avatar_definition])).
+tff(f28357,plain,(
+  ( ! [X0 : world] : (~holds(immediate_action,X0) | w0 = X0 | w1 = X0) ) | ~spl14_218),
+  inference(avatar_component_clause,[],[f28356])).
+tff(f28369,definition,(
+  spl14_221 <=> ! [X2 : world,X1 : authority] : (~active(X1,X2) | w0 = sK10(X1,X2) | w1 = sK10(X1,X2) | pos(X1,X2))),
+  introduced(definition,[new_symbols(naming,[spl14_221])],[avatar_definition])).
+tff(f28370,plain,(
+  ( ! [X2 : world,X1 : authority] : (~active(X1,X2) | w0 = sK10(X1,X2) | w1 = sK10(X1,X2) | pos(X1,X2)) ) | ~spl14_221),
+  inference(avatar_component_clause,[],[f28369])).
+tff(f28399,plain,(
+  spl14_221 | spl14_218 | ~spl14_174),
+  inference(avatar_split_clause,[],[f28209,f17777,f28356,f28369])).
+tff(f28592,plain,(
+  ( ! [X0 : world] : (w1 = w2 | w1 = X0 | w0 = sK11(roe,X0)) ) | ~spl14_190),
+  inference(superposition,[],[f2280,f21829])).
+tff(f28620,plain,(
+  ( ! [X0 : world] : (w1 = X0 | w0 = sK11(roe,X0)) ) | (spl14_14 | ~spl14_190)),
+  inference(forward_subsumption_resolution,[],[f28592,f360])).
+tff(f28640,plain,(
+  ( ! [X0 : world] : (w0 = w2 | w1 = X0) ) | (spl14_14 | ~spl14_190)),
+  inference(forward_demodulation,[],[f28620,f2533])).
+tff(f28651,plain,(
+  ( ! [X0 : world] : (w1 = X0) ) | (spl14_14 | ~spl14_190)),
+  inference(forward_subsumption_resolution,[],[f28640,f203])).
+tff(f28654,plain,(
+  spl14_24 | spl14_14 | ~spl14_190),
+  inference(avatar_split_clause,[],[f28651,f21828,f358,f771])).
+tff(f28658,plain,(
+  w0 = w2 | w1 = w2 | ~spl14_218),
+  inference(resolution,[],[f28357,f384])).
+tff(f28678,plain,(
+  w1 = w2 | ~spl14_218),
+  inference(forward_subsumption_resolution,[],[f28658,f203])).
+tff(f28689,plain,(
+  $false | (spl14_14 | ~spl14_218)),
+  inference(forward_subsumption_resolution,[],[f28678,f360])).
+tff(f28690,plain,(
+  spl14_14 | ~spl14_218),
+  inference(avatar_contradiction_clause,[],[f28689])).
+tff(f42545,definition,(
+  spl14_281 <=> ! [X0 : authority,X1 : authority] : (nsd = X0 | X0 = X1 | nsd = X1)),
+  introduced(definition,[new_symbols(naming,[spl14_281])],[avatar_definition])).
+tff(f42546,plain,(
+  ( ! [X0 : authority,X1 : authority] : (nsd = X0 | X0 = X1 | nsd = X1) ) | ~spl14_281),
+  inference(avatar_component_clause,[],[f42545])).
+tff(f48087,plain,(
+  $false | (~spl14_18 | spl14_51)),
+  inference(resolution,[],[f484,f5496])).
+tff(f48113,plain,(
+  ~spl14_18 | spl14_51),
+  inference(avatar_contradiction_clause,[],[f48087])).
+tff(f49979,plain,(
+  ( ! [X0 : authority,X1 : world] : (pos(X0,X1) | w1 = sK10(X0,X1) | w0 = sK10(X0,X1) | ~territorial(X1)) ) | ~spl14_221),
+  inference(resolution,[],[f28370,f207])).
+tff(f50217,plain,(
+  ( ! [X0 : authority,X1 : world] : (relevant(X0,X1) | w0 = sK10(X0,X1) | ~territorial(X1) | w1 = sK10(X0,X1)) ) | ~spl14_221),
+  inference(resolution,[],[f49979,f178])).
+tff(f58246,plain,(
+  ( ! [X0 : authority,X1 : world] : (nsd = X0 | w2 = sK10(X0,X1) | effective_pos(X1) | unclos = X0 | ~territorial(X1) | w2 = sK11(sK6(X1),X1) | effective_neg(X1)) )),
+  inference(resolution,[],[f3549,f2261])).
+tff(f58321,plain,(
+  ( ! [X0 : authority,X1 : world] : (nsd = X0 | w2 = sK10(X0,X1) | effective_pos(X1) | unclos = X0 | ~territorial(X1) | w2 = sK11(sK6(X1),X1)) )),
+  inference(forward_subsumption_resolution,[],[f58246,f3564])).
+tff(f58326,plain,(
+  ( ! [X0 : authority,X1 : world] : (~territorial(X1) | w2 = sK10(X0,X1) | unclos = X0 | nsd = X0 | w2 = sK11(sK6(X1),X1)) )),
+  inference(forward_subsumption_resolution,[],[f58321,f2899])).
+tff(f58383,plain,(
+  ( ! [X0 : authority,X1 : world] : (nsd = X0 | w2 = sK10(X0,X1) | effective_neg(X1) | unclos = X0 | relevant(sK6(X1),X1)) )),
+  inference(resolution,[],[f3551,f180])).
+tff(f58540,plain,(
+  ( ! [X0 : authority,X1 : world] : (relevant(sK6(X1),X1) | w2 = sK10(X0,X1) | unclos = X0 | nsd = X0) )),
+  inference(forward_subsumption_resolution,[],[f58383,f3564])).
+tff(f58742,plain,(
+  ( ! [X0 : authority,X1 : world] : (neg(sK6(X1),X1) | unclos = X0 | nsd = X0 | w2 = sK10(X0,X1) | pos(sK6(X1),X1)) )),
+  inference(resolution,[],[f58540,f176])).
+tff(f61367,plain,(
+  ( ! [X0 : authority] : (unclos != X0 | nsd = X0) ) | ~spl14_179),
+  inference(superposition,[],[f200,f19569])).
+tff(f61808,plain,(
+  unclos = nsd | ~spl14_179),
+  inference(equality_resolution,[],[f61367])).
+tff(f61816,plain,(
+  $false | ~spl14_179),
+  inference(forward_subsumption_resolution,[],[f61808,f198])).
+tff(f61817,plain,(
+  ~spl14_179),
+  inference(avatar_contradiction_clause,[],[f61816])).
+tff(f62912,plain,(
+  ( ! [X0 : authority] : (nsd != nsd | nsd = X0 | roe = X0) ) | ~spl14_281),
+  inference(superposition,[],[f199,f42546])).
+tff(f63238,plain,(
+  ( ! [X0 : authority] : (nsd = X0 | roe = X0) ) | ~spl14_281),
+  inference(trivial_inequality_removal,[],[f62912])).
+tff(f63440,plain,(
+  spl14_179 | ~spl14_281),
+  inference(avatar_split_clause,[],[f63238,f42545,f19568])).
+tff(f70504,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : world] : (~effective_pos(X1) | sK6(X1) = X2 | sK6(X1) = X0 | nsd = X2 | X0 = X2 | nsd = X0) ) | (~spl14_17 | ~spl14_71)),
+  inference(resolution,[],[f15858,f1942])).
+tff(f76914,plain,(
+  ( ! [X0 : authority] : (unclos != unclos | nsd = X0 | roe = X0 | roe = nsd) ) | ~spl14_208),
+  inference(superposition,[],[f200,f23679])).
+tff(f77636,plain,(
+  ( ! [X0 : authority] : (nsd = X0 | roe = X0 | roe = nsd) ) | ~spl14_208),
+  inference(trivial_inequality_removal,[],[f76914])).
+tff(f77896,plain,(
+  ( ! [X0 : authority] : (nsd = X0 | roe = X0) ) | ~spl14_208),
+  inference(forward_subsumption_resolution,[],[f77636,f199])).
+tff(f78230,plain,(
+  spl14_179 | ~spl14_208),
+  inference(avatar_split_clause,[],[f77896,f23678,f19568])).
+tff(f318613,plain,(
+  ( ! [X0 : world] : (~territorial(w0) | w1 = X0 | w0 = X0) ) | ~spl14_199),
+  inference(superposition,[],[f278,f21908])).
+tff(f320545,plain,(
+  spl14_190 | ~spl14_133 | ~spl14_199),
+  inference(avatar_split_clause,[],[f318613,f21907,f10940,f21828])).
+tff(f336328,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : world] : (unclos = X0 | nsd = X0 | w2 = sK10(X0,X1) | pos(sK6(X1),X1) | ~maximal(X2,X1) | effective_neg(X1)) )),
+  inference(resolution,[],[f58742,f190])).
+tff(f336457,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : world] : (~maximal(X2,X1) | nsd = X0 | w2 = sK10(X0,X1) | pos(sK6(X1),X1) | unclos = X0) )),
+  inference(forward_subsumption_resolution,[],[f336328,f3564])).
+tff(f374034,plain,(
+  ( ! [X0 : authority] : (unclos = sK4(w0) | nsd = sK4(w0) | w2 = sK10(sK4(w0),w0) | unclos = X0 | nsd = X0 | w2 = sK10(X0,w0)) ) | spl14_8),
+  inference(resolution,[],[f3901,f935])).
+tff(f374055,definition,(
+  spl14_1172 <=> ! [X0 : authority] : (unclos = X0 | w2 = sK10(X0,w0) | nsd = X0)),
+  introduced(definition,[new_symbols(naming,[spl14_1172])],[avatar_definition])).
+tff(f374056,plain,(
+  ( ! [X0 : authority] : (w2 = sK10(X0,w0) | unclos = X0 | nsd = X0) ) | ~spl14_1172),
+  inference(avatar_component_clause,[],[f374055])).
+tff(f374058,definition,(
+  spl14_1173 <=> w2 = sK10(sK4(w0),w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1173])],[avatar_definition])).
+tff(f374060,plain,(
+  w2 = sK10(sK4(w0),w0) | ~spl14_1173),
+  inference(avatar_component_clause,[],[f374058])).
+tff(f374062,definition,(
+  spl14_1174 <=> nsd = sK4(w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1174])],[avatar_definition])).
+tff(f374063,plain,(
+  nsd != sK4(w0) | spl14_1174),
+  inference(avatar_component_clause,[],[f374062])).
+tff(f374064,plain,(
+  nsd = sK4(w0) | ~spl14_1174),
+  inference(avatar_component_clause,[],[f374062])).
+tff(f374066,definition,(
+  spl14_1175 <=> unclos = sK4(w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1175])],[avatar_definition])).
+tff(f374067,plain,(
+  unclos != sK4(w0) | spl14_1175),
+  inference(avatar_component_clause,[],[f374066])).
+tff(f374068,plain,(
+  unclos = sK4(w0) | ~spl14_1175),
+  inference(avatar_component_clause,[],[f374066])).
+tff(f374069,plain,(
+  spl14_1172 | spl14_1173 | spl14_1174 | spl14_1175 | spl14_8),
+  inference(avatar_split_clause,[],[f374034,f332,f374066,f374062,f374058,f374055])).
+tff(f374458,plain,(
+  ( ! [X0 : authority] : (~holds(immediate_action,w2) | ~active(X0,w0) | pos(X0,w0) | unclos = X0 | nsd = X0) ) | ~spl14_1172),
+  inference(superposition,[],[f225,f374056])).
+tff(f374545,plain,(
+  ( ! [X0 : authority] : (~holds(immediate_action,w2) | pos(X0,w0) | unclos = X0 | nsd = X0) ) | ~spl14_1172),
+  inference(forward_subsumption_resolution,[],[f374458,f208])).
+tff(f374650,plain,(
+  ( ! [X0 : authority] : (pos(X0,w0) | unclos = X0 | nsd = X0) ) | ~spl14_1172),
+  inference(forward_subsumption_resolution,[],[f374545,f384])).
+tff(f374696,plain,(
+  ( ! [X0 : authority] : (w2 = sK10(X0,w0) | unclos = X0 | unclos = sK4(w0) | nsd = X0 | nsd = sK4(w0)) ) | ~spl14_1173),
+  inference(superposition,[],[f374060,f430])).
+tff(f375772,plain,(
+  spl14_1174 | spl14_1175 | spl14_1172 | ~spl14_1173),
+  inference(avatar_split_clause,[],[f374696,f374058,f374055,f374066,f374062])).
+tff(f376306,plain,(
+  ( ! [X0 : authority] : (maximal(unclos,w0) | nsd = X0 | w2 = sK10(X0,w0) | effective_pos(w0) | unclos = X0) ) | ~spl14_1175),
+  inference(superposition,[],[f3549,f374068])).
+tff(f376368,definition,(
+  spl14_1241 <=> active(unclos,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1241])],[avatar_definition])).
+tff(f376369,plain,(
+  ~active(unclos,w0) | spl14_1241),
+  inference(avatar_component_clause,[],[f376368])).
+tff(f376374,definition,(
+  spl14_1242 <=> relevant(unclos,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1242])],[avatar_definition])).
+tff(f376376,plain,(
+  relevant(unclos,w0) | ~spl14_1242),
+  inference(avatar_component_clause,[],[f376374])).
+tff(f376379,definition,(
+  spl14_1243 <=> effective_neg(w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1243])],[avatar_definition])).
+tff(f376380,plain,(
+  effective_neg(w0) | ~spl14_1243),
+  inference(avatar_component_clause,[],[f376379])).
+tff(f376381,plain,(
+  ~effective_neg(w0) | spl14_1243),
+  inference(avatar_component_clause,[],[f376379])).
+tff(f376383,definition,(
+  spl14_1244 <=> neg(unclos,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1244])],[avatar_definition])).
+tff(f376384,plain,(
+  ~neg(unclos,w0) | spl14_1244),
+  inference(avatar_component_clause,[],[f376383])).
+tff(f376385,plain,(
+  neg(unclos,w0) | ~spl14_1244),
+  inference(avatar_component_clause,[],[f376383])).
+tff(f376399,definition,(
+  spl14_1247 <=> unresolved(w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1247])],[avatar_definition])).
+tff(f376400,plain,(
+  unresolved(w0) | ~spl14_1247),
+  inference(avatar_component_clause,[],[f376399])).
+tff(f376403,definition,(
+  spl14_1248 <=> maximal(unclos,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1248])],[avatar_definition])).
+tff(f376404,plain,(
+  ~maximal(unclos,w0) | spl14_1248),
+  inference(avatar_component_clause,[],[f376403])).
+tff(f376405,plain,(
+  maximal(unclos,w0) | ~spl14_1248),
+  inference(avatar_component_clause,[],[f376403])).
+tff(f376434,plain,(
+  ( ! [X0 : authority] : (maximal(unclos,w0) | nsd = X0 | w2 = sK10(X0,w0) | unclos = X0) ) | (spl14_8 | ~spl14_1175)),
+  inference(forward_subsumption_resolution,[],[f376306,f935])).
+tff(f376436,definition,(
+  spl14_1252 <=> w2 = sK11(unclos,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1252])],[avatar_definition])).
+tff(f376438,plain,(
+  w2 = sK11(unclos,w0) | ~spl14_1252),
+  inference(avatar_component_clause,[],[f376436])).
+tff(f376451,definition,(
+  spl14_1254 <=> roe = sK3(unclos,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1254])],[avatar_definition])).
+tff(f376453,plain,(
+  roe = sK3(unclos,w0) | ~spl14_1254),
+  inference(avatar_component_clause,[],[f376451])).
+tff(f376455,definition,(
+  spl14_1255 <=> nsd = sK3(unclos,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1255])],[avatar_definition])).
+tff(f376457,plain,(
+  nsd = sK3(unclos,w0) | ~spl14_1255),
+  inference(avatar_component_clause,[],[f376455])).
+tff(f376626,plain,(
+  spl14_1172 | spl14_1248 | spl14_8 | ~spl14_1175),
+  inference(avatar_split_clause,[],[f376434,f374066,f332,f376403,f374055])).
+tff(f376630,definition,(
+  spl14_1268 <=> w1 = sK11(unclos,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1268])],[avatar_definition])).
+tff(f376632,plain,(
+  w1 = sK11(unclos,w0) | ~spl14_1268),
+  inference(avatar_component_clause,[],[f376630])).
+tff(f377034,plain,(
+  ( ! [X0 : authority] : (maximal(nsd,w0) | nsd = X0 | w2 = sK10(X0,w0) | effective_pos(w0) | unclos = X0) ) | ~spl14_1174),
+  inference(superposition,[],[f3549,f374064])).
+tff(f377169,definition,(
+  spl14_1270 <=> active(nsd,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1270])],[avatar_definition])).
+tff(f377170,plain,(
+  ~active(nsd,w0) | spl14_1270),
+  inference(avatar_component_clause,[],[f377169])).
+tff(f377176,definition,(
+  spl14_1271 <=> relevant(nsd,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1271])],[avatar_definition])).
+tff(f377177,plain,(
+  ~relevant(nsd,w0) | spl14_1271),
+  inference(avatar_component_clause,[],[f377176])).
+tff(f377178,plain,(
+  relevant(nsd,w0) | ~spl14_1271),
+  inference(avatar_component_clause,[],[f377176])).
+tff(f377184,definition,(
+  spl14_1272 <=> maximal(nsd,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1272])],[avatar_definition])).
+tff(f377185,plain,(
+  ~maximal(nsd,w0) | spl14_1272),
+  inference(avatar_component_clause,[],[f377184])).
+tff(f377186,plain,(
+  maximal(nsd,w0) | ~spl14_1272),
+  inference(avatar_component_clause,[],[f377184])).
+tff(f377203,definition,(
+  spl14_1274 <=> unclos = sK3(unclos,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1274])],[avatar_definition])).
+tff(f377205,plain,(
+  unclos = sK3(unclos,w0) | ~spl14_1274),
+  inference(avatar_component_clause,[],[f377203])).
+tff(f377210,plain,(
+  ( ! [X0 : authority] : (maximal(nsd,w0) | nsd = X0 | w2 = sK10(X0,w0) | unclos = X0) ) | (spl14_8 | ~spl14_1174)),
+  inference(forward_subsumption_resolution,[],[f377034,f935])).
+tff(f377311,definition,(
+  spl14_1281 <=> nsd = sK6(w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1281])],[avatar_definition])).
+tff(f377312,plain,(
+  nsd != sK6(w0) | spl14_1281),
+  inference(avatar_component_clause,[],[f377311])).
+tff(f377313,plain,(
+  nsd = sK6(w0) | ~spl14_1281),
+  inference(avatar_component_clause,[],[f377311])).
+tff(f377321,plain,(
+  spl14_1172 | spl14_1272 | spl14_8 | ~spl14_1174),
+  inference(avatar_split_clause,[],[f377210,f374062,f332,f377184,f374055])).
+tff(f377433,plain,(
+  immediate_action = issue_warning | effective_pos(w0) | ~spl14_8),
+  inference(resolution,[],[f333,f270])).
+tff(f377538,definition,(
+  spl14_1286 <=> effective_pos(w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1286])],[avatar_definition])).
+tff(f377539,plain,(
+  ~effective_pos(w0) | spl14_1286),
+  inference(avatar_component_clause,[],[f377538])).
+tff(f377540,plain,(
+  effective_pos(w0) | ~spl14_1286),
+  inference(avatar_component_clause,[],[f377538])).
+tff(f377542,plain,(
+  effective_pos(w0) | ~spl14_8),
+  inference(forward_subsumption_resolution,[],[f377433,f246])).
+tff(f377548,plain,(
+  spl14_1286 | ~spl14_8),
+  inference(avatar_split_clause,[],[f377542,f332,f377538])).
+tff(f377555,plain,(
+  ( ! [X0 : authority] : (unclos = X0 | sK6(w0) = X0 | nsd = X0 | nsd = sK6(w0)) ) | (~spl14_19 | ~spl14_1286)),
+  inference(resolution,[],[f377540,f1337])).
+tff(f377575,plain,(
+  nsd = sK6(w0) | roe = sK6(w0) | (~spl14_145 | ~spl14_1286)),
+  inference(resolution,[],[f377540,f13119])).
+tff(f377587,plain,(
+  ( ! [X0 : authority,X1 : authority] : (sK6(w0) = X0 | sK6(w0) = X1 | nsd = X0 | X0 = X1 | nsd = X1) ) | (~spl14_17 | ~spl14_71 | ~spl14_1286)),
+  inference(resolution,[],[f377540,f70504])).
+tff(f377782,definition,(
+  spl14_1307 <=> roe = sK6(w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1307])],[avatar_definition])).
+tff(f377784,plain,(
+  roe = sK6(w0) | ~spl14_1307),
+  inference(avatar_component_clause,[],[f377782])).
+tff(f377785,plain,(
+  spl14_1307 | spl14_1281 | ~spl14_145 | ~spl14_1286),
+  inference(avatar_split_clause,[],[f377575,f377538,f11273,f377311,f377782])).
+tff(f377806,definition,(
+  spl14_1311 <=> ! [X0 : authority] : (unclos = X0 | nsd = X0 | sK6(w0) = X0)),
+  introduced(definition,[new_symbols(naming,[spl14_1311])],[avatar_definition])).
+tff(f377807,plain,(
+  ( ! [X0 : authority] : (sK6(w0) = X0 | nsd = X0 | unclos = X0) ) | ~spl14_1311),
+  inference(avatar_component_clause,[],[f377806])).
+tff(f377808,plain,(
+  spl14_1281 | spl14_1311 | ~spl14_19 | ~spl14_1286),
+  inference(avatar_split_clause,[],[f377555,f377538,f487,f377806,f377311])).
+tff(f377832,plain,(
+  ~spl14_1286 | spl14_8),
+  inference(avatar_split_clause,[],[f935,f332,f377538])).
+tff(f378010,plain,(
+  ~active(unclos,w0) | w2 = sK12(unclos,issue_warning,w0) | spl14_11),
+  inference(resolution,[],[f346,f615])).
+tff(f378389,definition,(
+  spl14_1325 <=> w2 = sK12(unclos,issue_warning,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1325])],[avatar_definition])).
+tff(f378391,plain,(
+  w2 = sK12(unclos,issue_warning,w0) | ~spl14_1325),
+  inference(avatar_component_clause,[],[f378389])).
+tff(f378401,plain,(
+  spl14_1325 | ~spl14_1241 | spl14_11),
+  inference(avatar_split_clause,[],[f378010,f344,f376368,f378389])).
+tff(f378434,definition,(
+  spl14_1329 <=> ! [X2 : authority,X3 : authority,X4 : authority] : (nsd = X2 | nsd = X4 | X2 = X3 | unclos = X4 | nsd = X3 | X3 = X4)),
+  introduced(definition,[new_symbols(naming,[spl14_1329])],[avatar_definition])).
+tff(f378435,plain,(
+  ( ! [X2 : authority,X3 : authority,X4 : authority] : (nsd = X3 | nsd = X2 | unclos = X4 | X3 = X4 | X2 = X3 | nsd = X4) ) | ~spl14_1329),
+  inference(avatar_component_clause,[],[f378434])).
+tff(f379359,plain,(
+  roe = unclos | w1 = sK11(unclos,w0) | unclos = nsd | ~territorial(w0) | spl14_1244),
+  inference(resolution,[],[f376384,f1776])).
+tff(f379362,plain,(
+  w2 = sK11(unclos,w0) | ~territorial(w0) | spl14_1244),
+  inference(resolution,[],[f376384,f2179])).
+tff(f379721,plain,(
+  ~spl14_133 | spl14_1252 | spl14_1244),
+  inference(avatar_split_clause,[],[f379362,f376383,f376436,f10940])).
+tff(f379723,plain,(
+  w1 = sK11(unclos,w0) | unclos = nsd | ~territorial(w0) | spl14_1244),
+  inference(forward_subsumption_resolution,[],[f379359,f200])).
+tff(f379785,plain,(
+  w1 = sK11(unclos,w0) | ~territorial(w0) | spl14_1244),
+  inference(forward_subsumption_resolution,[],[f379723,f198])).
+tff(f379812,plain,(
+  ~spl14_133 | spl14_1268 | spl14_1244),
+  inference(avatar_split_clause,[],[f379785,f376383,f376630,f10940])).
+tff(f380218,plain,(
+  w1 = w0 | spl14_133),
+  inference(resolution,[],[f10942,f196])).
+tff(f380300,plain,(
+  $false | spl14_133),
+  inference(forward_subsumption_resolution,[],[f380218,f204])).
+tff(f380301,plain,(
+  spl14_133),
+  inference(avatar_contradiction_clause,[],[f380300])).
+tff(f380303,plain,(
+  w1 = w2 | (~spl14_1252 | ~spl14_1268)),
+  inference(forward_demodulation,[],[f376632,f376438])).
+tff(f380304,plain,(
+  $false | (spl14_14 | ~spl14_1252 | ~spl14_1268)),
+  inference(forward_subsumption_resolution,[],[f380303,f360])).
+tff(f380305,plain,(
+  spl14_14 | ~spl14_1252 | ~spl14_1268),
+  inference(avatar_contradiction_clause,[],[f380304])).
+tff(f380462,plain,(
+  ( ! [X0 : authority] : (w2 = sK10(X0,w0) | unclos = X0 | nsd = X0 | w2 = sK11(sK6(w0),w0)) ) | ~spl14_133),
+  inference(resolution,[],[f10941,f58326])).
+tff(f380807,plain,(
+  relevant(unclos,w0) | ~spl14_1244),
+  inference(resolution,[],[f376385,f177])).
+tff(f380808,plain,(
+  active(unclos,w0) | ~spl14_1244),
+  inference(resolution,[],[f376385,f227])).
+tff(f380809,plain,(
+  ( ! [X0 : authority] : (unclos = X0 | ~pos(X0,w0) | issued_conflict(w0)) ) | ~spl14_1244),
+  inference(resolution,[],[f376385,f230])).
+tff(f381152,plain,(
+  $false | (spl14_1241 | ~spl14_1244)),
+  inference(forward_subsumption_resolution,[],[f380808,f376369])).
+tff(f381153,plain,(
+  spl14_1241 | ~spl14_1244),
+  inference(avatar_contradiction_clause,[],[f381152])).
+tff(f381154,plain,(
+  spl14_1242 | ~spl14_1244),
+  inference(avatar_split_clause,[],[f380807,f376383,f376374])).
+tff(f381835,plain,(
+  ~holds(immediate_action,w2) | obligatory(unclos,issue_warning,w0) | ~neg(unclos,w0) | ~spl14_1325),
+  inference(superposition,[],[f629,f378391])).
+tff(f381918,plain,(
+  obligatory(unclos,issue_warning,w0) | ~neg(unclos,w0) | ~spl14_1325),
+  inference(forward_subsumption_resolution,[],[f381835,f384])).
+tff(f382073,plain,(
+  ~neg(unclos,w0) | (spl14_11 | ~spl14_1325)),
+  inference(forward_subsumption_resolution,[],[f381918,f346])).
+tff(f382198,plain,(
+  $false | (spl14_11 | ~spl14_1244 | ~spl14_1325)),
+  inference(forward_subsumption_resolution,[],[f382073,f376385])).
+tff(f382199,plain,(
+  spl14_11 | ~spl14_1244 | ~spl14_1325),
+  inference(avatar_contradiction_clause,[],[f382198])).
+tff(f382512,plain,(
+  ( ! [X0 : authority] : (maximal(unclos,w0) | unclos = X0 | sK3(unclos,w0) = X0 | nsd = X0 | nsd = sK3(unclos,w0)) ) | ~spl14_1242),
+  inference(resolution,[],[f376376,f5980])).
+tff(f382515,plain,(
+  maximal(unclos,w0) | nsd = sK3(unclos,w0) | roe = sK3(unclos,w0) | ~spl14_1242),
+  inference(resolution,[],[f376376,f548])).
+tff(f382527,plain,(
+  unclos = sK3(unclos,w0) | ~pos(roe,w0) | effective_pos(w0) | unclos = sK4(w0) | nsd = sK4(w0) | ~spl14_1242),
+  inference(resolution,[],[f376376,f3005])).
+tff(f382529,plain,(
+  unclos = sK3(unclos,w0) | effective_pos(w0) | maximal(sK4(w0),w0) | ~spl14_1242),
+  inference(resolution,[],[f376376,f3007])).
+tff(f382584,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (maximal(unclos,w0) | pos(nsd,w0) | nsd = X0 | nsd = X1 | unclos = X2 | sK3(unclos,w0) = X0 | X1 = X2 | X0 = X1 | sK3(unclos,w0) = X1 | nsd = X2) ) | (~spl14_21 | ~spl14_1242)),
+  inference(resolution,[],[f376376,f9260])).
+tff(f382927,definition,(
+  spl14_1374 <=> relevant(roe,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1374])],[avatar_definition])).
+tff(f382928,plain,(
+  ~relevant(roe,w0) | spl14_1374),
+  inference(avatar_component_clause,[],[f382927])).
+tff(f382935,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (maximal(unclos,w0) | nsd = X0 | nsd = X1 | unclos = X2 | sK3(unclos,w0) = X0 | X1 = X2 | X0 = X1 | sK3(unclos,w0) = X1 | nsd = X2) ) | (~spl14_17 | ~spl14_21 | ~spl14_1242)),
+  inference(forward_subsumption_resolution,[],[f382584,f481])).
+tff(f382937,definition,(
+  spl14_1376 <=> ! [X2 : authority,X0 : authority,X1 : authority] : (nsd = X0 | nsd = X2 | sK3(unclos,w0) = X1 | X0 = X1 | sK3(unclos,w0) = X0 | unclos = X2 | nsd = X1 | X1 = X2)),
+  introduced(definition,[new_symbols(naming,[spl14_1376])],[avatar_definition])).
+tff(f382938,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (nsd = X0 | nsd = X2 | sK3(unclos,w0) = X1 | X0 = X1 | sK3(unclos,w0) = X0 | unclos = X2 | nsd = X1 | X1 = X2) ) | ~spl14_1376),
+  inference(avatar_component_clause,[],[f382937])).
+tff(f382942,definition,(
+  spl14_1377 <=> ! [X2 : authority] : (unclos = X2 | nsd = X2 | sK3(unclos,w0) = X2)),
+  introduced(definition,[new_symbols(naming,[spl14_1377])],[avatar_definition])).
+tff(f382943,plain,(
+  ( ! [X2 : authority] : (unclos = X2 | nsd = X2 | sK3(unclos,w0) = X2) ) | ~spl14_1377),
+  inference(avatar_component_clause,[],[f382942])).
+tff(f383013,plain,(
+  unclos = sK3(unclos,w0) | maximal(sK4(w0),w0) | (~spl14_1242 | spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f382529,f377539])).
+tff(f383015,plain,(
+  unclos = sK3(unclos,w0) | ~pos(roe,w0) | unclos = sK4(w0) | nsd = sK4(w0) | (~spl14_1242 | spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f382527,f377539])).
+tff(f383031,definition,(
+  spl14_1393 <=> pos(roe,w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1393])],[avatar_definition])).
+tff(f383032,plain,(
+  ~pos(roe,w0) | spl14_1393),
+  inference(avatar_component_clause,[],[f383031])).
+tff(f383033,plain,(
+  pos(roe,w0) | ~spl14_1393),
+  inference(avatar_component_clause,[],[f383031])).
+tff(f383037,plain,(
+  spl14_1254 | spl14_1255 | spl14_1248 | ~spl14_1242),
+  inference(avatar_split_clause,[],[f382515,f376374,f376403,f376455,f376451])).
+tff(f383039,plain,(
+  spl14_1255 | spl14_1377 | spl14_1248 | ~spl14_1242),
+  inference(avatar_split_clause,[],[f382512,f376374,f376403,f382942,f376455])).
+tff(f383058,definition,(
+  spl14_1395 <=> maximal(sK4(w0),w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1395])],[avatar_definition])).
+tff(f383060,plain,(
+  maximal(sK4(w0),w0) | ~spl14_1395),
+  inference(avatar_component_clause,[],[f383058])).
+tff(f383071,plain,(
+  spl14_1376 | spl14_1248 | ~spl14_17 | ~spl14_21 | ~spl14_1242),
+  inference(avatar_split_clause,[],[f382935,f376374,f499,f480,f376403,f382937])).
+tff(f383092,plain,(
+  spl14_1395 | spl14_1274 | ~spl14_1242 | spl14_1286),
+  inference(avatar_split_clause,[],[f383013,f377538,f376374,f377203,f383058])).
+tff(f383094,plain,(
+  unclos = sK3(unclos,w0) | ~pos(roe,w0) | nsd = sK4(w0) | (spl14_1175 | ~spl14_1242 | spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f383015,f374067])).
+tff(f383115,definition,(
+  spl14_1400 <=> w2 = sK11(sK6(w0),w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1400])],[avatar_definition])).
+tff(f383117,plain,(
+  w2 = sK11(sK6(w0),w0) | ~spl14_1400),
+  inference(avatar_component_clause,[],[f383115])).
+tff(f383119,plain,(
+  unclos = sK3(unclos,w0) | ~pos(roe,w0) | (spl14_1174 | spl14_1175 | ~spl14_1242 | spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f383094,f374063])).
+tff(f383125,plain,(
+  ~spl14_1393 | spl14_1274 | spl14_1174 | spl14_1175 | ~spl14_1242 | spl14_1286),
+  inference(avatar_split_clause,[],[f383119,f377538,f376374,f374066,f374062,f377203,f383031])).
+tff(f383131,plain,(
+  maximal(unclos,w0) | (~spl14_1175 | ~spl14_1395)),
+  inference(forward_demodulation,[],[f383060,f374068])).
+tff(f383132,plain,(
+  spl14_1400 | spl14_1172 | ~spl14_133),
+  inference(avatar_split_clause,[],[f380462,f10940,f374055,f383115])).
+tff(f383418,plain,(
+  ( ! [X0 : authority] : (nsd = X0 | w2 = sK10(X0,w0) | unclos = X0) ) | ~spl14_1243),
+  inference(resolution,[],[f376380,f3564])).
+tff(f383647,plain,(
+  spl14_1172 | ~spl14_1243),
+  inference(avatar_split_clause,[],[f383418,f376379,f374055])).
+tff(f385115,plain,(
+  w1 = sK11(sK6(w0),w0) | nsd = sK6(w0) | ~territorial(w0) | roe = sK6(w0) | effective_neg(w0) | ~spl14_1248),
+  inference(resolution,[],[f376405,f3181])).
+tff(f385137,plain,(
+  ( ! [X0 : authority,X1 : authority] : (~relevant(roe,w0) | nsd = X0 | roe = X1 | unclos = X0 | X0 = X1 | unclos = nsd | nsd = X1) ) | ~spl14_1248),
+  inference(resolution,[],[f376405,f22334])).
+tff(f385144,plain,(
+  ( ! [X0 : authority] : (nsd = X0 | w2 = sK10(X0,w0) | pos(sK6(w0),w0) | unclos = X0) ) | ~spl14_1248),
+  inference(resolution,[],[f376405,f336457])).
+tff(f385451,plain,(
+  ( ! [X0 : authority] : (pos(nsd,w0) | nsd = X0 | w2 = sK10(X0,w0) | unclos = X0) ) | (~spl14_1248 | ~spl14_1281)),
+  inference(forward_demodulation,[],[f385144,f377313])).
+tff(f385456,plain,(
+  ( ! [X0 : authority,X1 : authority] : (~relevant(roe,w0) | nsd = X0 | unclos = X0 | X0 = X1 | unclos = nsd | nsd = X1) ) | (~spl14_207 | ~spl14_1248)),
+  inference(forward_subsumption_resolution,[],[f385137,f23515])).
+tff(f385483,plain,(
+  ( ! [X0 : authority] : (nsd = X0 | w2 = sK10(X0,w0) | unclos = X0) ) | (~spl14_17 | ~spl14_1248 | ~spl14_1281)),
+  inference(forward_subsumption_resolution,[],[f385451,f481])).
+tff(f385487,plain,(
+  ( ! [X0 : authority,X1 : authority] : (~relevant(roe,w0) | nsd = X0 | unclos = X0 | X0 = X1 | nsd = X1) ) | (~spl14_207 | ~spl14_1248)),
+  inference(forward_subsumption_resolution,[],[f385456,f198])).
+tff(f385502,plain,(
+  spl14_1172 | ~spl14_17 | ~spl14_1248 | ~spl14_1281),
+  inference(avatar_split_clause,[],[f385483,f377311,f376403,f480,f374055])).
+tff(f385506,plain,(
+  spl14_208 | ~spl14_1374 | ~spl14_207 | ~spl14_1248),
+  inference(avatar_split_clause,[],[f385487,f376403,f23514,f382927,f23678])).
+tff(f385520,definition,(
+  spl14_1436 <=> pos(sK6(w0),w0)),
+  introduced(definition,[new_symbols(naming,[spl14_1436])],[avatar_definition])).
+tff(f385522,plain,(
+  pos(sK6(w0),w0) | ~spl14_1436),
+  inference(avatar_component_clause,[],[f385520])).
+tff(f385523,plain,(
+  spl14_1436 | spl14_1172 | ~spl14_1248),
+  inference(avatar_split_clause,[],[f385144,f376403,f374055,f385520])).
+tff(f385525,plain,(
+  w1 = sK11(sK6(w0),w0) | ~territorial(w0) | roe = sK6(w0) | effective_neg(w0) | (~spl14_1248 | spl14_1281)),
+  inference(forward_subsumption_resolution,[],[f385115,f377312])).
+tff(f385529,plain,(
+  w1 = sK11(sK6(w0),w0) | roe = sK6(w0) | effective_neg(w0) | (~spl14_133 | ~spl14_1248 | spl14_1281)),
+  inference(forward_subsumption_resolution,[],[f385525,f10941])).
+tff(f385531,plain,(
+  w1 = sK11(sK6(w0),w0) | roe = sK6(w0) | (~spl14_133 | spl14_1243 | ~spl14_1248 | spl14_1281)),
+  inference(forward_subsumption_resolution,[],[f385529,f376381])).
+tff(f385532,plain,(
+  w1 = w2 | roe = sK6(w0) | (~spl14_133 | spl14_1243 | ~spl14_1248 | spl14_1281 | ~spl14_1400)),
+  inference(forward_demodulation,[],[f385531,f383117])).
+tff(f385533,plain,(
+  roe = sK6(w0) | (spl14_14 | ~spl14_133 | spl14_1243 | ~spl14_1248 | spl14_1281 | ~spl14_1400)),
+  inference(forward_subsumption_resolution,[],[f385532,f360])).
+tff(f385534,plain,(
+  spl14_1307 | spl14_14 | ~spl14_133 | spl14_1243 | ~spl14_1248 | spl14_1281 | ~spl14_1400),
+  inference(avatar_split_clause,[],[f385533,f383115,f377311,f376403,f376379,f10940,f358,f377782])).
+tff(f385535,plain,(
+  pos(roe,w0) | (~spl14_1307 | ~spl14_1436)),
+  inference(forward_demodulation,[],[f385522,f377784])).
+tff(f385558,plain,(
+  spl14_1393 | ~spl14_1307 | ~spl14_1436),
+  inference(avatar_split_clause,[],[f385535,f385520,f377782,f383031])).
+tff(f386276,plain,(
+  relevant(nsd,w0) | ~spl14_1272),
+  inference(resolution,[],[f377186,f180])).
+tff(f386512,plain,(
+  $false | (spl14_1271 | ~spl14_1272)),
+  inference(forward_subsumption_resolution,[],[f386276,f377177])).
+tff(f386513,plain,(
+  spl14_1271 | ~spl14_1272),
+  inference(avatar_contradiction_clause,[],[f386512])).
+tff(f386845,plain,(
+  ( ! [X0 : authority,X1 : authority] : (neg(X0,w0) | unclos = X1 | nsd = X1 | w2 = sK10(X1,w0) | pos(X0,w0) | nsd = X0 | unclos = X0) ) | ~spl14_1311),
+  inference(superposition,[],[f58742,f377807])).
+tff(f387196,plain,(
+  ( ! [X0 : authority,X1 : authority] : (unclos = X1 | nsd = X1 | w2 = sK10(X1,w0) | pos(X0,w0) | nsd = X0 | unclos = X0) ) | ~spl14_1311),
+  inference(forward_subsumption_resolution,[],[f386845,f517])).
+tff(f387275,definition,(
+  spl14_1442 <=> ! [X0 : authority] : (pos(X0,w0) | unclos = X0 | nsd = X0)),
+  introduced(definition,[new_symbols(naming,[spl14_1442])],[avatar_definition])).
+tff(f387276,plain,(
+  ( ! [X0 : authority] : (pos(X0,w0) | unclos = X0 | nsd = X0) ) | ~spl14_1442),
+  inference(avatar_component_clause,[],[f387275])).
+tff(f387277,plain,(
+  spl14_1442 | spl14_1172 | ~spl14_1311),
+  inference(avatar_split_clause,[],[f387196,f377806,f374055,f387275])).
+tff(f387346,plain,(
+  spl14_1442 | ~spl14_1172),
+  inference(avatar_split_clause,[],[f374650,f374055,f387275])).
+tff(f387392,plain,(
+  ~effective_pos(w0) | ~spl14_1243),
+  inference(resolution,[],[f376380,f605])).
+tff(f390811,plain,(
+  relevant(roe,w0) | ~spl14_1393),
+  inference(resolution,[],[f383033,f178])).
+tff(f391211,plain,(
+  $false | (spl14_1374 | ~spl14_1393)),
+  inference(forward_subsumption_resolution,[],[f390811,f382928])).
+tff(f391212,plain,(
+  spl14_1374 | ~spl14_1393),
+  inference(avatar_contradiction_clause,[],[f391211])).
+tff(f391422,plain,(
+  ( ! [X0 : authority,X1 : authority] : (~pos(X0,w0) | roe = nsd | nsd = X1 | unclos = X0 | roe = X1 | X0 = X1 | nsd = X0) ) | spl14_1393),
+  inference(superposition,[],[f383032,f8582])).
+tff(f391547,plain,(
+  ( ! [X0 : authority,X1 : authority] : (~pos(X0,w0) | roe = nsd | nsd = X1 | unclos = X0 | X0 = X1 | nsd = X0) ) | (~spl14_207 | spl14_1393)),
+  inference(forward_subsumption_resolution,[],[f391422,f23515])).
+tff(f391569,plain,(
+  ( ! [X0 : authority,X1 : authority] : (roe = nsd | nsd = X1 | unclos = X0 | X0 = X1 | nsd = X0) ) | (~spl14_207 | spl14_1393 | ~spl14_1442)),
+  inference(forward_subsumption_resolution,[],[f391547,f387276])).
+tff(f391578,plain,(
+  ( ! [X0 : authority,X1 : authority] : (nsd = X1 | unclos = X0 | X0 = X1 | nsd = X0) ) | (~spl14_207 | spl14_1393 | ~spl14_1442)),
+  inference(forward_subsumption_resolution,[],[f391569,f199])).
+tff(f391583,plain,(
+  spl14_208 | ~spl14_207 | spl14_1393 | ~spl14_1442),
+  inference(avatar_split_clause,[],[f391578,f387275,f383031,f23514,f23678])).
+tff(f391589,plain,(
+  ( ! [X2 : authority] : (unclos = X2 | unclos = X2 | nsd = X2) ) | (~spl14_1274 | ~spl14_1377)),
+  inference(forward_demodulation,[],[f382943,f377205])).
+tff(f391590,plain,(
+  ( ! [X2 : authority] : (unclos = X2 | nsd = X2) ) | (~spl14_1274 | ~spl14_1377)),
+  inference(duplicate_literal_removal,[],[f391589])).
+tff(f391604,plain,(
+  $false | (~spl14_1243 | ~spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f387392,f377540])).
+tff(f391605,plain,(
+  ~spl14_1243 | ~spl14_1286),
+  inference(avatar_contradiction_clause,[],[f391604])).
+tff(f391770,plain,(
+  spl14_31 | ~spl14_1274 | ~spl14_1377),
+  inference(avatar_split_clause,[],[f391590,f382942,f377203,f1330])).
+tff(f391863,plain,(
+  $false | (~spl14_1175 | spl14_1248 | ~spl14_1395)),
+  inference(forward_subsumption_resolution,[],[f383131,f376404])).
+tff(f391864,plain,(
+  ~spl14_1175 | spl14_1248 | ~spl14_1395),
+  inference(avatar_contradiction_clause,[],[f391863])).
+tff(f391881,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (nsd = X1 | nsd = X0 | nsd = X2 | X0 = X1 | sK3(unclos,w0) = X0 | unclos = X2 | nsd = X1 | X1 = X2) ) | (~spl14_1255 | ~spl14_1376)),
+  inference(forward_demodulation,[],[f382938,f376457])).
+tff(f391882,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (nsd = X1 | nsd = X0 | nsd = X2 | X0 = X1 | sK3(unclos,w0) = X0 | unclos = X2 | X1 = X2) ) | (~spl14_1255 | ~spl14_1376)),
+  inference(duplicate_literal_removal,[],[f391881])).
+tff(f391894,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (nsd = X0 | nsd = X1 | nsd = X0 | nsd = X2 | X0 = X1 | unclos = X2 | X1 = X2) ) | (~spl14_1255 | ~spl14_1376)),
+  inference(forward_demodulation,[],[f391882,f376457])).
+tff(f391895,plain,(
+  ( ! [X2 : authority,X0 : authority,X1 : authority] : (nsd = X0 | nsd = X1 | nsd = X2 | X0 = X1 | unclos = X2 | X1 = X2) ) | (~spl14_1255 | ~spl14_1376)),
+  inference(duplicate_literal_removal,[],[f391894])).
+tff(f391902,plain,(
+  spl14_1329 | ~spl14_1255 | ~spl14_1376),
+  inference(avatar_split_clause,[],[f391895,f382937,f376455,f378434])).
+tff(f391979,plain,(
+  ( ! [X0 : authority,X1 : authority] : (nsd = X0 | sK6(w0) = X1 | nsd = X0 | X0 = X1 | nsd = X1) ) | (~spl14_17 | ~spl14_71 | ~spl14_1281 | ~spl14_1286)),
+  inference(forward_demodulation,[],[f377587,f377313])).
+tff(f391980,plain,(
+  ( ! [X0 : authority,X1 : authority] : (nsd = X0 | sK6(w0) = X1 | X0 = X1 | nsd = X1) ) | (~spl14_17 | ~spl14_71 | ~spl14_1281 | ~spl14_1286)),
+  inference(duplicate_literal_removal,[],[f391979])).
+tff(f391995,plain,(
+  ( ! [X0 : authority,X1 : authority] : (nsd = X1 | nsd = X0 | X0 = X1 | nsd = X1) ) | (~spl14_17 | ~spl14_71 | ~spl14_1281 | ~spl14_1286)),
+  inference(forward_demodulation,[],[f391980,f377313])).
+tff(f391996,plain,(
+  ( ! [X0 : authority,X1 : authority] : (nsd = X1 | nsd = X0 | X0 = X1) ) | (~spl14_17 | ~spl14_71 | ~spl14_1281 | ~spl14_1286)),
+  inference(duplicate_literal_removal,[],[f391995])).
+tff(f392003,plain,(
+  spl14_281 | ~spl14_17 | ~spl14_71 | ~spl14_1281 | ~spl14_1286),
+  inference(avatar_split_clause,[],[f391996,f377538,f377311,f9300,f480,f42545])).
+tff(f392325,plain,(
+  ~active(nsd,w0) | spl14_10),
+  inference(resolution,[],[f342,f616])).
+tff(f392555,plain,(
+  ~spl14_1270 | spl14_10),
+  inference(avatar_split_clause,[],[f392325,f340,f377169])).
+tff(f393852,plain,(
+  ~pos(roe,w0) | spl14_12),
+  inference(resolution,[],[f350,f978])).
+tff(f394218,plain,(
+  $false | (spl14_12 | ~spl14_1393)),
+  inference(forward_subsumption_resolution,[],[f393852,f383033])).
+tff(f394219,plain,(
+  spl14_12 | ~spl14_1393),
+  inference(avatar_contradiction_clause,[],[f394218])).
+tff(f394942,plain,(
+  neg(nsd,w0) | pos(nsd,w0) | ~spl14_1271),
+  inference(resolution,[],[f377178,f176])).
+tff(f395252,plain,(
+  pos(nsd,w0) | (~spl14_21 | ~spl14_1271)),
+  inference(forward_subsumption_resolution,[],[f394942,f500])).
+tff(f395273,plain,(
+  $false | (~spl14_17 | ~spl14_21 | ~spl14_1271)),
+  inference(forward_subsumption_resolution,[],[f395252,f481])).
+tff(f395274,plain,(
+  ~spl14_17 | ~spl14_21 | ~spl14_1271),
+  inference(avatar_contradiction_clause,[],[f395273])).
+tff(f401085,plain,(
+  unclos = nsd | spl14_1270),
+  inference(resolution,[],[f377170,f208])).
+tff(f401321,plain,(
+  $false | spl14_1270),
+  inference(forward_subsumption_resolution,[],[f401085,f198])).
+tff(f401322,plain,(
+  spl14_1270),
+  inference(avatar_contradiction_clause,[],[f401321])).
+tff(f401334,plain,(
+  ~effective_pos(w1) | w0 = sK13 | w2 = sK13 | spl14_13),
+  inference(superposition,[],[f355,f201])).
+tff(f401538,plain,(
+  ( ! [X0 : world,X1 : world] : (~effective_pos(w0) | w0 = X0 | sK13 = X1 | sK13 = X0 | w0 = X1 | X0 = X1) ) | (spl14_13 | ~spl14_136)),
+  inference(superposition,[],[f355,f11017])).
+tff(f401558,definition,(
+  spl14_1523 <=> w0 = sK13),
+  introduced(definition,[new_symbols(naming,[spl14_1523])],[avatar_definition])).
+tff(f401560,plain,(
+  w0 = sK13 | ~spl14_1523),
+  inference(avatar_component_clause,[],[f401558])).
+tff(f401585,definition,(
+  spl14_1530 <=> effective_pos(w1)),
+  introduced(definition,[new_symbols(naming,[spl14_1530])],[avatar_definition])).
+tff(f401587,plain,(
+  ~effective_pos(w1) | spl14_1530),
+  inference(avatar_component_clause,[],[f401585])).
+tff(f401599,definition,(
+  spl14_1533 <=> w2 = sK13),
+  introduced(definition,[new_symbols(naming,[spl14_1533])],[avatar_definition])).
+tff(f401601,plain,(
+  w2 = sK13 | ~spl14_1533),
+  inference(avatar_component_clause,[],[f401599])).
+tff(f401616,definition,(
+  spl14_1537 <=> effective_pos(w2)),
+  introduced(definition,[new_symbols(naming,[spl14_1537])],[avatar_definition])).
+tff(f401618,plain,(
+  ~effective_pos(w2) | spl14_1537),
+  inference(avatar_component_clause,[],[f401616])).
+tff(f401627,plain,(
+  ( ! [X0 : world,X1 : world] : (sK13 = X1 | sK13 = X0 | X0 = X1 | w0 = X1 | w0 = X0) ) | (spl14_13 | ~spl14_136 | ~spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f401538,f377540])).
+tff(f401771,plain,(
+  spl14_1533 | spl14_1523 | ~spl14_1530 | spl14_13),
+  inference(avatar_split_clause,[],[f401334,f353,f401585,f401558,f401599])).
+tff(f402405,plain,(
+  effective_neg(w0) | immediate_action = issue_warning | ~spl14_7),
+  inference(resolution,[],[f330,f271])).
+tff(f402489,plain,(
+  immediate_action = issue_warning | (~spl14_7 | spl14_1243)),
+  inference(forward_subsumption_resolution,[],[f402405,f376381])).
+tff(f402491,plain,(
+  $false | (~spl14_7 | spl14_1243)),
+  inference(forward_subsumption_resolution,[],[f402489,f246])).
+tff(f402492,plain,(
+  ~spl14_7 | spl14_1243),
+  inference(avatar_contradiction_clause,[],[f402491])).
+tff(f402576,plain,(
+  ( ! [X0 : world] : (~k_accessible(commander,w0,X0) | holds(issue_warning,X0)) ) | ~spl14_5),
+  inference(resolution,[],[f322,f268])).
+tff(f402661,plain,(
+  ( ! [X0 : world] : (holds(issue_warning,X0)) ) | ~spl14_5),
+  inference(forward_subsumption_resolution,[],[f402576,f209])).
+tff(f402663,plain,(
+  spl14_45 | ~spl14_5),
+  inference(avatar_split_clause,[],[f402661,f320,f5169])).
+tff(f402664,plain,(
+  unresolved(w0) | ~spl14_6),
+  inference(resolution,[],[f326,f275])).
+tff(f402749,plain,(
+  ( ! [X0 : world] : (obligatory(unclos,issue_warning,X0)) ) | ~spl14_4),
+  inference(forward_subsumption_resolution,[],[f318,f209])).
+tff(f403682,plain,(
+  ( ! [X0 : world] : (active(unclos,X0)) ) | ~spl14_4),
+  inference(resolution,[],[f402749,f264])).
+tff(f403910,plain,(
+  ( ! [X0 : world] : (territorial(X0)) ) | ~spl14_4),
+  inference(resolution,[],[f403682,f279])).
+tff(f404254,plain,(
+  $false | ~spl14_4),
+  inference(resolution,[],[f403910,f278])).
+tff(f404330,plain,(
+  ~spl14_4),
+  inference(avatar_contradiction_clause,[],[f404254])).
+tff(f404339,plain,(
+  ( ! [X0 : authority] : (~pos(X0,w0) | unclos = X0) ) | (spl14_9 | ~spl14_1244)),
+  inference(forward_subsumption_resolution,[],[f380809,f338])).
+tff(f412438,plain,(
+  ( ! [X0 : authority,X1 : authority] : (X1 != X1 | nsd = X1 | nsd = X0 | unclos = X0 | X0 = X1 | nsd = X0) ) | ~spl14_1329),
+  inference(equality_factoring,[],[f378435])).
+tff(f412454,plain,(
+  ( ! [X0 : authority,X1 : authority] : (X1 != X1 | nsd = X1 | nsd = X0 | unclos = X0 | X0 = X1) ) | ~spl14_1329),
+  inference(duplicate_literal_removal,[],[f412438])).
+tff(f412455,plain,(
+  ( ! [X0 : authority,X1 : authority] : (nsd = X1 | nsd = X0 | unclos = X0 | X0 = X1) ) | ~spl14_1329),
+  inference(trivial_inequality_removal,[],[f412454])).
+tff(f413158,plain,(
+  spl14_208 | ~spl14_1329),
+  inference(avatar_split_clause,[],[f412455,f378434,f23678])).
+tff(f467772,plain,(
+  ( ! [X0 : authority,X1 : authority] : (unclos = X0 | ~effective_pos(w0) | unclos = sK6(w0) | nsd = sK6(w0) | X0 = X1 | roe = X1 | nsd = X0 | nsd = X1) ) | (spl14_9 | ~spl14_71 | ~spl14_1244)),
+  inference(resolution,[],[f404339,f16420])).
+tff(f467900,plain,(
+  ( ! [X0 : authority,X1 : authority] : (unclos = X0 | ~effective_pos(w0) | unclos = sK6(w0) | nsd = sK6(w0) | X0 = X1 | nsd = X0 | nsd = X1) ) | (spl14_9 | ~spl14_71 | ~spl14_207 | ~spl14_1244)),
+  inference(forward_subsumption_resolution,[],[f467772,f23515])).
+tff(f467922,plain,(
+  ( ! [X0 : authority,X1 : authority] : (unclos = X0 | unclos = sK6(w0) | nsd = sK6(w0) | X0 = X1 | nsd = X0 | nsd = X1) ) | (spl14_9 | ~spl14_71 | ~spl14_207 | ~spl14_1244 | ~spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f467900,f377540])).
+tff(f467940,plain,(
+  ( ! [X0 : authority,X1 : authority] : (unclos = X0 | unclos = sK6(w0) | X0 = X1 | nsd = X0 | nsd = X1) ) | (spl14_9 | ~spl14_71 | ~spl14_207 | ~spl14_1244 | spl14_1281 | ~spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f467922,f377312])).
+tff(f467954,plain,(
+  ( ! [X0 : authority,X1 : authority] : (roe = unclos | unclos = X0 | X0 = X1 | nsd = X0 | nsd = X1) ) | (spl14_9 | ~spl14_71 | ~spl14_207 | ~spl14_1244 | spl14_1281 | ~spl14_1286 | ~spl14_1307)),
+  inference(forward_demodulation,[],[f467940,f377784])).
+tff(f467967,plain,(
+  ( ! [X0 : authority,X1 : authority] : (unclos = X0 | X0 = X1 | nsd = X0 | nsd = X1) ) | (spl14_9 | ~spl14_71 | ~spl14_207 | ~spl14_1244 | spl14_1281 | ~spl14_1286 | ~spl14_1307)),
+  inference(forward_subsumption_resolution,[],[f467954,f200])).
+tff(f467976,plain,(
+  spl14_208 | spl14_9 | ~spl14_71 | ~spl14_207 | ~spl14_1244 | spl14_1281 | ~spl14_1286 | ~spl14_1307),
+  inference(avatar_split_clause,[],[f467967,f377782,f377538,f377311,f376383,f23514,f9300,f336,f23678])).
+tff(f467990,plain,(
+  ( ! [X0 : world,X1 : world] : (w0 = X1 | w0 = X0 | sK13 = X0 | w0 = X1 | X0 = X1) ) | (spl14_13 | ~spl14_136 | ~spl14_1286 | ~spl14_1523)),
+  inference(forward_demodulation,[],[f401627,f401560])).
+tff(f467991,plain,(
+  ( ! [X0 : world,X1 : world] : (w0 = X1 | w0 = X0 | sK13 = X0 | X0 = X1) ) | (spl14_13 | ~spl14_136 | ~spl14_1286 | ~spl14_1523)),
+  inference(duplicate_literal_removal,[],[f467990])).
+tff(f468014,plain,(
+  ( ! [X0 : world,X1 : world] : (w0 = X0 | w0 = X1 | w0 = X0 | X0 = X1) ) | (spl14_13 | ~spl14_136 | ~spl14_1286 | ~spl14_1523)),
+  inference(forward_demodulation,[],[f467991,f401560])).
+tff(f468015,plain,(
+  ( ! [X0 : world,X1 : world] : (w0 = X0 | w0 = X1 | X0 = X1) ) | (spl14_13 | ~spl14_136 | ~spl14_1286 | ~spl14_1523)),
+  inference(duplicate_literal_removal,[],[f468014])).
+tff(f468029,plain,(
+  spl14_199 | spl14_13 | ~spl14_136 | ~spl14_1286 | ~spl14_1523),
+  inference(avatar_split_clause,[],[f468015,f401558,f377538,f11016,f353,f21907])).
+tff(f468151,plain,(
+  ~effective_pos(w2) | (spl14_13 | ~spl14_1533)),
+  inference(forward_demodulation,[],[f355,f401601])).
+tff(f469264,definition,(
+  spl14_2314 <=> nsd = sK4(w1)),
+  introduced(definition,[new_symbols(naming,[spl14_2314])],[avatar_definition])).
+tff(f469266,plain,(
+  nsd = sK4(w1) | ~spl14_2314),
+  inference(avatar_component_clause,[],[f469264])).
+tff(f469268,definition,(
+  spl14_2315 <=> unclos = sK4(w1)),
+  introduced(definition,[new_symbols(naming,[spl14_2315])],[avatar_definition])).
+tff(f469269,plain,(
+  unclos != sK4(w1) | spl14_2315),
+  inference(avatar_component_clause,[],[f469268])).
+tff(f469270,plain,(
+  unclos = sK4(w1) | ~spl14_2315),
+  inference(avatar_component_clause,[],[f469268])).
+tff(f483111,definition,(
+  spl14_2417 <=> relevant(roe,w2)),
+  introduced(definition,[new_symbols(naming,[spl14_2417])],[avatar_definition])).
+tff(f483112,plain,(
+  ~relevant(roe,w2) | spl14_2417),
+  inference(avatar_component_clause,[],[f483111])).
+tff(f483113,plain,(
+  relevant(roe,w2) | ~spl14_2417),
+  inference(avatar_component_clause,[],[f483111])).
+tff(f483120,definition,(
+  spl14_2419 <=> nsd = sK4(w2)),
+  introduced(definition,[new_symbols(naming,[spl14_2419])],[avatar_definition])).
+tff(f483122,plain,(
+  nsd = sK4(w2) | ~spl14_2419),
+  inference(avatar_component_clause,[],[f483120])).
+tff(f483128,definition,(
+  spl14_2421 <=> maximal(roe,w2)),
+  introduced(definition,[new_symbols(naming,[spl14_2421])],[avatar_definition])).
+tff(f483129,plain,(
+  ~maximal(roe,w2) | spl14_2421),
+  inference(avatar_component_clause,[],[f483128])).
+tff(f483130,plain,(
+  maximal(roe,w2) | ~spl14_2421),
+  inference(avatar_component_clause,[],[f483128])).
+tff(f483211,definition,(
+  spl14_2438 <=> pos(roe,w2)),
+  introduced(definition,[new_symbols(naming,[spl14_2438])],[avatar_definition])).
+tff(f483213,plain,(
+  pos(roe,w2) | ~spl14_2438),
+  inference(avatar_component_clause,[],[f483211])).
+tff(f483224,definition,(
+  spl14_2440 <=> unclos = sK4(w2)),
+  introduced(definition,[new_symbols(naming,[spl14_2440])],[avatar_definition])).
+tff(f483226,plain,(
+  unclos = sK4(w2) | ~spl14_2440),
+  inference(avatar_component_clause,[],[f483224])).
+tff(f483439,plain,(
+  w1 = w2 | spl14_144),
+  inference(resolution,[],[f11147,f196])).
+tff(f483684,plain,(
+  $false | (spl14_14 | spl14_144)),
+  inference(forward_subsumption_resolution,[],[f483439,f360])).
+tff(f483685,plain,(
+  spl14_14 | spl14_144),
+  inference(avatar_contradiction_clause,[],[f483684])).
+tff(f484802,definition,(
+  spl14_2474 <=> w2 = sK10(roe,w2)),
+  introduced(definition,[new_symbols(naming,[spl14_2474])],[avatar_definition])).
+tff(f484803,plain,(
+  w2 != sK10(roe,w2) | spl14_2474),
+  inference(avatar_component_clause,[],[f484802])).
+tff(f484804,plain,(
+  w2 = sK10(roe,w2) | ~spl14_2474),
+  inference(avatar_component_clause,[],[f484802])).
+tff(f486197,plain,(
+  relevant(roe,w2) | ~spl14_2421),
+  inference(resolution,[],[f483130,f180])).
+tff(f486208,plain,(
+  ( ! [X0 : authority] : (~pos(X0,w2) | effective_pos(w2) | unclos = sK4(w2) | unclos = X0 | nsd = sK4(w2) | nsd = X0) ) | ~spl14_2421),
+  inference(resolution,[],[f483130,f1215])).
+tff(f486730,plain,(
+  ( ! [X0 : authority] : (~pos(X0,w2) | unclos = sK4(w2) | unclos = X0 | nsd = sK4(w2) | nsd = X0) ) | (spl14_1537 | ~spl14_2421)),
+  inference(forward_subsumption_resolution,[],[f486208,f401618])).
+tff(f486765,definition,(
+  spl14_2499 <=> ! [X0 : authority] : (~pos(X0,w2) | nsd = X0 | unclos = X0)),
+  introduced(definition,[new_symbols(naming,[spl14_2499])],[avatar_definition])).
+tff(f486766,plain,(
+  ( ! [X0 : authority] : (~pos(X0,w2) | nsd = X0 | unclos = X0) ) | ~spl14_2499),
+  inference(avatar_component_clause,[],[f486765])).
+tff(f486767,plain,(
+  spl14_2419 | spl14_2440 | spl14_2499 | spl14_1537 | ~spl14_2421),
+  inference(avatar_split_clause,[],[f486730,f483128,f401616,f486765,f483224,f483120])).
+tff(f499273,definition,(
+  spl14_2541 <=> maximal(unclos,w2)),
+  introduced(definition,[new_symbols(naming,[spl14_2541])],[avatar_definition])).
+tff(f499274,plain,(
+  ~maximal(unclos,w2) | spl14_2541),
+  inference(avatar_component_clause,[],[f499273])).
+tff(f499275,plain,(
+  maximal(unclos,w2) | ~spl14_2541),
+  inference(avatar_component_clause,[],[f499273])).
+tff(f502314,plain,(
+  maximal(roe,w2) | roe = unclos | ~spl14_2417),
+  inference(resolution,[],[f483113,f550])).
+tff(f526783,definition,(
+  spl14_2931 <=> maximal(unclos,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_2931])],[avatar_definition])).
+tff(f526784,plain,(
+  ~maximal(unclos,w1) | spl14_2931),
+  inference(avatar_component_clause,[],[f526783])).
+tff(f526785,plain,(
+  maximal(unclos,w1) | ~spl14_2931),
+  inference(avatar_component_clause,[],[f526783])).
+tff(f526812,definition,(
+  spl14_2937 <=> neg(unclos,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_2937])],[avatar_definition])).
+tff(f526813,plain,(
+  ~neg(unclos,w1) | spl14_2937),
+  inference(avatar_component_clause,[],[f526812])).
+tff(f526814,plain,(
+  neg(unclos,w1) | ~spl14_2937),
+  inference(avatar_component_clause,[],[f526812])).
+tff(f526817,definition,(
+  spl14_2938 <=> active(unclos,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_2938])],[avatar_definition])).
+tff(f526818,plain,(
+  ~active(unclos,w1) | spl14_2938),
+  inference(avatar_component_clause,[],[f526817])).
+tff(f526819,plain,(
+  active(unclos,w1) | ~spl14_2938),
+  inference(avatar_component_clause,[],[f526817])).
+tff(f526829,definition,(
+  spl14_2939 <=> relevant(unclos,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_2939])],[avatar_definition])).
+tff(f526830,plain,(
+  ~relevant(unclos,w1) | spl14_2939),
+  inference(avatar_component_clause,[],[f526829])).
+tff(f526831,plain,(
+  relevant(unclos,w1) | ~spl14_2939),
+  inference(avatar_component_clause,[],[f526829])).
+tff(f529417,definition,(
+  spl14_2968 <=> w1 = sK10(roe,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_2968])],[avatar_definition])).
+tff(f529418,plain,(
+  w1 != sK10(roe,w1) | spl14_2968),
+  inference(avatar_component_clause,[],[f529417])).
+tff(f529419,plain,(
+  w1 = sK10(roe,w1) | ~spl14_2968),
+  inference(avatar_component_clause,[],[f529417])).
+tff(f529421,definition,(
+  spl14_2969 <=> w0 = sK10(roe,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_2969])],[avatar_definition])).
+tff(f529423,plain,(
+  w0 = sK10(roe,w1) | ~spl14_2969),
+  inference(avatar_component_clause,[],[f529421])).
+tff(f529482,definition,(
+  spl14_2980 <=> w2 = sK10(roe,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_2980])],[avatar_definition])).
+tff(f529484,plain,(
+  w2 = sK10(roe,w1) | ~spl14_2980),
+  inference(avatar_component_clause,[],[f529482])).
+tff(f530563,plain,(
+  relevant(unclos,w1) | ~spl14_2931),
+  inference(resolution,[],[f526785,f180])).
+tff(f534132,definition,(
+  spl14_3018 <=> relevant(roe,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_3018])],[avatar_definition])).
+tff(f534133,plain,(
+  ~relevant(roe,w1) | spl14_3018),
+  inference(avatar_component_clause,[],[f534132])).
+tff(f534134,plain,(
+  relevant(roe,w1) | ~spl14_3018),
+  inference(avatar_component_clause,[],[f534132])).
+tff(f534190,definition,(
+  spl14_3031 <=> maximal(roe,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_3031])],[avatar_definition])).
+tff(f534192,plain,(
+  maximal(roe,w1) | ~spl14_3031),
+  inference(avatar_component_clause,[],[f534190])).
+tff(f534199,definition,(
+  spl14_3033 <=> active(roe,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_3033])],[avatar_definition])).
+tff(f534200,plain,(
+  ~active(roe,w1) | spl14_3033),
+  inference(avatar_component_clause,[],[f534199])).
+tff(f534201,plain,(
+  active(roe,w1) | ~spl14_3033),
+  inference(avatar_component_clause,[],[f534199])).
+tff(f534205,definition,(
+  spl14_3034 <=> pos(roe,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_3034])],[avatar_definition])).
+tff(f534207,plain,(
+  pos(roe,w1) | ~spl14_3034),
+  inference(avatar_component_clause,[],[f534205])).
+tff(f534227,definition,(
+  spl14_3036 <=> maximal(nsd,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_3036])],[avatar_definition])).
+tff(f534228,plain,(
+  ~maximal(nsd,w1) | spl14_3036),
+  inference(avatar_component_clause,[],[f534227])).
+tff(f534229,plain,(
+  maximal(nsd,w1) | ~spl14_3036),
+  inference(avatar_component_clause,[],[f534227])).
+tff(f535353,plain,(
+  $false | (~spl14_2931 | spl14_2939)),
+  inference(forward_subsumption_resolution,[],[f530563,f526830])).
+tff(f535354,plain,(
+  ~spl14_2931 | spl14_2939),
+  inference(avatar_contradiction_clause,[],[f535353])).
+tff(f536559,plain,(
+  neg(unclos,w1) | pos(unclos,w1) | ~spl14_2939),
+  inference(resolution,[],[f526831,f176])).
+tff(f538819,plain,(
+  relevant(nsd,w1) | ~spl14_3036),
+  inference(resolution,[],[f534229,f180])).
+tff(f540363,plain,(
+  territorial(w1) | ~spl14_2938),
+  inference(resolution,[],[f526819,f279])).
+tff(f540924,plain,(
+  $false | ~spl14_2938),
+  inference(forward_subsumption_resolution,[],[f540363,f278])).
+tff(f540925,plain,(
+  ~spl14_2938),
+  inference(avatar_contradiction_clause,[],[f540924])).
+tff(f541940,plain,(
+  active(unclos,w1) | ~spl14_2937),
+  inference(resolution,[],[f526814,f227])).
+tff(f542469,plain,(
+  $false | (~spl14_2937 | spl14_2938)),
+  inference(forward_subsumption_resolution,[],[f541940,f526818])).
+tff(f542470,plain,(
+  ~spl14_2937 | spl14_2938),
+  inference(avatar_contradiction_clause,[],[f542469])).
+tff(f542502,plain,(
+  pos(unclos,w1) | (spl14_2937 | ~spl14_2939)),
+  inference(forward_subsumption_resolution,[],[f536559,f526813])).
+tff(f542503,plain,(
+  $false | (~spl14_19 | spl14_2937 | ~spl14_2939)),
+  inference(forward_subsumption_resolution,[],[f542502,f488])).
+tff(f542504,plain,(
+  ~spl14_19 | spl14_2937 | ~spl14_2939),
+  inference(avatar_contradiction_clause,[],[f542503])).
+tff(f545781,definition,(
+  spl14_3081 <=> relevant(nsd,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_3081])],[avatar_definition])).
+tff(f545783,plain,(
+  relevant(nsd,w1) | ~spl14_3081),
+  inference(avatar_component_clause,[],[f545781])).
+tff(f548945,plain,(
+  roe = unclos | (~spl14_2417 | spl14_2421)),
+  inference(forward_subsumption_resolution,[],[f502314,f483129])).
+tff(f549010,plain,(
+  $false | (~spl14_2417 | spl14_2421)),
+  inference(forward_subsumption_resolution,[],[f548945,f200])).
+tff(f549011,plain,(
+  ~spl14_2417 | spl14_2421),
+  inference(avatar_contradiction_clause,[],[f549010])).
+tff(f549891,plain,(
+  $false | (spl14_2417 | ~spl14_2421)),
+  inference(forward_subsumption_resolution,[],[f486197,f483112])).
+tff(f549892,plain,(
+  spl14_2417 | ~spl14_2421),
+  inference(avatar_contradiction_clause,[],[f549891])).
+tff(f554029,plain,(
+  w0 = sK10(roe,w2) | ~territorial(w2) | w1 = sK10(roe,w2) | (~spl14_221 | spl14_2417)),
+  inference(resolution,[],[f483112,f50217])).
+tff(f555187,plain,(
+  neg(roe,w2) | pos(roe,w2) | ~spl14_2417),
+  inference(resolution,[],[f483113,f176])).
+tff(f555733,plain,(
+  pos(roe,w2) | ~spl14_2417),
+  inference(forward_subsumption_resolution,[],[f555187,f509])).
+tff(f556019,plain,(
+  ( ! [X0 : authority,X1 : authority] : (pos(X0,w2) | roe = nsd | nsd = X1 | unclos = X0 | roe = X1 | X0 = X1 | nsd = X0) ) | ~spl14_2438),
+  inference(superposition,[],[f483213,f8582])).
+tff(f556281,plain,(
+  ( ! [X0 : authority,X1 : authority] : (pos(X0,w2) | roe = nsd | nsd = X1 | unclos = X0 | X0 = X1 | nsd = X0) ) | (~spl14_207 | ~spl14_2438)),
+  inference(forward_subsumption_resolution,[],[f556019,f23515])).
+tff(f556310,plain,(
+  ( ! [X0 : authority,X1 : authority] : (roe = nsd | nsd = X1 | unclos = X0 | X0 = X1 | nsd = X0) ) | (~spl14_207 | ~spl14_2438 | ~spl14_2499)),
+  inference(forward_subsumption_resolution,[],[f556281,f486766])).
+tff(f556325,plain,(
+  ( ! [X0 : authority,X1 : authority] : (nsd = X1 | unclos = X0 | X0 = X1 | nsd = X0) ) | (~spl14_207 | ~spl14_2438 | ~spl14_2499)),
+  inference(forward_subsumption_resolution,[],[f556310,f199])).
+tff(f556336,plain,(
+  spl14_208 | ~spl14_207 | ~spl14_2438 | ~spl14_2499),
+  inference(avatar_split_clause,[],[f556325,f486765,f483211,f23514,f23678])).
+tff(f558631,definition,(
+  spl14_3121 <=> relevant(nsd,w2)),
+  introduced(definition,[new_symbols(naming,[spl14_3121])],[avatar_definition])).
+tff(f558632,plain,(
+  ~relevant(nsd,w2) | spl14_3121),
+  inference(avatar_component_clause,[],[f558631])).
+tff(f558633,plain,(
+  relevant(nsd,w2) | ~spl14_3121),
+  inference(avatar_component_clause,[],[f558631])).
+tff(f577186,definition,(
+  spl14_3415 <=> maximal(nsd,w2)),
+  introduced(definition,[new_symbols(naming,[spl14_3415])],[avatar_definition])).
+tff(f577187,plain,(
+  ~maximal(nsd,w2) | spl14_3415),
+  inference(avatar_component_clause,[],[f577186])).
+tff(f577188,plain,(
+  maximal(nsd,w2) | ~spl14_3415),
+  inference(avatar_component_clause,[],[f577186])).
+tff(f577246,plain,(
+  ( ! [X0 : authority,X1 : authority] : (~relevant(roe,w2) | nsd = X0 | roe = X1 | unclos = X0 | X0 = X1 | unclos = nsd | nsd = X1) ) | ~spl14_2541),
+  inference(resolution,[],[f499275,f22334])).
+tff(f577536,plain,(
+  ( ! [X0 : authority,X1 : authority] : (~relevant(roe,w2) | nsd = X0 | unclos = X0 | X0 = X1 | unclos = nsd | nsd = X1) ) | (~spl14_207 | ~spl14_2541)),
+  inference(forward_subsumption_resolution,[],[f577246,f23515])).
+tff(f577562,plain,(
+  ( ! [X0 : authority,X1 : authority] : (nsd = X0 | unclos = X0 | X0 = X1 | unclos = nsd | nsd = X1) ) | (~spl14_207 | ~spl14_2417 | ~spl14_2541)),
+  inference(forward_subsumption_resolution,[],[f577536,f483113])).
+tff(f577580,plain,(
+  ( ! [X0 : authority,X1 : authority] : (nsd = X0 | unclos = X0 | X0 = X1 | nsd = X1) ) | (~spl14_207 | ~spl14_2417 | ~spl14_2541)),
+  inference(forward_subsumption_resolution,[],[f577562,f198])).
+tff(f577591,plain,(
+  spl14_208 | ~spl14_207 | ~spl14_2417 | ~spl14_2541),
+  inference(avatar_split_clause,[],[f577580,f499273,f483111,f23514,f23678])).
+tff(f577669,plain,(
+  spl14_2438 | ~spl14_2417),
+  inference(avatar_split_clause,[],[f555733,f483111,f483211])).
+tff(f577891,plain,(
+  effective_pos(w2) | maximal(sK4(w2),w2) | ~spl14_2421),
+  inference(resolution,[],[f483130,f185])).
+tff(f579310,plain,(
+  relevant(nsd,w2) | ~spl14_3415),
+  inference(resolution,[],[f577188,f180])).
+tff(f579560,plain,(
+  $false | (spl14_3121 | ~spl14_3415)),
+  inference(forward_subsumption_resolution,[],[f579310,f558632])).
+tff(f579561,plain,(
+  spl14_3121 | ~spl14_3415),
+  inference(avatar_contradiction_clause,[],[f579560])).
+tff(f583520,plain,(
+  maximal(sK4(w2),w2) | (spl14_1537 | ~spl14_2421)),
+  inference(forward_subsumption_resolution,[],[f577891,f401618])).
+tff(f583536,plain,(
+  maximal(unclos,w2) | (spl14_1537 | ~spl14_2421 | ~spl14_2440)),
+  inference(forward_demodulation,[],[f583520,f483226])).
+tff(f583549,plain,(
+  $false | (spl14_1537 | ~spl14_2421 | ~spl14_2440 | spl14_2541)),
+  inference(forward_subsumption_resolution,[],[f583536,f499274])).
+tff(f583550,plain,(
+  spl14_1537 | ~spl14_2421 | ~spl14_2440 | spl14_2541),
+  inference(avatar_contradiction_clause,[],[f583549])).
+tff(f583620,plain,(
+  maximal(nsd,w2) | (spl14_1537 | ~spl14_2419 | ~spl14_2421)),
+  inference(forward_demodulation,[],[f583520,f483122])).
+tff(f583651,plain,(
+  $false | (spl14_1537 | ~spl14_2419 | ~spl14_2421 | spl14_3415)),
+  inference(forward_subsumption_resolution,[],[f583620,f577187])).
+tff(f583652,plain,(
+  spl14_1537 | ~spl14_2419 | ~spl14_2421 | spl14_3415),
+  inference(avatar_contradiction_clause,[],[f583651])).
+tff(f583706,plain,(
+  neg(nsd,w2) | pos(nsd,w2) | ~spl14_3121),
+  inference(resolution,[],[f558633,f176])).
+tff(f584009,plain,(
+  pos(nsd,w2) | (~spl14_21 | ~spl14_3121)),
+  inference(forward_subsumption_resolution,[],[f583706,f500])).
+tff(f584016,plain,(
+  $false | (~spl14_17 | ~spl14_21 | ~spl14_3121)),
+  inference(forward_subsumption_resolution,[],[f584009,f481])).
+tff(f584017,plain,(
+  ~spl14_17 | ~spl14_21 | ~spl14_3121),
+  inference(avatar_contradiction_clause,[],[f584016])).
+tff(f597580,plain,(
+  o_accessible(roe,w1,w1) | ~active(roe,w1) | pos(roe,w1) | ~spl14_2968),
+  inference(superposition,[],[f224,f529419])).
+tff(f597638,definition,(
+  spl14_3465 <=> o_accessible(roe,w1,w1)),
+  introduced(definition,[new_symbols(naming,[spl14_3465])],[avatar_definition])).
+tff(f597640,plain,(
+  o_accessible(roe,w1,w1) | ~spl14_3465),
+  inference(avatar_component_clause,[],[f597638])).
+tff(f597652,plain,(
+  spl14_3034 | ~spl14_3033 | spl14_3465 | ~spl14_2968),
+  inference(avatar_split_clause,[],[f597580,f529417,f597638,f534199,f534205])).
+tff(f597871,plain,(
+  roe = unclos | spl14_3033),
+  inference(resolution,[],[f534200,f208])).
+tff(f598111,plain,(
+  $false | spl14_3033),
+  inference(forward_subsumption_resolution,[],[f597871,f200])).
+tff(f598112,plain,(
+  spl14_3033),
+  inference(avatar_contradiction_clause,[],[f598111])).
+tff(f598130,plain,(
+  roe = nsd | w2 = sK10(roe,w1) | w1 = sK10(roe,w1) | pos(roe,w1) | ~spl14_3033),
+  inference(resolution,[],[f534201,f578])).
+tff(f598171,plain,(
+  w0 = sK10(roe,w1) | w1 = sK10(roe,w1) | pos(roe,w1) | (~spl14_221 | ~spl14_3033)),
+  inference(resolution,[],[f534201,f28370])).
+tff(f598408,plain,(
+  roe = unclos | roe = nsd | w1 = w2 | ~spl14_3465),
+  inference(resolution,[],[f597640,f212])).
+tff(f598637,plain,(
+  roe = nsd | w1 = w2 | ~spl14_3465),
+  inference(forward_subsumption_resolution,[],[f598408,f200])).
+tff(f598641,plain,(
+  w1 = w2 | ~spl14_3465),
+  inference(forward_subsumption_resolution,[],[f598637,f199])).
+tff(f598642,plain,(
+  $false | (spl14_14 | ~spl14_3465)),
+  inference(forward_subsumption_resolution,[],[f598641,f360])).
+tff(f598643,plain,(
+  spl14_14 | ~spl14_3465),
+  inference(avatar_contradiction_clause,[],[f598642])).
+tff(f598648,plain,(
+  w0 = sK10(roe,w1) | pos(roe,w1) | (~spl14_221 | spl14_2968 | ~spl14_3033)),
+  inference(forward_subsumption_resolution,[],[f598171,f529418])).
+tff(f598649,plain,(
+  w2 = sK10(roe,w1) | w1 = sK10(roe,w1) | pos(roe,w1) | ~spl14_3033),
+  inference(forward_subsumption_resolution,[],[f598130,f199])).
+tff(f598650,plain,(
+  spl14_3034 | spl14_2969 | ~spl14_221 | spl14_2968 | ~spl14_3033),
+  inference(avatar_split_clause,[],[f598648,f534199,f529417,f28369,f529421,f534205])).
+tff(f598651,plain,(
+  w2 = sK10(roe,w1) | pos(roe,w1) | (spl14_2968 | ~spl14_3033)),
+  inference(forward_subsumption_resolution,[],[f598649,f529418])).
+tff(f598652,plain,(
+  spl14_3034 | spl14_2980 | spl14_2968 | ~spl14_3033),
+  inference(avatar_split_clause,[],[f598651,f534199,f529417,f529482,f534205])).
+tff(f598653,plain,(
+  w0 = w2 | (~spl14_2969 | ~spl14_2980)),
+  inference(forward_demodulation,[],[f529484,f529423])).
+tff(f598654,plain,(
+  $false | (~spl14_2969 | ~spl14_2980)),
+  inference(forward_subsumption_resolution,[],[f598653,f203])).
+tff(f598655,plain,(
+  ~spl14_2969 | ~spl14_2980),
+  inference(avatar_contradiction_clause,[],[f598654])).
+tff(f598670,plain,(
+  relevant(roe,w1) | ~spl14_3034),
+  inference(resolution,[],[f534207,f178])).
+tff(f598944,plain,(
+  $false | (spl14_3018 | ~spl14_3034)),
+  inference(forward_subsumption_resolution,[],[f598670,f534133])).
+tff(f598945,plain,(
+  spl14_3018 | ~spl14_3034),
+  inference(avatar_contradiction_clause,[],[f598944])).
+tff(f598984,plain,(
+  maximal(roe,w1) | roe = unclos | ~spl14_3018),
+  inference(resolution,[],[f534134,f550])).
+tff(f599349,plain,(
+  maximal(roe,w1) | ~spl14_3018),
+  inference(forward_subsumption_resolution,[],[f598984,f200])).
+tff(f599384,plain,(
+  spl14_3031 | ~spl14_3018),
+  inference(avatar_split_clause,[],[f599349,f534132,f534190])).
+tff(f599423,plain,(
+  effective_pos(w1) | maximal(sK4(w1),w1) | ~spl14_3031),
+  inference(resolution,[],[f534192,f185])).
+tff(f599426,plain,(
+  ~pos(roe,w1) | effective_pos(w1) | unclos = sK4(w1) | nsd = sK4(w1) | ~spl14_3031),
+  inference(resolution,[],[f534192,f435])).
+tff(f599682,plain,(
+  maximal(sK4(w1),w1) | (spl14_1530 | ~spl14_3031)),
+  inference(forward_subsumption_resolution,[],[f599423,f401587])).
+tff(f599692,plain,(
+  maximal(unclos,w1) | (spl14_1530 | ~spl14_2315 | ~spl14_3031)),
+  inference(forward_demodulation,[],[f599682,f469270])).
+tff(f599698,plain,(
+  $false | (spl14_1530 | ~spl14_2315 | spl14_2931 | ~spl14_3031)),
+  inference(forward_subsumption_resolution,[],[f599692,f526784])).
+tff(f599699,plain,(
+  spl14_1530 | ~spl14_2315 | spl14_2931 | ~spl14_3031),
+  inference(avatar_contradiction_clause,[],[f599698])).
+tff(f599762,plain,(
+  effective_pos(w1) | unclos = sK4(w1) | nsd = sK4(w1) | (~spl14_3031 | ~spl14_3034)),
+  inference(forward_subsumption_resolution,[],[f599426,f534207])).
+tff(f599803,plain,(
+  unclos = sK4(w1) | nsd = sK4(w1) | (spl14_1530 | ~spl14_3031 | ~spl14_3034)),
+  inference(forward_subsumption_resolution,[],[f599762,f401587])).
+tff(f599826,plain,(
+  nsd = sK4(w1) | (spl14_1530 | spl14_2315 | ~spl14_3031 | ~spl14_3034)),
+  inference(forward_subsumption_resolution,[],[f599803,f469269])).
+tff(f599840,plain,(
+  spl14_2314 | spl14_1530 | spl14_2315 | ~spl14_3031 | ~spl14_3034),
+  inference(avatar_split_clause,[],[f599826,f534205,f534190,f469268,f401585,f469264])).
+tff(f599869,plain,(
+  maximal(nsd,w1) | (spl14_1530 | ~spl14_2314 | ~spl14_3031)),
+  inference(forward_demodulation,[],[f599682,f469266])).
+tff(f599908,plain,(
+  $false | (spl14_1530 | ~spl14_2314 | ~spl14_3031 | spl14_3036)),
+  inference(forward_subsumption_resolution,[],[f599869,f534228])).
+tff(f599909,plain,(
+  spl14_1530 | ~spl14_2314 | ~spl14_3031 | spl14_3036),
+  inference(avatar_contradiction_clause,[],[f599908])).
+tff(f599965,plain,(
+  spl14_3081 | ~spl14_3036),
+  inference(avatar_split_clause,[],[f538819,f534227,f545781])).
+tff(f600163,plain,(
+  neg(nsd,w1) | pos(nsd,w1) | ~spl14_3081),
+  inference(resolution,[],[f545783,f176])).
+tff(f600414,plain,(
+  pos(nsd,w1) | (~spl14_21 | ~spl14_3081)),
+  inference(forward_subsumption_resolution,[],[f600163,f500])).
+tff(f600423,plain,(
+  $false | (~spl14_17 | ~spl14_21 | ~spl14_3081)),
+  inference(forward_subsumption_resolution,[],[f600414,f481])).
+tff(f600424,plain,(
+  ~spl14_17 | ~spl14_21 | ~spl14_3081),
+  inference(avatar_contradiction_clause,[],[f600423])).
+tff(f600471,plain,(
+  ~spl14_1537 | spl14_13 | ~spl14_1533),
+  inference(avatar_split_clause,[],[f468151,f401599,f353,f401616])).
+tff(f601660,plain,(
+  spl14_1247 | ~spl14_6),
+  inference(avatar_split_clause,[],[f402664,f324,f376399])).
+tff(f605032,plain,(
+  ~effective_pos(w0) | ~spl14_1247),
+  inference(resolution,[],[f376400,f647])).
+tff(f605209,plain,(
+  $false | (~spl14_1247 | ~spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f605032,f377540])).
+tff(f605210,plain,(
+  ~spl14_1247 | ~spl14_1286),
+  inference(avatar_contradiction_clause,[],[f605209])).
+tff(f605815,plain,(
+  unclos = sK3(unclos,w0) | maximal(sK4(w0),w0) | (~spl14_1242 | spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f382529,f377539])).
+tff(f606229,plain,(
+  roe = unclos | maximal(sK4(w0),w0) | (~spl14_1242 | ~spl14_1254 | spl14_1286)),
+  inference(forward_demodulation,[],[f605815,f376453])).
+tff(f606357,plain,(
+  maximal(sK4(w0),w0) | (~spl14_1242 | ~spl14_1254 | spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f606229,f200])).
+tff(f617087,plain,(
+  maximal(nsd,w0) | (~spl14_1174 | ~spl14_1242 | ~spl14_1254 | spl14_1286)),
+  inference(forward_demodulation,[],[f606357,f374064])).
+tff(f617114,plain,(
+  $false | (~spl14_1174 | ~spl14_1242 | ~spl14_1254 | spl14_1272 | spl14_1286)),
+  inference(forward_subsumption_resolution,[],[f617087,f377185])).
+tff(f617115,plain,(
+  ~spl14_1174 | ~spl14_1242 | ~spl14_1254 | spl14_1272 | spl14_1286),
+  inference(avatar_contradiction_clause,[],[f617114])).
+tff(f617628,plain,(
+  w0 = sK10(roe,w2) | w1 = sK10(roe,w2) | (~spl14_144 | ~spl14_221 | spl14_2417)),
+  inference(forward_subsumption_resolution,[],[f554029,f11146])).
+tff(f618135,plain,(
+  w0 = w2 | w1 = sK10(roe,w2) | (~spl14_144 | ~spl14_221 | spl14_2417 | ~spl14_2474)),
+  inference(forward_demodulation,[],[f617628,f484804])).
+tff(f618446,plain,(
+  w1 = sK10(roe,w2) | (~spl14_144 | ~spl14_221 | spl14_2417 | ~spl14_2474)),
+  inference(forward_subsumption_resolution,[],[f618135,f203])).
+tff(f618582,plain,(
+  w1 = w2 | (~spl14_144 | ~spl14_221 | spl14_2417 | ~spl14_2474)),
+  inference(forward_demodulation,[],[f618446,f484804])).
+tff(f618622,plain,(
+  $false | (spl14_14 | ~spl14_144 | ~spl14_221 | spl14_2417 | ~spl14_2474)),
+  inference(forward_subsumption_resolution,[],[f618582,f360])).
+tff(f618623,plain,(
+  spl14_14 | ~spl14_144 | ~spl14_221 | spl14_2417 | ~spl14_2474),
+  inference(avatar_contradiction_clause,[],[f618622])).
+tff(f620242,plain,(
+  roe = unclos | roe = nsd | w2 = sK10(roe,w2) | spl14_2421),
+  inference(resolution,[],[f483129,f2707])).
+tff(f620465,plain,(
+  roe = nsd | w2 = sK10(roe,w2) | spl14_2421),
+  inference(forward_subsumption_resolution,[],[f620242,f200])).
+tff(f620473,plain,(
+  w2 = sK10(roe,w2) | spl14_2421),
+  inference(forward_subsumption_resolution,[],[f620465,f199])).
+tff(f620479,plain,(
+  $false | (spl14_2421 | spl14_2474)),
+  inference(forward_subsumption_resolution,[],[f620473,f484803])).
+tff(f620480,plain,(
+  spl14_2421 | spl14_2474),
+  inference(avatar_contradiction_clause,[],[f620479])).
+cnf(s2, plain, ~spl14_13 | ~spl14_12 | ~spl14_11 | ~spl14_10 | ~spl14_9 | ~spl14_8 | ~spl14_2 | ~spl14_1 | spl14_4 | spl14_5 | spl14_6 | spl14_7, inference(sat_conversion,[],[f356])).
+cnf(s5, plain, ~spl14_14, inference(sat_conversion,[],[f369])).
+cnf(s6, plain, spl14_17 | spl14_18, inference(sat_conversion,[],[f485])).
+cnf(s7, plain, spl14_19 | spl14_20, inference(sat_conversion,[],[f493])).
+cnf(s8, plain, spl14_21 | spl14_22, inference(sat_conversion,[],[f504])).
+cnf(s13, plain, spl14_27, inference(sat_conversion,[],[f788])).
+cnf(s14, plain, spl14_29 | spl14_30, inference(sat_conversion,[],[f795])).
+cnf(s21, plain, ~spl14_29 | spl14_18, inference(sat_conversion,[],[f863])).
+cnf(s22, plain, ~spl14_30 | spl14_1, inference(sat_conversion,[],[f921])).
+cnf(s23, plain, ~spl14_27 | spl14_2, inference(sat_conversion,[],[f934])).
+cnf(s28, plain, ~spl14_31, inference(sat_conversion,[],[f1433])).
+cnf(s41, plain, ~spl14_37, inference(sat_conversion,[],[f5389])).
+cnf(s42, plain, ~spl14_45 | spl14_37, inference(sat_conversion,[],[f5391])).
+cnf(s76, plain, spl14_71, inference(sat_conversion,[],[f9305])).
+cnf(s172, plain, spl14_136, inference(sat_conversion,[],[f11021])).
+cnf(s202, plain, spl14_145 | spl14_146, inference(sat_conversion,[],[f11279])).
+cnf(s215, plain, ~spl14_20 | spl14_146, inference(sat_conversion,[],[f11375])).
+cnf(s217, plain, ~spl14_113, inference(sat_conversion,[],[f11649])).
+cnf(s218, plain, ~spl14_51 | spl14_113, inference(sat_conversion,[],[f11651])).
+cnf(s220, plain, ~spl14_146 | spl14_14, inference(sat_conversion,[],[f11744])).
+cnf(s338, plain, ~spl14_136 | ~spl14_133 | spl14_174, inference(sat_conversion,[],[f18004])).
+cnf(s355, plain, ~spl14_24, inference(sat_conversion,[],[f19572])).
+cnf(s359, plain, ~spl14_22, inference(sat_conversion,[],[f19588])).
+cnf(s446, plain, spl14_207, inference(sat_conversion,[],[f23520])).
+cnf(s470, plain, ~spl14_174 | spl14_218 | spl14_221, inference(sat_conversion,[],[f28399])).
+cnf(s500, plain, ~spl14_190 | spl14_14 | spl14_24, inference(sat_conversion,[],[f28654])).
+cnf(s502, plain, ~spl14_218 | spl14_14, inference(sat_conversion,[],[f28690])).
+cnf(s683, plain, ~spl14_18 | spl14_51, inference(sat_conversion,[],[f48113])).
+cnf(s754, plain, ~spl14_179, inference(sat_conversion,[],[f61817])).
+cnf(s782, plain, ~spl14_281 | spl14_179, inference(sat_conversion,[],[f63440])).
+cnf(s920, plain, ~spl14_208 | spl14_179, inference(sat_conversion,[],[f78230])).
+cnf(s2629, plain, ~spl14_199 | ~spl14_133 | spl14_190, inference(sat_conversion,[],[f320545])).
+cnf(s3228, plain, spl14_8 | spl14_1172 | spl14_1173 | spl14_1174 | spl14_1175, inference(sat_conversion,[],[f374069])).
+cnf(s3331, plain, ~spl14_1173 | spl14_1172 | spl14_1174 | spl14_1175, inference(sat_conversion,[],[f375772])).
+cnf(s3394, plain, ~spl14_1175 | spl14_8 | spl14_1172 | spl14_1248, inference(sat_conversion,[],[f376626])).
+cnf(s3440, plain, ~spl14_1174 | spl14_8 | spl14_1172 | spl14_1272, inference(sat_conversion,[],[f377321])).
+cnf(s3457, plain, ~spl14_8 | spl14_1286, inference(sat_conversion,[],[f377548])).
+cnf(s3483, plain, ~spl14_1286 | ~spl14_145 | spl14_1281 | spl14_1307, inference(sat_conversion,[],[f377785])).
+cnf(s3490, plain, ~spl14_1286 | ~spl14_19 | spl14_1281 | spl14_1311, inference(sat_conversion,[],[f377808])).
+cnf(s3495, plain, ~spl14_1286 | spl14_8, inference(sat_conversion,[],[f377832])).
+cnf(s3508, plain, ~spl14_1241 | spl14_11 | spl14_1325, inference(sat_conversion,[],[f378401])).
+cnf(s3625, plain, ~spl14_133 | spl14_1244 | spl14_1252, inference(sat_conversion,[],[f379721])).
+cnf(s3670, plain, ~spl14_133 | spl14_1244 | spl14_1268, inference(sat_conversion,[],[f379812])).
+cnf(s3677, plain, spl14_133, inference(sat_conversion,[],[f380301])).
+cnf(s3678, plain, ~spl14_1268 | ~spl14_1252 | spl14_14, inference(sat_conversion,[],[f380305])).
+cnf(s3694, plain, ~spl14_1244 | spl14_1241, inference(sat_conversion,[],[f381153])).
+cnf(s3695, plain, ~spl14_1244 | spl14_1242, inference(sat_conversion,[],[f381154])).
+cnf(s3763, plain, ~spl14_1325 | ~spl14_1244 | spl14_11, inference(sat_conversion,[],[f382199])).
+cnf(s3884, plain, ~spl14_1242 | spl14_1248 | spl14_1254 | spl14_1255, inference(sat_conversion,[],[f383037])).
+cnf(s3886, plain, ~spl14_1242 | spl14_1248 | spl14_1255 | spl14_1377, inference(sat_conversion,[],[f383039])).
+cnf(s3901, plain, ~spl14_1242 | ~spl14_21 | ~spl14_17 | spl14_1248 | spl14_1376, inference(sat_conversion,[],[f383071])).
+cnf(s3909, plain, ~spl14_1242 | spl14_1274 | spl14_1286 | spl14_1395, inference(sat_conversion,[],[f383092])).
+cnf(s3925, plain, ~spl14_1393 | ~spl14_1242 | spl14_1174 | spl14_1175 | spl14_1274 | spl14_1286, inference(sat_conversion,[],[f383125])).
+cnf(s3931, plain, ~spl14_133 | spl14_1172 | spl14_1400, inference(sat_conversion,[],[f383132])).
+cnf(s3948, plain, ~spl14_1243 | spl14_1172, inference(sat_conversion,[],[f383647])).
+cnf(s4042, plain, ~spl14_1281 | ~spl14_1248 | ~spl14_17 | spl14_1172, inference(sat_conversion,[],[f385502])).
+cnf(s4044, plain, ~spl14_1374 | ~spl14_1248 | ~spl14_207 | spl14_208, inference(sat_conversion,[],[f385506])).
+cnf(s4045, plain, ~spl14_1248 | spl14_1172 | spl14_1436, inference(sat_conversion,[],[f385523])).
+cnf(s4047, plain, ~spl14_1400 | ~spl14_1248 | ~spl14_133 | spl14_14 | spl14_1243 | spl14_1281 | spl14_1307, inference(sat_conversion,[],[f385534])).
+cnf(s4048, plain, ~spl14_1436 | ~spl14_1307 | spl14_1393, inference(sat_conversion,[],[f385558])).
+cnf(s4079, plain, ~spl14_1272 | spl14_1271, inference(sat_conversion,[],[f386513])).
+cnf(s4086, plain, ~spl14_1311 | spl14_1172 | spl14_1442, inference(sat_conversion,[],[f387277])).
+cnf(s4099, plain, ~spl14_1172 | spl14_1442, inference(sat_conversion,[],[f387346])).
+cnf(s4289, plain, ~spl14_1393 | spl14_1374, inference(sat_conversion,[],[f391212])).
+cnf(s4298, plain, ~spl14_1442 | ~spl14_207 | spl14_208 | spl14_1393, inference(sat_conversion,[],[f391583])).
+cnf(s4308, plain, ~spl14_1286 | ~spl14_1243, inference(sat_conversion,[],[f391605])).
+cnf(s4327, plain, ~spl14_1377 | ~spl14_1274 | spl14_31, inference(sat_conversion,[],[f391770])).
+cnf(s4332, plain, ~spl14_1395 | ~spl14_1175 | spl14_1248, inference(sat_conversion,[],[f391864])).
+cnf(s4335, plain, ~spl14_1376 | ~spl14_1255 | spl14_1329, inference(sat_conversion,[],[f391902])).
+cnf(s4349, plain, ~spl14_1286 | ~spl14_1281 | ~spl14_71 | ~spl14_17 | spl14_281, inference(sat_conversion,[],[f392003])).
+cnf(s4359, plain, ~spl14_1270 | spl14_10, inference(sat_conversion,[],[f392555])).
+cnf(s4428, plain, ~spl14_1393 | spl14_12, inference(sat_conversion,[],[f394219])).
+cnf(s4448, plain, ~spl14_1271 | ~spl14_21 | ~spl14_17, inference(sat_conversion,[],[f395274])).
+cnf(s4531, plain, spl14_1270, inference(sat_conversion,[],[f401322])).
+cnf(s4598, plain, ~spl14_1530 | spl14_13 | spl14_1523 | spl14_1533, inference(sat_conversion,[],[f401771])).
+cnf(s4721, plain, ~spl14_7 | spl14_1243, inference(sat_conversion,[],[f402492])).
+cnf(s4722, plain, ~spl14_5 | spl14_45, inference(sat_conversion,[],[f402663])).
+cnf(s4766, plain, ~spl14_4, inference(sat_conversion,[],[f404330])).
+cnf(s4791, plain, ~spl14_1329 | spl14_208, inference(sat_conversion,[],[f413158])).
+cnf(s7339, plain, ~spl14_1307 | ~spl14_1286 | ~spl14_1244 | ~spl14_207 | ~spl14_71 | spl14_9 | spl14_208 | spl14_1281, inference(sat_conversion,[],[f467976])).
+cnf(s7347, plain, ~spl14_1523 | ~spl14_1286 | ~spl14_136 | spl14_13 | spl14_199, inference(sat_conversion,[],[f468029])).
+cnf(s8297, plain, spl14_14 | spl14_144, inference(sat_conversion,[],[f483685])).
+cnf(s8381, plain, ~spl14_2421 | spl14_1537 | spl14_2419 | spl14_2440 | spl14_2499, inference(sat_conversion,[],[f486767])).
+cnf(s9915, plain, ~spl14_2931 | spl14_2939, inference(sat_conversion,[],[f535354])).
+cnf(s9930, plain, ~spl14_2938, inference(sat_conversion,[],[f540925])).
+cnf(s10001, plain, ~spl14_2937 | spl14_2938, inference(sat_conversion,[],[f542470])).
+cnf(s10025, plain, ~spl14_2939 | ~spl14_19 | spl14_2937, inference(sat_conversion,[],[f542504])).
+cnf(s10154, plain, ~spl14_2417 | spl14_2421, inference(sat_conversion,[],[f549011])).
+cnf(s10235, plain, ~spl14_2421 | spl14_2417, inference(sat_conversion,[],[f549892])).
+cnf(s10280, plain, ~spl14_2499 | ~spl14_2438 | ~spl14_207 | spl14_208, inference(sat_conversion,[],[f556336])).
+cnf(s11059, plain, ~spl14_2541 | ~spl14_2417 | ~spl14_207 | spl14_208, inference(sat_conversion,[],[f577591])).
+cnf(s11073, plain, ~spl14_2417 | spl14_2438, inference(sat_conversion,[],[f577669])).
+cnf(s11083, plain, ~spl14_3415 | spl14_3121, inference(sat_conversion,[],[f579561])).
+cnf(s11126, plain, ~spl14_2440 | ~spl14_2421 | spl14_1537 | spl14_2541, inference(sat_conversion,[],[f583550])).
+cnf(s11136, plain, ~spl14_2421 | ~spl14_2419 | spl14_1537 | spl14_3415, inference(sat_conversion,[],[f583652])).
+cnf(s11146, plain, ~spl14_3121 | ~spl14_21 | ~spl14_17, inference(sat_conversion,[],[f584017])).
+cnf(s11371, plain, ~spl14_3033 | ~spl14_2968 | spl14_3034 | spl14_3465, inference(sat_conversion,[],[f597652])).
+cnf(s11377, plain, spl14_3033, inference(sat_conversion,[],[f598112])).
+cnf(s11385, plain, ~spl14_3465 | spl14_14, inference(sat_conversion,[],[f598643])).
+cnf(s11387, plain, ~spl14_3033 | ~spl14_221 | spl14_2968 | spl14_2969 | spl14_3034, inference(sat_conversion,[],[f598650])).
+cnf(s11388, plain, ~spl14_3033 | spl14_2968 | spl14_2980 | spl14_3034, inference(sat_conversion,[],[f598652])).
+cnf(s11389, plain, ~spl14_2980 | ~spl14_2969, inference(sat_conversion,[],[f598655])).
+cnf(s11391, plain, ~spl14_3034 | spl14_3018, inference(sat_conversion,[],[f598945])).
+cnf(s11418, plain, ~spl14_3018 | spl14_3031, inference(sat_conversion,[],[f599384])).
+cnf(s11437, plain, ~spl14_3031 | ~spl14_2315 | spl14_1530 | spl14_2931, inference(sat_conversion,[],[f599699])).
+cnf(s11445, plain, ~spl14_3034 | ~spl14_3031 | spl14_1530 | spl14_2314 | spl14_2315, inference(sat_conversion,[],[f599840])).
+cnf(s11451, plain, ~spl14_3031 | ~spl14_2314 | spl14_1530 | spl14_3036, inference(sat_conversion,[],[f599909])).
+cnf(s11473, plain, ~spl14_3036 | spl14_3081, inference(sat_conversion,[],[f599965])).
+cnf(s11475, plain, ~spl14_3081 | ~spl14_21 | ~spl14_17, inference(sat_conversion,[],[f600424])).
+cnf(s11476, plain, ~spl14_1537 | ~spl14_1533 | spl14_13, inference(sat_conversion,[],[f600471])).
+cnf(s11673, plain, ~spl14_6 | spl14_1247, inference(sat_conversion,[],[f601660])).
+cnf(s11987, plain, ~spl14_1286 | ~spl14_1247, inference(sat_conversion,[],[f605210])).
+cnf(s12747, plain, ~spl14_1254 | ~spl14_1242 | ~spl14_1174 | spl14_1272 | spl14_1286, inference(sat_conversion,[],[f617115])).
+cnf(s12921, plain, ~spl14_2474 | ~spl14_221 | ~spl14_144 | spl14_14 | spl14_2417, inference(sat_conversion,[],[f618623])).
+cnf(s12966, plain, spl14_2421 | spl14_2474, inference(sat_conversion,[],[f620480])).
+cnf(s12974, plain, ~spl14_2968 | spl14_3034 | spl14_3465, inference(rat,[],[s11371,s11377])).
+cnf(s12986, plain, ~spl14_2937, inference(rat,[],[s10001,s9930])).
+cnf(s13013, plain, spl14_10, inference(rat,[],[s4359,s4531])).
+cnf(s13023, plain, spl14_1244 | spl14_1268, inference(rat,[],[s3670,s3677])).
+cnf(s13025, plain, spl14_1244 | spl14_1252, inference(rat,[],[s3625,s3677])).
+cnf(s13049, plain, ~spl14_199 | spl14_190, inference(rat,[],[s2629,s3677])).
+cnf(s13051, plain, ~spl14_208, inference(rat,[],[s920,s754])).
+cnf(s13052, plain, ~spl14_281, inference(rat,[],[s782,s754])).
+cnf(s13053, plain, ~spl14_1329, inference(rat,[],[s4791,s13051])).
+cnf(s13088, plain, ~spl14_136 | spl14_174, inference(rat,[],[s338,s3677])).
+cnf(s13092, plain, ~spl14_51, inference(rat,[],[s218,s217])).
+cnf(s13093, plain, ~spl14_18, inference(rat,[],[s683,s13092])).
+cnf(s13100, plain, spl14_174, inference(rat,[],[s13088,s172])).
+cnf(s13141, plain, ~spl14_45, inference(rat,[],[s42,s41])).
+cnf(s13142, plain, ~spl14_5, inference(rat,[],[s4722,s13141])).
+cnf(s13196, plain, ~spl14_29, inference(rat,[],[s21,s13093])).
+cnf(s13197, plain, spl14_30, inference(rat,[],[s14,s13196])).
+cnf(s13198, plain, spl14_1, inference(rat,[],[s22,s13197])).
+cnf(s13199, plain, spl14_2, inference(rat,[],[s23,s13])).
+cnf(s13201, plain, spl14_21, inference(rat,[],[s8,s359])).
+cnf(s13202, plain, spl14_17, inference(rat,[],[s6,s13093])).
+cnf(s13203, plain, ~spl14_3081, inference(rat,[],[s11475,s13201,s13202])).
+cnf(s13204, plain, ~spl14_3121, inference(rat,[],[s11146,s13201,s13202])).
+cnf(s13205, plain, ~spl14_1271, inference(rat,[],[s4448,s13201,s13202])).
+cnf(s13206, plain, ~spl14_3036, inference(rat,[],[s11473,s13203])).
+cnf(s13207, plain, ~spl14_3415, inference(rat,[],[s11083,s13204])).
+cnf(s13210, plain, ~spl14_1272, inference(rat,[],[s4079,s13205])).
+cnf(s13213, plain, ~spl14_3465, inference(rat,[],[s11385,s5])).
+cnf(s13214, plain, spl14_144, inference(rat,[],[s8297,s5])).
+cnf(s13229, plain, ~spl14_218, inference(rat,[],[s502,s5])).
+cnf(s13230, plain, ~spl14_190, inference(rat,[],[s500,s355,s5])).
+cnf(s13232, plain, ~spl14_146, inference(rat,[],[s220,s5])).
+cnf(s13251, plain, spl14_221, inference(rat,[],[s470,s13100,s13229])).
+cnf(s13255, plain, ~spl14_199, inference(rat,[],[s13049,s13230])).
+cnf(s13265, plain, ~spl14_20, inference(rat,[],[s215,s13232])).
+cnf(s13266, plain, spl14_145, inference(rat,[],[s202,s13232])).
+cnf(s13541, plain, spl14_19, inference(rat,[],[s7,s13265])).
+cnf(s13650, plain, ~spl14_2939, inference(rat,[],[s10025,s12986,s13541])).
+cnf(s13731, plain, ~spl14_2931, inference(rat,[],[s9915,s13650])).
+cnf(s13765, plain, ~spl14_13 | ~spl14_12 | ~spl14_11 | ~spl14_9 | ~spl14_8 | spl14_6 | spl14_7, inference(rat,[],[s2,s13142,s4766,s13198,s13199,s13013])).
+cnf(s13767, plain, ~spl14_1248 | spl14_1393, inference(rat,[],[s4047,s4048,s4042,s4045,s3948,s3931,s4099,s4298,s3677,s5,s13202,s446,s13051])).
+cnf(s13768, plain, spl14_1175 | spl14_1172 | spl14_8 | spl14_1174, inference(rat,[],[s3331,s3228])).
+cnf(s13769, plain, spl14_1393 | spl14_8, inference(rat,[],[s13768,s3394,s13767,s3440,s4099,s4298,s13210,s13051,s446])).
+cnf(s13770, plain, spl14_1244, inference(rat,[],[s3678,s13025,s13023,s5])).
+cnf(s13776, plain, spl14_1242, inference(rat,[],[s3695,s13770])).
+cnf(s13777, plain, spl14_1241, inference(rat,[],[s3694,s13770])).
+cnf(s13797, plain, spl14_8, inference(rat,[],[s4332,s3925,s3909,s12747,s4327,s3884,s3886,s4335,s3901,s4044,s4289,s13769,s3495,s13776,s13210,s28,s13053,s13201,s13202,s446,s13051])).
+cnf(s13798, plain, spl14_1286, inference(rat,[],[s3457,s13797])).
+cnf(s13802, plain, ~spl14_1247, inference(rat,[],[s11987,s13798])).
+cnf(s13804, plain, ~spl14_1281, inference(rat,[],[s4349,s13052,s13202,s76,s13798])).
+cnf(s13806, plain, ~spl14_1243, inference(rat,[],[s4308,s13798])).
+cnf(s13813, plain, spl14_1307, inference(rat,[],[s3483,s13798,s13266,s13804])).
+cnf(s13815, plain, spl14_1311, inference(rat,[],[s3490,s13798,s13541,s13804])).
+cnf(s13823, plain, spl14_9, inference(rat,[],[s7339,s13804,s13051,s13798,s76,s446,s13770,s13813])).
+cnf(s13826, plain, spl14_11, inference(rat,[],[s3508,s3763,s13777,s13770])).
+cnf(s13889, plain, spl14_1442, inference(rat,[],[s4086,s4099,s13815])).
+cnf(s13890, plain, ~spl14_7, inference(rat,[],[s4721,s13806])).
+cnf(s13891, plain, spl14_1393, inference(rat,[],[s4298,s446,s13051,s13889])).
+cnf(s13893, plain, spl14_12, inference(rat,[],[s4428,s13891])).
+cnf(s13894, plain, ~spl14_6, inference(rat,[],[s11673,s13802])).
+cnf(s13896, plain, ~spl14_13, inference(rat,[],[s13765,s13890,s13894,s13797,s13823,s13893,s13826])).
+cnf(s13931, plain, ~spl14_1523, inference(rat,[],[s7347,s13255,s13798,s172,s13896])).
+cnf(s14016, plain, spl14_2968 | spl14_3034, inference(rat,[],[s11389,s11387,s11388,s13251,s11377])).
+cnf(s14017, plain, spl14_3034, inference(rat,[],[s14016,s12974,s13213])).
+cnf(s14021, plain, spl14_3018, inference(rat,[],[s11391,s14017])).
+cnf(s14022, plain, spl14_3031, inference(rat,[],[s11418,s14021])).
+cnf(s14024, plain, spl14_2314 | spl14_1530, inference(rat,[],[s11437,s11445,s14017,s13731,s14022])).
+cnf(s14025, plain, spl14_1530, inference(rat,[],[s14024,s11451,s14022,s13206])).
+cnf(s14037, plain, spl14_1533, inference(rat,[],[s4598,s13931,s13896,s14025])).
+cnf(s14057, plain, ~spl14_1537, inference(rat,[],[s11476,s13896,s14037])).
+cnf(s14076, plain, spl14_2417, inference(rat,[],[s12966,s12921,s10235,s13214,s5,s13251])).
+cnf(s14077, plain, spl14_2438, inference(rat,[],[s11073,s14076])).
+cnf(s14078, plain, ~spl14_2541, inference(rat,[],[s11059,s13051,s446,s14076])).
+cnf(s14079, plain, spl14_2421, inference(rat,[],[s10154,s14076])).
+cnf(s14082, plain, ~spl14_2499, inference(rat,[],[s10280,s13051,s446,s14077])).
+cnf(s14088, plain, ~spl14_2419, inference(rat,[],[s11136,s13207,s14057,s14079])).
+cnf(s14089, plain, ~spl14_2440, inference(rat,[],[s11126,s14078,s14057,s14079])).
+cnf(s14097, plain, $false, inference(rat,[],[s8381,s14082,s14079,s14057,s14089,s14088])).
+tff(f620482,plain,(
+  $false),
+  inference(avatar_sat_refutation,[],[s14097])).
+% SZS output end Proof for naval_operations_corrected
+% ------------------------------
+% Version: Vampire 5.0.0 (Release build, commit b56c5534b on 2025-10-24 17:54:13 +0200)
+% Termination reason: Refutation
+% Time elapsed: 175.412 s
+% Peak memory usage: 217 MB
+% ------------------------------
+% ------------------------------

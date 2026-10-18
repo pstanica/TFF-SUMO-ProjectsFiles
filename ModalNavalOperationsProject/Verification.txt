@@ -1,0 +1,30 @@
+COMMAND python3 verify_policy.py
+PASS 18282 status classifications over 242 strict orders with 1 to 4 authorities.
+PASS active weak permission of both alternatives, inactive weak-permission guard, and knowledge of the effective positive status.
+PASS explicit three-world naval interpretation, serial normative relations, inactive guard, persistent conflict, effective response, no mediation, and both knowledge queries.
+
+COMMAND python3 check_supplied_tff.py
+Parsed 46 active axioms and 1 active conjecture in the supported TFF fragment.
+PASS every supplied axiom with 3 authorities, NSD warning requirement False.
+  query_no_unresolvable_conflict: True
+PASS every supplied axiom with 3 authorities, NSD warning requirement True.
+  query_no_unresolvable_conflict: False
+PASS every supplied axiom with 4 authorities, NSD warning requirement False.
+  query_no_unresolvable_conflict: False
+Two three-authority models of the same active axioms disagree on Q4. Neither Q4 nor its negation is entailed, even if the displayed finite domains are closed.
+NSD may additionally require a warning while requiring asset protection. The compatibility witness for action and protection does not constrain this additional normative requirement.
+The extra inactive source has empty normative successors and vacuously requires every named proposition. The unresolved definition can use it twice because its own source variables need not be distinct.
+PASS every one of 44 corrected finite-instance axioms and its combined policy conjecture.
+
+COMMAND python3 check_vampire_log.py
+PASS 26 used input axioms and the combined conjecture match the packaged corrected file, modulo bound-variable renaming and Boolean grouping.
+PASS logged conjecture negation and completed proof endpoint with $false.
+Vampire 5.0.0, commit b56c5534b. Theorem. Elapsed 175.412 s. Peak memory 217 MB.
+The scenario log records timeout at 1000.0000 s and peak memory 1422 MB. It contains no embedded conjecture or proof.
+Individual proof inferences have not been replayed in an independent proof checker.
+
+PASS both SMT-LIB generators reproduced the archived inputs byte for byte.
+PASS all three TFF files and all four solver logs are unchanged from the supplied archive.
+NOTE Vampire and Z3 were not installed in this environment. Solver results refer to the included logs, not new executions.
+NOTE separate per-query and frame-test records are absent.
+PASS updated manuscript compiled twice to 24 pages without unresolved citations or references and without overfull boxes.

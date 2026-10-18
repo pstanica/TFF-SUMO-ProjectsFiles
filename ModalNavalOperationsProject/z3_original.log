@@ -1,0 +1,25 @@
+unknown
+(:added-eqs                   106015
+ :binary-propagations         68061
+ :conflicts                   656
+ :decisions                   216481
+ :del-clause                  370996
+ :final-checks                559
+ :lazy-quant-instantiations   29319411
+ :max-generation              21
+ :max-memory                  993.48
+ :max-missed-qa-cost          21.00
+ :memory                      211.93
+ :min-missed-qa-cost          21.00
+ :minimized-lits              29
+ :missed-quant-instantiations 1519170
+ :mk-bool-var                 2520078
+ :mk-clause                   374960
+ :mk-clause-binary            2151
+ :num-allocs                  287388581217969.00
+ :num-checks                  1
+ :propagations                315396
+ :quant-instantiations        2305966
+ :restarts                    13
+ :rlimit-count                288163061
+ :time                        600.55)

@@ -34,7 +34,7 @@ class Parser:
                 if self.peek()!=',':break
                 self.take(',')
             self.take(']');self.take(':')
-            return (tok,variables,self.expr())
+            return (tok,variables,self.expr(5))
         if tok=='(':
             x=self.expr();self.take(')');return x
         if self.peek()=='(':
